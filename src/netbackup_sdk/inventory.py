@@ -74,7 +74,15 @@ class Hosts(Resource):
     def list(self) -> Entities:
         """Hosts the primary server knows (GET /config/hosts): hostName,
         uuid, operating system, and whether it is a media server or a
-        client."""
+        client.
+
+        Not a JSON:API listing, unlike the rest: `{"hosts": [...]}` of
+        flat records, all of them in one reply - it ignores page[limit]
+        (seen on a 10.2 primary at API 9.0, 2026-11-02). A JSON:API reply
+        is still read, in case a later release changes it."""
+        body = self._get("/config/hosts")
+        if isinstance(body, dict) and isinstance(body.get("hosts"), list):
+            return [dict(host) for host in body["hosts"]]
         return self._all("/config/hosts")
 
 
