@@ -98,6 +98,8 @@ class Assets(Resource):
 class Server(Resource):
     def ping(self) -> Entity:
         """The primary server's time (GET /ping) - the cheapest call that
-        proves the server is answering and the API version is accepted."""
+        proves the server is answering. It takes no API version, so it
+        does not settle which one the client uses; the first other call
+        does."""
         body = self._get("/ping")
         return body if isinstance(body, dict) else {"answer": body}

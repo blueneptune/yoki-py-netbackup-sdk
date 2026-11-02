@@ -11,6 +11,7 @@ keep their release's API version.
 |---|---|
 | 11.0 (11.0.0.1) | 13.0 |
 | 10.5 (10.5.0.1) | 12.0 |
+| 10.2 | 9.0 |
 | 10.0 (10.0.0.1) | 7.0 |
 
 With `api_version="auto"` (the default) the client starts at the newest
@@ -21,14 +22,15 @@ changed.
 Sources: Veritas's API guide for 10.0 (versions up to 7.0), the
 NetBackup 10.5 migration notes of nbu_exporter ("NetBackup 10.5 and
 later support API version 12.0", 406 otherwise), and NetBackup 11
-requests using version 13.0. None of it checked against a server yet.
+requests using version 13.0. 10.2 -> 9.0 checked against a 10.2 primary
+on 2026-11-02: it accepts 6.0 to 9.0 and answers 406 to 10.0 and up.
 """
 
 from __future__ import annotations
 
 # Newest first: the order "auto" tries them in.
-KNOWN = {"11.0": "13.0", "10.5": "12.0", "10.0": "7.0"}
-AUTO_ORDER = ["13.0", "12.0", "7.0"]
+KNOWN = {"11.0": "13.0", "10.5": "12.0", "10.2": "9.0", "10.0": "7.0"}
+AUTO_ORDER = ["13.0", "12.0", "9.0", "7.0"]
 
 
 def media_type(version: str) -> str:

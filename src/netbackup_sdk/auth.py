@@ -32,12 +32,19 @@ from .versions import ApiVersion
 LOGIN_PATH = "/login"
 LOGOUT_PATH = "/logout"
 NOT_ACCEPTABLE = 406
+# Paths that take no API version. /ping answers plain text (the server's
+# time) and refuses every versioned media type - seen on 10.2 - so it
+# says nothing about which version the server accepts.
+UNVERSIONED = ("/ping",)
 
 
 def _with_version(
     version: ApiVersion, request: httpx.Request
 ) -> Generator[httpx.Request, httpx.Response, httpx.Response]:
     """Send `request`, stepping the API version down on each 406."""
+    if request.url.path.endswith(UNVERSIONED):
+        request.headers["Accept"] = "*/*"
+        return (yield request)
     while True:
         version.apply(request)
         response = yield request
