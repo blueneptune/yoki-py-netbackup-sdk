@@ -27,7 +27,12 @@ def checks(nbu: NetBackupClient) -> list[Check]:
     found: dict[str, object] = {}
 
     def ping() -> str:
-        return f"answering; API version {nbu.api_version}"
+        answer = nbu.server.ping()
+        # /ping takes no API version; one page of jobs settles it.
+        nbu.jobs.sample(1)
+        return (
+            f"answering (server time {answer.get('answer', answer)}); API version {nbu.api_version}"
+        )
 
     def recent() -> str:
         total, jobs = nbu.jobs.sample(updated_after=day_ago)
@@ -35,7 +40,9 @@ def checks(nbu: NetBackupClient) -> list[Check]:
             found["job"] = jobs[0].job_id
             found["client"] = jobs[0].client_name
         kinds = sorted({j.job_type or "?" for j in jobs})
-        return f"{total} jobs changed in the last 24 h; types seen: {', '.join(kinds) or '-'}"
+        # Older API versions (9.0, NetBackup 10.2) give no total count.
+        count = total if total is not None else f"{len(jobs)} (first page; no total given)"
+        return f"{count} jobs changed in the last 24 h; types seen: {', '.join(kinds) or '-'}"
 
     def active() -> str:
         pages = list(nbu.jobs.iter_pages(active_only=True))
@@ -66,7 +73,7 @@ def checks(nbu: NetBackupClient) -> list[Check]:
         return f"newest image of {found['client']}: {image.get('backupTime') if image else None}"
 
     return [
-        ("ping and API version", lambda: (nbu.server.ping(), ping())[1]),
+        ("ping and API version", ping),
         ("job listing (delta)", recent),
         ("active jobs", active),
         ("job listing by end time", window),

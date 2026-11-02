@@ -12,8 +12,9 @@ domain), with a named group of calls for each kind of thing -
 sdk-primer supplies the transport underneath (retry and backoff, typed
 exceptions, per-request log correlation).
 
-Written from Veritas's REST API documentation. **None of it has been run
-against a NetBackup server.**
+Written from Veritas's REST API documentation. First run against a
+server on 2026-11-02 (a 10.2 primary, API version 9.0): TLS, version
+negotiation, ping and the job listings work; the rest is still unproven.
 """
 
 from __future__ import annotations
@@ -32,6 +33,20 @@ from .versions import ApiVersion
 # Sent on every request. Only the policy endpoints read it: without it
 # they answer in an older, per-policy-type shape.
 DEFAULT_HEADERS = {"X-NetBackup-Policy-Use-Generic-Schema": "true"}
+
+
+def tls_context(ca_bundle: Path) -> ssl.SSLContext:
+    """Verify the server against NetBackup's own CA, from `ca_bundle`.
+
+    Chain, expiry and host name are all checked. Only Python's strict
+    mode (on by default since 3.13) is turned off: it rejects a CA
+    certificate without a key usage extension, and the `nbatd` CA that
+    NetBackup creates at install has none - seen on a 10.2 primary
+    installed in 2022, whose CA is valid until 2042.
+    """
+    context = ssl.create_default_context(cafile=str(ca_bundle))
+    context.verify_flags &= ~ssl.VERIFY_X509_STRICT
+    return context
 
 
 class NetBackupClient:
@@ -70,7 +85,7 @@ class NetBackupClient:
 
         verify: bool | ssl.SSLContext = verify_tls
         if verify_tls and ca_bundle is not None:
-            verify = ssl.create_default_context(cafile=str(ca_bundle))
+            verify = tls_context(ca_bundle)
 
         self._login_client = httpx.Client(verify=verify, timeout=timeout)
         self._auth: ApiKeyAuth | PasswordAuth
