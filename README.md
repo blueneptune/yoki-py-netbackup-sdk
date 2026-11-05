@@ -136,6 +136,30 @@ Also `NBU_USERNAME` / `NBU_PASSWORD` / `NBU_DOMAIN_TYPE` /
   likely in the file lists or the image's contents - unconfirmed.
 - **Rate limits:** none documented.
 
+## Live tests, and the pages they write
+
+The tests in `tests/` fake the server. `tests/live/` runs the same calls
+against a **real primary** and records every request and answer:
+
+```
+NBU_URL=https://primary:1556/netbackup NBU_API_KEY='...' NBU_CA_BUNDLE=ca.pem \
+NBU_LIVE_MASK_PREFIXES=<your hosts' common prefix> uv run pytest -m live
+```
+
+- `docs/live/<area>.md` - each call as it was really made: the code, the
+  request, NetBackup's answer and what the SDK gave back, with the
+  release and the date. Host names, addresses, user, policy and storage
+  names are replaced by placeholders (`primary-01`, `host-03`, ...); a
+  page that would still contain one is not written.
+- `docs/live/coverage.md` - which of the server's own operations the run
+  proved, against `spec/operations-<release>.tsv`.
+- `NBU_LIVE_CHANGES=yes` adds the tests that create, change and delete
+  things - only their own `bltlive-<run>-*` objects.
+
+`scripts/spec.py` downloads a primary's API description (it publishes it
+at `https://<primary>/api-docs/`) and writes the operations list; the
+description itself stays out of git.
+
 ## Development
 
 ```

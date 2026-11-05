@@ -111,3 +111,10 @@ class Server(Resource):
         does."""
         body = self._get("/ping")
         return body if isinstance(body, dict) else {"answer": body}
+
+    def info(self) -> Entity:
+        """Who the server is (GET /security/serverinfo): serverName,
+        nbuVersion (e.g. "NetBackup_10.2"), masterHostId, domainType,
+        whether single sign-on is on."""
+        body = self._get("/security/serverinfo")
+        return body if isinstance(body, dict) else {"answer": body}
