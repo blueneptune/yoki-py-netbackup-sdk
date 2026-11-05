@@ -1,6 +1,6 @@
 # Changes
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## A Standard policy: create, read back, change, delete
 
@@ -39,7 +39,7 @@ with pytest.raises(NotFoundError):
 
 **On the wire**
 
-- `GET /config/policies/` -> **200** (0.05 s)
+- `GET /config/policies/` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -226,7 +226,7 @@ with pytest.raises(NotFoundError):
 
   </details>
 
-- `GET /config/policies/policy-01` -> **200** (0.07 s)
+- `GET /config/policies/policy-01` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -441,7 +441,7 @@ with pytest.raises(NotFoundError):
 
   </details>
 
-- `POST /config/policies/` -> **204** (0.18 s)
+- `POST /config/policies/` -> **204** (0.22 s)
 
   Sent:
 
@@ -449,10 +449,10 @@ with pytest.raises(NotFoundError):
   {
     "data": {
       "type": "policy",
-      "id": "bltlive-11050645-std",
+      "id": "bltlive-11051551-std",
       "attributes": {
         "policy": {
-          "policyName": "bltlive-11050645-std",
+          "policyName": "bltlive-11051551-std",
           "policyType": "Standard",
           "policyAttributes": {
             "active": false,
@@ -636,7 +636,7 @@ with pytest.raises(NotFoundError):
 
   </details>
 
-- `GET /config/policies/bltlive-11050645-std` -> **200** (0.07 s)
+- `GET /config/policies/bltlive-11051551-std` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -644,10 +644,10 @@ with pytest.raises(NotFoundError):
   {
     "data": {
       "type": "policy",
-      "id": "bltlive-11050645-std",
+      "id": "bltlive-11051551-std",
       "attributes": {
         "policy": {
-          "policyName": "bltlive-11050645-std",
+          "policyName": "bltlive-11051551-std",
           "policyType": "Standard",
           "policyAttributes": {
             "active": false,
@@ -823,7 +823,7 @@ with pytest.raises(NotFoundError):
       },
       "links": {
         "self": {
-          "href": "/config/policies/bltlive-11050645-std"
+          "href": "/config/policies/bltlive-11051551-std"
         }
       }
     }
@@ -832,7 +832,7 @@ with pytest.raises(NotFoundError):
 
   </details>
 
-- `PUT /config/policies/bltlive-11050645-std` -> **204** (0.20 s)
+- `PUT /config/policies/bltlive-11051551-std` -> **204** (0.23 s)
 
   Sent:
 
@@ -840,10 +840,10 @@ with pytest.raises(NotFoundError):
   {
     "data": {
       "type": "policy",
-      "id": "bltlive-11050645-std",
+      "id": "bltlive-11051551-std",
       "attributes": {
         "policy": {
-          "policyName": "bltlive-11050645-std",
+          "policyName": "bltlive-11051551-std",
           "policyType": "Standard",
           "policyAttributes": {
             "active": false,
@@ -1027,7 +1027,7 @@ with pytest.raises(NotFoundError):
 
   </details>
 
-- `GET /config/policies/bltlive-11050645-std` -> **200** (0.07 s)
+- `GET /config/policies/bltlive-11051551-std` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -1035,10 +1035,10 @@ with pytest.raises(NotFoundError):
   {
     "data": {
       "type": "policy",
-      "id": "bltlive-11050645-std",
+      "id": "bltlive-11051551-std",
       "attributes": {
         "policy": {
-          "policyName": "bltlive-11050645-std",
+          "policyName": "bltlive-11051551-std",
           "policyType": "Standard",
           "policyAttributes": {
             "active": false,
@@ -1214,7 +1214,7 @@ with pytest.raises(NotFoundError):
       },
       "links": {
         "self": {
-          "href": "/config/policies/bltlive-11050645-std"
+          "href": "/config/policies/bltlive-11051551-std"
         }
       }
     }
@@ -1223,7 +1223,7 @@ with pytest.raises(NotFoundError):
 
   </details>
 
-- `DELETE /config/policies/bltlive-11050645-std` -> **204** (0.14 s)
+- `DELETE /config/policies/bltlive-11051551-std` -> **204** (0.16 s)
 
   <details><summary>Answer</summary>
 
@@ -1231,7 +1231,7 @@ with pytest.raises(NotFoundError):
 
   </details>
 
-- `GET /config/policies/bltlive-11050645-std` -> **404** (0.10 s)
+- `GET /config/policies/bltlive-11051551-std` -> **404** (0.12 s)
 
   <details><summary>Answer</summary>
 
@@ -1257,9 +1257,9 @@ with pytest.raises(NotFoundError):
 }
 ```
 
-## A policy's parts on their own: add a client and a schedule, then
+## A policy's parts on their own
 
-take them out again, without sending the whole policy.
+Add a client and a schedule, then take them out again, without sending the whole policy.
 
 ```python
 name = f"{PREFIX}-parts"
@@ -1300,7 +1300,7 @@ try:
         body={"data": {"type": "schedule", "id": "bltlive-full", "attributes": schedule}},
     )
 except SDKError as error:
-    record.note(f"Adding the schedule was refused: {getattr(error, 'detail', error)}")
+    record.note(f"Adding the schedule was refused: {error.server_message or error}")
     raise
 full = nbu.raw.config.get_policy(name)["data"]["attributes"]["policy"]
 record.result(
@@ -1723,7 +1723,7 @@ nbu.raw.config.delete_policy(name)
 
   </details>
 
-- `POST /config/policies/` -> **204** (0.17 s)
+- `POST /config/policies/` -> **204** (0.14 s)
 
   Sent:
 
@@ -1731,10 +1731,10 @@ nbu.raw.config.delete_policy(name)
   {
     "data": {
       "type": "policy",
-      "id": "bltlive-11050645-parts",
+      "id": "bltlive-11051551-parts",
       "attributes": {
         "policy": {
-          "policyName": "bltlive-11050645-parts",
+          "policyName": "bltlive-11051551-parts",
           "policyType": "Standard",
           "policyAttributes": {
             "active": false,
@@ -1858,7 +1858,7 @@ nbu.raw.config.delete_policy(name)
 
   </details>
 
-- `PUT /config/policies/bltlive-11050645-parts/clients/bltlive-client.example.com` -> **201** (0.12 s)
+- `PUT /config/policies/bltlive-11051551-parts/clients/bltlive-client.example.com` -> **201** (0.11 s)
 
   Sent:
 
@@ -1881,7 +1881,7 @@ nbu.raw.config.delete_policy(name)
 
   </details>
 
-- `PUT /config/policies/bltlive-11050645-parts/schedules/bltlive-full` -> **201** (0.14 s)
+- `PUT /config/policies/bltlive-11051551-parts/schedules/bltlive-full` -> **201** (0.16 s)
 
   Sent:
 
@@ -1959,7 +1959,7 @@ nbu.raw.config.delete_policy(name)
 
   </details>
 
-- `GET /config/policies/bltlive-11050645-parts` -> **200** (0.08 s)
+- `GET /config/policies/bltlive-11051551-parts` -> **200** (0.08 s)
 
   <details><summary>Answer</summary>
 
@@ -1967,10 +1967,10 @@ nbu.raw.config.delete_policy(name)
   {
     "data": {
       "type": "policy",
-      "id": "bltlive-11050645-parts",
+      "id": "bltlive-11051551-parts",
       "attributes": {
         "policy": {
-          "policyName": "bltlive-11050645-parts",
+          "policyName": "bltlive-11051551-parts",
           "policyType": "Standard",
           "policyAttributes": {
             "active": false,
@@ -2165,7 +2165,7 @@ nbu.raw.config.delete_policy(name)
       },
       "links": {
         "self": {
-          "href": "/config/policies/bltlive-11050645-parts"
+          "href": "/config/policies/bltlive-11051551-parts"
         }
       }
     }
@@ -2174,7 +2174,7 @@ nbu.raw.config.delete_policy(name)
 
   </details>
 
-- `DELETE /config/policies/bltlive-11050645-parts/schedules/bltlive-full` -> **204** (0.11 s)
+- `DELETE /config/policies/bltlive-11051551-parts/schedules/bltlive-full` -> **204** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -2182,7 +2182,7 @@ nbu.raw.config.delete_policy(name)
 
   </details>
 
-- `DELETE /config/policies/bltlive-11050645-parts/clients/bltlive-client.example.com` -> **204** (0.10 s)
+- `DELETE /config/policies/bltlive-11051551-parts/clients/bltlive-client.example.com` -> **204** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -2190,7 +2190,7 @@ nbu.raw.config.delete_policy(name)
 
   </details>
 
-- `GET /config/policies/bltlive-11050645-parts` -> **200** (0.11 s)
+- `GET /config/policies/bltlive-11051551-parts` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -2198,10 +2198,10 @@ nbu.raw.config.delete_policy(name)
   {
     "data": {
       "type": "policy",
-      "id": "bltlive-11050645-parts",
+      "id": "bltlive-11051551-parts",
       "attributes": {
         "policy": {
-          "policyName": "bltlive-11050645-parts",
+          "policyName": "bltlive-11051551-parts",
           "policyType": "Standard",
           "policyAttributes": {
             "active": false,
@@ -2317,7 +2317,7 @@ nbu.raw.config.delete_policy(name)
       },
       "links": {
         "self": {
-          "href": "/config/policies/bltlive-11050645-parts"
+          "href": "/config/policies/bltlive-11051551-parts"
         }
       }
     }
@@ -2326,7 +2326,7 @@ nbu.raw.config.delete_policy(name)
 
   </details>
 
-- `DELETE /config/policies/bltlive-11050645-parts` -> **204** (0.13 s)
+- `DELETE /config/policies/bltlive-11051551-parts` -> **204** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -2383,7 +2383,7 @@ with pytest.raises(NotFoundError):
 
 **On the wire**
 
-- `GET /config/slps` -> **200** (0.09 s)
+- `GET /config/slps` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -2737,7 +2737,7 @@ with pytest.raises(NotFoundError):
 
   </details>
 
-- `POST /config/slps` -> **201** (0.22 s)
+- `POST /config/slps` -> **201** (0.21 s)
 
   Sent:
 
@@ -2745,9 +2745,9 @@ with pytest.raises(NotFoundError):
   {
     "data": {
       "type": "slp",
-      "id": "bltlive-11050645-slp",
+      "id": "bltlive-11051551-slp",
       "attributes": {
-        "slpName": "bltlive-11050645-slp",
+        "slpName": "bltlive-11051551-slp",
         "duplicationPriority": 0,
         "operationList": [
           {
@@ -2834,9 +2834,9 @@ with pytest.raises(NotFoundError):
   {
     "data": {
       "type": "slp",
-      "id": "bltlive-11050645-slp",
+      "id": "bltlive-11051551-slp",
       "attributes": {
-        "slpName": "bltlive-11050645-slp",
+        "slpName": "bltlive-11051551-slp",
         "versionNumber": 0,
         "flagValues": [],
         "active": true,
@@ -2919,7 +2919,7 @@ with pytest.raises(NotFoundError):
       },
       "links": {
         "self": {
-          "href": "/config/slps/bltlive-11050645-slp"
+          "href": "/config/slps/bltlive-11051551-slp"
         }
       }
     }
@@ -2928,7 +2928,7 @@ with pytest.raises(NotFoundError):
 
   </details>
 
-- `GET /config/slps/bltlive-11050645-slp` -> **200** (0.13 s)
+- `GET /config/slps/bltlive-11051551-slp` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -2936,9 +2936,9 @@ with pytest.raises(NotFoundError):
   {
     "data": {
       "type": "slp",
-      "id": "bltlive-11050645-slp",
+      "id": "bltlive-11051551-slp",
       "attributes": {
-        "slpName": "bltlive-11050645-slp",
+        "slpName": "bltlive-11051551-slp",
         "versionNumber": 0,
         "flagValues": [],
         "active": true,
@@ -3023,7 +3023,7 @@ with pytest.raises(NotFoundError):
         "versions": {
           "links": {
             "self": {
-              "href": "/config/slps/bltlive-11050645-slp/versions"
+              "href": "/config/slps/bltlive-11051551-slp/versions"
             }
           },
           "data": [
@@ -3036,7 +3036,7 @@ with pytest.raises(NotFoundError):
       },
       "links": {
         "self": {
-          "href": "/config/slps/bltlive-11050645-slp"
+          "href": "/config/slps/bltlive-11051551-slp"
         }
       }
     }
@@ -3045,7 +3045,7 @@ with pytest.raises(NotFoundError):
 
   </details>
 
-- `PUT /config/slps/bltlive-11050645-slp` -> **200** (0.19 s)
+- `PUT /config/slps/bltlive-11051551-slp` -> **200** (0.19 s)
 
   Sent:
 
@@ -3053,9 +3053,9 @@ with pytest.raises(NotFoundError):
   {
     "data": {
       "type": "slp",
-      "id": "bltlive-11050645-slp",
+      "id": "bltlive-11051551-slp",
       "attributes": {
-        "slpName": "bltlive-11050645-slp",
+        "slpName": "bltlive-11051551-slp",
         "duplicationPriority": 5,
         "operationList": [
           {
@@ -3142,9 +3142,9 @@ with pytest.raises(NotFoundError):
   {
     "data": {
       "type": "slp",
-      "id": "bltlive-11050645-slp",
+      "id": "bltlive-11051551-slp",
       "attributes": {
-        "slpName": "bltlive-11050645-slp",
+        "slpName": "bltlive-11051551-slp",
         "versionNumber": 1,
         "flagValues": [],
         "active": true,
@@ -3227,7 +3227,7 @@ with pytest.raises(NotFoundError):
       },
       "links": {
         "self": {
-          "href": "/config/slps/bltlive-11050645-slp"
+          "href": "/config/slps/bltlive-11051551-slp"
         }
       }
     }
@@ -3236,7 +3236,7 @@ with pytest.raises(NotFoundError):
 
   </details>
 
-- `GET /config/slps/bltlive-11050645-slp` -> **200** (0.12 s)
+- `GET /config/slps/bltlive-11051551-slp` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -3244,9 +3244,9 @@ with pytest.raises(NotFoundError):
   {
     "data": {
       "type": "slp",
-      "id": "bltlive-11050645-slp",
+      "id": "bltlive-11051551-slp",
       "attributes": {
-        "slpName": "bltlive-11050645-slp",
+        "slpName": "bltlive-11051551-slp",
         "versionNumber": 1,
         "flagValues": [],
         "active": true,
@@ -3331,7 +3331,7 @@ with pytest.raises(NotFoundError):
         "versions": {
           "links": {
             "self": {
-              "href": "/config/slps/bltlive-11050645-slp/versions"
+              "href": "/config/slps/bltlive-11051551-slp/versions"
             }
           },
           "data": [
@@ -3348,7 +3348,7 @@ with pytest.raises(NotFoundError):
       },
       "links": {
         "self": {
-          "href": "/config/slps/bltlive-11050645-slp"
+          "href": "/config/slps/bltlive-11051551-slp"
         }
       }
     }
@@ -3357,7 +3357,7 @@ with pytest.raises(NotFoundError):
 
   </details>
 
-- `DELETE /config/slps/bltlive-11050645-slp` -> **204** (0.13 s)
+- `DELETE /config/slps/bltlive-11051551-slp` -> **204** (0.13 s)
 
   <details><summary>Answer</summary>
 
@@ -3365,7 +3365,7 @@ with pytest.raises(NotFoundError):
 
   </details>
 
-- `GET /config/slps/bltlive-11050645-slp` -> **404** (0.11 s)
+- `GET /config/slps/bltlive-11051551-slp` -> **404** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -3385,7 +3385,7 @@ with pytest.raises(NotFoundError):
 
 ```json
 {
-  "slpName": "bltlive-11050645-slp",
+  "slpName": "bltlive-11051551-slp",
   "versionNumber": 1,
   "duplicationPriority": 5
 }

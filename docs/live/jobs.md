@@ -1,6 +1,6 @@
 # Jobs
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## The newest few jobs, and how many there are, in one request
 
@@ -14,7 +14,7 @@ assert all(isinstance(job, Job) for job in jobs)
 
 **On the wire**
 
-- `GET /admin/jobs?sort=-jobId&page%5Boffset%5D=0&page%5Blimit%5D=3` -> **200** (0.05 s)
+- `GET /admin/jobs?sort=-jobId&page%5Boffset%5D=0&page%5Blimit%5D=3` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -23,12 +23,92 @@ assert all(isinstance(job, Job) for job in jobs)
     "data": [
       {
         "type": "job",
-        "id": "1704",
+        "id": "1712",
         "attributes": {
-          "jobId": 1704,
+          "jobId": 1712,
           "parentJobId": 0,
-          "activeProcessId": 790091,
+          "activeProcessId": 897548,
+          "jobType": "BACKUP",
+          "jobSubType": "IMMEDIATE",
+          "policyType": "STANDARD",
+          "policyName": "bltlive-11051551-bkp",
+          "scheduleType": "FULL_BACKUP",
+          "scheduleName": "bltlive-full",
+          "clientName": "primary-01",
+          "jobOwner": "root",
+          "jobGroup": "other",
+          "backupId": "primary-01_1793893889",
+          "destinationStorageUnitName": "storage-unit-02",
+          "destinationMediaServerName": "primary-01",
+          "dataMovement": "STANDARD",
+          "streamNumber": 0,
+          "copyNumber": 0,
+          "priority": 0,
+          "compression": 0,
+          "status": 0,
+          "state": "DONE",
+          "numberOfFiles": 1,
+          "estimatedFiles": 0,
+          "kilobytesTransferred": 32,
+          "kilobytesToTransfer": 0,
+          "transferRate": 87,
+          "percentComplete": 100,
+          "restartable": 1,
+          "suspendable": 0,
+          "resumable": 0,
+          "frozenImage": 0,
+          "transportType": "LAN",
+          "dedupRatio": 95.1,
+          "currentOperation": -99,
+          "sessionId": 0,
+          "numberOfTapeToEject": 0,
+          "submissionType": 0,
+          "auditDomainType": 0,
+          "startTime": "2026-11-05T15:51:29.000Z",
+          "endTime": "2026-11-05T15:51:39.000Z",
+          "activeTryStartTime": "2026-11-05T15:51:29.000Z",
+          "lastUpdateTime": "2026-11-05T15:51:49.095Z",
+          "childCount": 0,
+          "jobPath": "1712",
+          "retentionLevel": 0,
+          "try": 1,
+          "cancellable": 0,
+          "jobQueueReason": -99,
+          "kilobytesDataTransferred": 0,
+          "elapsedTime": "PT10S",
+          "activeElapsedTime": "PT10S",
+          "dteMode": "OFF",
+          "dedupSpaceRatio": 17.1,
+          "compressionSpaceRatio": 78.0,
+          "workloadDisplayName": "primary-01",
+          "offHostType": "STANDARD"
+        },
+        "links": {
+          "self": {
+            "href": "/admin/jobs/1712"
+          },
+          "file-lists": {
+            "href": "https://primary-01:1556/netbackup/admin/jobs/1712/file-lists"
+          },
+          "try-logs": {
+            "href": "https://primary-01:1556/netbackup/admin/jobs/1712/try-logs"
+          }
+        },
+        "meta": {
+          "page": {
+            "cursor": "1712"
+          }
+        }
+      },
+      {
+        "type": "job",
+        "id": "1711",
+        "attributes": {
+          "jobId": 1711,
+          "parentJobId": 0,
+          "activeProcessId": 896063,
           "jobType": "IMAGEDELETE",
+          "clientName": "",
           "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
@@ -52,12 +132,12 @@ assert all(isinstance(job, Job) for job in jobs)
           "numberOfTapeToEject": 0,
           "submissionType": 0,
           "auditDomainType": 0,
-          "startTime": "2026-11-05T03:56:33.000Z",
-          "endTime": "2026-11-05T03:56:34.000Z",
-          "activeTryStartTime": "2026-11-05T03:56:33.000Z",
-          "lastUpdateTime": "2026-11-05T03:56:37.044Z",
+          "startTime": "2026-11-05T15:48:09.000Z",
+          "endTime": "2026-11-05T15:48:10.000Z",
+          "activeTryStartTime": "2026-11-05T15:48:09.000Z",
+          "lastUpdateTime": "2026-11-05T15:48:18.468Z",
           "childCount": 0,
-          "jobPath": "1704",
+          "jobPath": "1711",
           "try": 1,
           "cancellable": 1,
           "jobQueueReason": -99,
@@ -68,155 +148,110 @@ assert all(isinstance(job, Job) for job in jobs)
         },
         "links": {
           "self": {
-            "href": "/admin/jobs/1704"
+            "href": "/admin/jobs/1711"
           },
           "file-lists": {
-            "href": "https://primary-01:1556/netbackup/admin/jobs/1704/file-lists"
+            "href": "https://primary-01:1556/netbackup/admin/jobs/1711/file-lists"
           },
           "try-logs": {
-            "href": "https://primary-01:1556/netbackup/admin/jobs/1704/try-logs"
+            "href": "https://primary-01:1556/netbackup/admin/jobs/1711/try-logs"
           }
         },
         "meta": {
           "page": {
-            "cursor": "1704"
+            "cursor": "1711"
           }
         }
       },
       {
         "type": "job",
-        "id": "1703",
+        "id": "1710",
         "attributes": {
-          "jobId": 1703,
+          "jobId": 1710,
           "parentJobId": 0,
-          "activeProcessId": 693779,
-          "jobType": "IMAGEDELETE",
+          "activeProcessId": 895944,
+          "jobType": "BACKUP",
+          "jobSubType": "IMMEDIATE",
+          "policyType": "STANDARD",
+          "policyName": "bltlive-11051547-bkp",
+          "scheduleType": "FULL_BACKUP",
+          "scheduleName": "bltlive-full",
+          "clientName": "primary-01",
           "jobOwner": "root",
+          "jobGroup": "other",
+          "backupId": "primary-01_1793893677",
+          "destinationStorageUnitName": "storage-unit-02",
+          "destinationMediaServerName": "primary-01",
+          "dataMovement": "STANDARD",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
           "compression": 0,
           "status": 0,
           "state": "DONE",
-          "numberOfFiles": 0,
+          "numberOfFiles": 1,
           "estimatedFiles": 0,
-          "kilobytesTransferred": 0,
+          "kilobytesTransferred": 32,
           "kilobytesToTransfer": 0,
-          "transferRate": 0,
+          "transferRate": 75,
           "percentComplete": 100,
-          "restartable": 0,
+          "restartable": 1,
           "suspendable": 0,
           "resumable": 0,
           "frozenImage": 0,
           "transportType": "LAN",
-          "currentOperation": 0,
+          "dedupRatio": 95.1,
+          "currentOperation": -99,
           "sessionId": 0,
           "numberOfTapeToEject": 0,
           "submissionType": 0,
           "auditDomainType": 0,
-          "startTime": "2026-11-04T15:56:32.000Z",
-          "endTime": "2026-11-04T15:56:34.000Z",
-          "activeTryStartTime": "2026-11-04T15:56:32.000Z",
-          "lastUpdateTime": "2026-11-04T15:56:40.752Z",
+          "startTime": "2026-11-05T15:47:57.000Z",
+          "endTime": "2026-11-05T15:48:07.000Z",
+          "activeTryStartTime": "2026-11-05T15:47:57.000Z",
+          "lastUpdateTime": "2026-11-05T15:48:08.471Z",
           "childCount": 0,
-          "jobPath": "1703",
+          "jobPath": "1710",
+          "retentionLevel": 0,
           "try": 1,
-          "cancellable": 1,
+          "cancellable": 0,
           "jobQueueReason": -99,
           "kilobytesDataTransferred": 0,
-          "elapsedTime": "PT2S",
-          "activeElapsedTime": "PT2S",
-          "dteMode": "UNKNOWN"
+          "elapsedTime": "PT10S",
+          "activeElapsedTime": "PT10S",
+          "dteMode": "OFF",
+          "dedupSpaceRatio": 14.6,
+          "compressionSpaceRatio": 80.5,
+          "workloadDisplayName": "primary-01",
+          "offHostType": "STANDARD"
         },
         "links": {
           "self": {
-            "href": "/admin/jobs/1703"
+            "href": "/admin/jobs/1710"
           },
           "file-lists": {
-            "href": "https://primary-01:1556/netbackup/admin/jobs/1703/file-lists"
+            "href": "https://primary-01:1556/netbackup/admin/jobs/1710/file-lists"
           },
           "try-logs": {
-            "href": "https://primary-01:1556/netbackup/admin/jobs/1703/try-logs"
+            "href": "https://primary-01:1556/netbackup/admin/jobs/1710/try-logs"
           }
         },
         "meta": {
           "page": {
-            "cursor": "1703"
-          }
-        }
-      },
-      {
-        "type": "job",
-        "id": "1702",
-        "attributes": {
-          "jobId": 1702,
-          "parentJobId": 0,
-          "activeProcessId": 595274,
-          "jobType": "IMAGEDELETE",
-          "jobOwner": "root",
-          "streamNumber": 0,
-          "copyNumber": 0,
-          "priority": 0,
-          "compression": 0,
-          "status": 0,
-          "state": "DONE",
-          "numberOfFiles": 0,
-          "estimatedFiles": 0,
-          "kilobytesTransferred": 0,
-          "kilobytesToTransfer": 0,
-          "transferRate": 0,
-          "percentComplete": 100,
-          "restartable": 0,
-          "suspendable": 0,
-          "resumable": 0,
-          "frozenImage": 0,
-          "transportType": "LAN",
-          "currentOperation": 0,
-          "sessionId": 0,
-          "numberOfTapeToEject": 0,
-          "submissionType": 0,
-          "auditDomainType": 0,
-          "startTime": "2026-11-04T03:56:32.000Z",
-          "endTime": "2026-11-04T03:56:33.000Z",
-          "activeTryStartTime": "2026-11-04T03:56:32.000Z",
-          "lastUpdateTime": "2026-11-04T03:56:42.788Z",
-          "childCount": 0,
-          "jobPath": "1702",
-          "try": 1,
-          "cancellable": 1,
-          "jobQueueReason": -99,
-          "kilobytesDataTransferred": 0,
-          "elapsedTime": "PT1S",
-          "activeElapsedTime": "PT1S",
-          "dteMode": "UNKNOWN"
-        },
-        "links": {
-          "self": {
-            "href": "/admin/jobs/1702"
-          },
-          "file-lists": {
-            "href": "https://primary-01:1556/netbackup/admin/jobs/1702/file-lists"
-          },
-          "try-logs": {
-            "href": "https://primary-01:1556/netbackup/admin/jobs/1702/try-logs"
-          }
-        },
-        "meta": {
-          "page": {
-            "cursor": "1702"
+            "cursor": "1710"
           }
         }
       }
     ],
     "meta": {
       "pagination": {
-        "next": "1702",
+        "next": "1710",
         "limit": 3
       }
     },
     "links": {
       "next": {
-        "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=3&page%5Bafter%5D=1702&sort=-jobId"
+        "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=3&page%5Bafter%5D=1710&sort=-jobId"
       },
       "self": {
         "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=3&sort=-jobId"
@@ -237,7 +272,29 @@ assert all(isinstance(job, Job) for job in jobs)
   "total": null,
   "jobs": [
     {
-      "job_id": 1704,
+      "job_id": 1712,
+      "parent_job_id": 0,
+      "job_type": "BACKUP",
+      "state": "DONE",
+      "status": 0,
+      "policy_name": "bltlive-11051551-bkp",
+      "policy_type": "STANDARD",
+      "schedule_name": "bltlive-full",
+      "schedule_type": "FULL_BACKUP",
+      "client_name": "primary-01",
+      "media_server": "primary-01",
+      "storage_unit": "storage-unit-02",
+      "backup_id": "primary-01_1793893889",
+      "start_time": "2026-11-05T15:51:29Z",
+      "end_time": "2026-11-05T15:51:39Z",
+      "last_update_time": "2026-11-05T15:51:49.095000Z",
+      "kilobytes_transferred": 32,
+      "kilobytes_data_transferred": 0,
+      "number_of_files": 1,
+      "percent_complete": 100
+    },
+    {
+      "job_id": 1711,
       "parent_job_id": 0,
       "job_type": "IMAGEDELETE",
       "state": "DONE",
@@ -246,60 +303,38 @@ assert all(isinstance(job, Job) for job in jobs)
       "policy_type": null,
       "schedule_name": null,
       "schedule_type": null,
-      "client_name": null,
+      "client_name": "",
       "media_server": null,
       "storage_unit": null,
       "backup_id": null,
-      "start_time": "2026-11-05T03:56:33Z",
-      "end_time": "2026-11-05T03:56:34Z",
-      "last_update_time": "2026-11-05T03:56:37.044000Z",
+      "start_time": "2026-11-05T15:48:09Z",
+      "end_time": "2026-11-05T15:48:10Z",
+      "last_update_time": "2026-11-05T15:48:18.468000Z",
       "kilobytes_transferred": 0,
       "kilobytes_data_transferred": 0,
       "number_of_files": 0,
       "percent_complete": 100
     },
     {
-      "job_id": 1703,
+      "job_id": 1710,
       "parent_job_id": 0,
-      "job_type": "IMAGEDELETE",
+      "job_type": "BACKUP",
       "state": "DONE",
       "status": 0,
-      "policy_name": null,
-      "policy_type": null,
-      "schedule_name": null,
-      "schedule_type": null,
-      "client_name": null,
-      "media_server": null,
-      "storage_unit": null,
-      "backup_id": null,
-      "start_time": "2026-11-04T15:56:32Z",
-      "end_time": "2026-11-04T15:56:34Z",
-      "last_update_time": "2026-11-04T15:56:40.752000Z",
-      "kilobytes_transferred": 0,
+      "policy_name": "bltlive-11051547-bkp",
+      "policy_type": "STANDARD",
+      "schedule_name": "bltlive-full",
+      "schedule_type": "FULL_BACKUP",
+      "client_name": "primary-01",
+      "media_server": "primary-01",
+      "storage_unit": "storage-unit-02",
+      "backup_id": "primary-01_1793893677",
+      "start_time": "2026-11-05T15:47:57Z",
+      "end_time": "2026-11-05T15:48:07Z",
+      "last_update_time": "2026-11-05T15:48:08.471000Z",
+      "kilobytes_transferred": 32,
       "kilobytes_data_transferred": 0,
-      "number_of_files": 0,
-      "percent_complete": 100
-    },
-    {
-      "job_id": 1702,
-      "parent_job_id": 0,
-      "job_type": "IMAGEDELETE",
-      "state": "DONE",
-      "status": 0,
-      "policy_name": null,
-      "policy_type": null,
-      "schedule_name": null,
-      "schedule_type": null,
-      "client_name": null,
-      "media_server": null,
-      "storage_unit": null,
-      "backup_id": null,
-      "start_time": "2026-11-04T03:56:32Z",
-      "end_time": "2026-11-04T03:56:33Z",
-      "last_update_time": "2026-11-04T03:56:42.788000Z",
-      "kilobytes_transferred": 0,
-      "kilobytes_data_transferred": 0,
-      "number_of_files": 0,
+      "number_of_files": 1,
       "percent_complete": 100
     }
   ]
@@ -324,7 +359,7 @@ assert count >= 0
 
 **On the wire**
 
-- `GET /admin/jobs?sort=jobId&page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.06 s)
+- `GET /admin/jobs?sort=jobId&page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -517,7 +552,7 @@ assert count >= 0
           }
         }
       },
-      "... 4 more"
+      "... 12 more"
     ],
     "meta": {
       "pagination": {
@@ -541,9 +576,9 @@ assert count >= 0
 
 ```json
 {
-  "jobs": 7,
+  "jobs": 15,
   "by state": {
-    "DONE": 7
+    "DONE": 15
   }
 }
 ```
@@ -561,7 +596,7 @@ assert all(job.last_update_time is None or job.last_update_time >= since for job
 
 **On the wire**
 
-- `GET /admin/jobs?filter=lastUpdateTime+ge+2026-10-29T06%3A45%3A26.058Z&sort=jobId&page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.11 s)
+- `GET /admin/jobs?filter=lastUpdateTime+ge+2026-10-29T15%3A51%3A56.894Z&sort=jobId&page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -754,7 +789,7 @@ assert all(job.last_update_time is None or job.last_update_time >= since for job
           }
         }
       },
-      "... 4 more"
+      "... 12 more"
     ],
     "meta": {
       "pagination": {
@@ -763,10 +798,10 @@ assert all(job.last_update_time is None or job.last_update_time >= since for job
     },
     "links": {
       "self": {
-        "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=100&sort=jobId&filter=lastUpdateTime%20ge%202026-10-29T06:45:26.058Z"
+        "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=100&sort=jobId&filter=lastUpdateTime%20ge%202026-10-29T15:51:56.894Z"
       },
       "first": {
-        "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=100&sort=jobId&filter=lastUpdateTime%20ge%202026-10-29T06:45:26.058Z"
+        "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=100&sort=jobId&filter=lastUpdateTime%20ge%202026-10-29T15:51:56.894Z"
       }
     }
   }
@@ -778,8 +813,8 @@ assert all(job.last_update_time is None or job.last_update_time >= since for job
 
 ```json
 {
-  "since": "2026-10-29T06:45:26.058183+00:00",
-  "jobs": 7
+  "since": "2026-10-29T15:51:56.894024+00:00",
+  "jobs": 15
 }
 ```
 
@@ -898,7 +933,7 @@ assert job is not None and job.job_id == newest.job_id
 
 **On the wire**
 
-- `GET /admin/jobs/1704` -> **200** (0.07 s)
+- `GET /admin/jobs/1712` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -906,58 +941,75 @@ assert job is not None and job.job_id == newest.job_id
   {
     "data": {
       "type": "job",
-      "id": "1704",
+      "id": "1712",
       "attributes": {
-        "jobId": 1704,
+        "jobId": 1712,
         "parentJobId": 0,
-        "activeProcessId": 790091,
-        "jobType": "IMAGEDELETE",
+        "activeProcessId": 897548,
+        "jobType": "BACKUP",
+        "jobSubType": "IMMEDIATE",
+        "policyType": "STANDARD",
+        "policyName": "bltlive-11051551-bkp",
+        "scheduleType": "FULL_BACKUP",
+        "scheduleName": "bltlive-full",
+        "clientName": "primary-01",
         "jobOwner": "root",
+        "jobGroup": "other",
+        "backupId": "primary-01_1793893889",
+        "destinationStorageUnitName": "storage-unit-02",
+        "destinationMediaServerName": "primary-01",
+        "dataMovement": "STANDARD",
         "streamNumber": 0,
         "copyNumber": 0,
         "priority": 0,
         "compression": 0,
         "status": 0,
         "state": "DONE",
-        "numberOfFiles": 0,
+        "numberOfFiles": 1,
         "estimatedFiles": 0,
-        "kilobytesTransferred": 0,
+        "kilobytesTransferred": 32,
         "kilobytesToTransfer": 0,
-        "transferRate": 0,
+        "transferRate": 87,
         "percentComplete": 100,
-        "restartable": 0,
+        "restartable": 1,
         "suspendable": 0,
         "resumable": 0,
         "frozenImage": 0,
         "transportType": "LAN",
-        "currentOperation": 0,
+        "dedupRatio": 95.1,
+        "currentOperation": -99,
         "sessionId": 0,
         "numberOfTapeToEject": 0,
         "submissionType": 0,
         "auditDomainType": 0,
-        "startTime": "2026-11-05T03:56:33.000Z",
-        "endTime": "2026-11-05T03:56:34.000Z",
-        "activeTryStartTime": "2026-11-05T03:56:33.000Z",
-        "lastUpdateTime": "2026-11-05T03:56:37.044Z",
+        "startTime": "2026-11-05T15:51:29.000Z",
+        "endTime": "2026-11-05T15:51:39.000Z",
+        "activeTryStartTime": "2026-11-05T15:51:29.000Z",
+        "lastUpdateTime": "2026-11-05T15:51:49.095Z",
         "childCount": 0,
-        "jobPath": "1704",
+        "jobPath": "1712",
+        "retentionLevel": 0,
         "try": 1,
-        "cancellable": 1,
+        "cancellable": 0,
         "jobQueueReason": -99,
         "kilobytesDataTransferred": 0,
-        "elapsedTime": "PT1S",
-        "activeElapsedTime": "PT1S",
-        "dteMode": "UNKNOWN"
+        "elapsedTime": "PT10S",
+        "activeElapsedTime": "PT10S",
+        "dteMode": "OFF",
+        "dedupSpaceRatio": 17.1,
+        "compressionSpaceRatio": 78.0,
+        "workloadDisplayName": "primary-01",
+        "offHostType": "STANDARD"
       },
       "links": {
         "self": {
-          "href": "/admin/jobs/1704"
+          "href": "/admin/jobs/1712"
         },
         "file-lists": {
-          "href": "https://primary-01:1556/netbackup/admin/jobs/1704/file-lists"
+          "href": "https://primary-01:1556/netbackup/admin/jobs/1712/file-lists"
         },
         "try-logs": {
-          "href": "https://primary-01:1556/netbackup/admin/jobs/1704/try-logs"
+          "href": "https://primary-01:1556/netbackup/admin/jobs/1712/try-logs"
         }
       }
     }
@@ -970,25 +1022,25 @@ assert job is not None and job.job_id == newest.job_id
 
 ```json
 {
-  "job_id": 1704,
+  "job_id": 1712,
   "parent_job_id": 0,
-  "job_type": "IMAGEDELETE",
+  "job_type": "BACKUP",
   "state": "DONE",
   "status": 0,
-  "policy_name": null,
-  "policy_type": null,
-  "schedule_name": null,
-  "schedule_type": null,
-  "client_name": null,
-  "media_server": null,
-  "storage_unit": null,
-  "backup_id": null,
-  "start_time": "2026-11-05T03:56:33Z",
-  "end_time": "2026-11-05T03:56:34Z",
-  "last_update_time": "2026-11-05T03:56:37.044000Z",
-  "kilobytes_transferred": 0,
+  "policy_name": "bltlive-11051551-bkp",
+  "policy_type": "STANDARD",
+  "schedule_name": "bltlive-full",
+  "schedule_type": "FULL_BACKUP",
+  "client_name": "primary-01",
+  "media_server": "primary-01",
+  "storage_unit": "storage-unit-02",
+  "backup_id": "primary-01_1793893889",
+  "start_time": "2026-11-05T15:51:29Z",
+  "end_time": "2026-11-05T15:51:39Z",
+  "last_update_time": "2026-11-05T15:51:49.095000Z",
+  "kilobytes_transferred": 32,
   "kilobytes_data_transferred": 0,
-  "number_of_files": 0,
+  "number_of_files": 1,
   "percent_complete": 100
 }
 ```
@@ -1001,7 +1053,7 @@ assert nbu.jobs.get(2_000_000_000) is None
 
 **On the wire**
 
-- `GET /admin/jobs/2000000000` -> **404** (0.06 s)
+- `GET /admin/jobs/2000000000` -> **404** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -1017,7 +1069,7 @@ record.result(nbu.jobs.try_logs(newest.job_id))
 
 **On the wire**
 
-- `GET /admin/jobs/1704/try-logs?page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.07 s)
+- `GET /admin/jobs/1712/try-logs?page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -1026,50 +1078,51 @@ record.result(nbu.jobs.try_logs(newest.job_id))
     "data": [
       {
         "type": "parsedTryLogResponse",
-        "id": "1704-1",
+        "id": "1712-1",
         "attributes": {
           "tryNumber": 1,
-          "jobId": 1704,
-          "tryStartTimestamp": "2026-11-05T03:56:33.000Z",
-          "tryEndTimestamp": "2026-11-05T03:56:34.000Z",
+          "jobId": 1712,
+          "tryStartTimestamp": "2026-11-05T15:51:29.000Z",
+          "tryEndTimestamp": "2026-11-05T15:51:39.000Z",
+          "tryTransport": "LAN",
           "tryStatusCode": 0,
           "tryStatusMessage": "the requested operation was successfully completed",
-          "tryKbps": 0.0,
-          "tryKbWritten": 0.0,
-          "tryFilesWritten": 0,
+          "tryKbps": 87.0,
+          "tryKbWritten": 32.0,
+          "tryFilesWritten": 1,
           "trySourceStorageUnit": "",
-          "tryDestinationStorageUnit": "",
-          "tryMediaServer": "",
-          "tryProcessId": 790091,
+          "tryDestinationStorageUnit": "storage-unit-02",
+          "tryMediaServer": "primary-01",
+          "tryProcessId": 897548,
           "trySessionId": 0,
           "tryLogEntries": [
             {
-              "message": "bpdbm (pid=790091) image catalog cleanup",
+              "message": "nbjm (pid=100352) starting backup job (jobid=1712) for client primary-01, policy bltlive-11051551-bkp, schedule bltlive-full",
               "severity": "INFO",
-              "timestamp": "2026-11-05T03:56:33.000Z"
+              "timestamp": "2026-11-05T15:51:29.000Z"
             },
             {
-              "message": "bpdbm (pid=790091) deleting images which expire before Wed Nov  4 21:56:32 2026 (1793850992)",
+              "message": "bpbrm (pid=897548) The data-in-transit encryption (DTE) is disabled for the client (primary-01) as the global DTE mode is set to 'Preferred Off' and the client DTE mode is set to 'Automatic'",
               "severity": "INFO",
-              "timestamp": "2026-11-05T03:56:33.000Z"
+              "timestamp": "2026-11-05T15:51:29.000Z"
             },
             {
-              "message": "bpdbm (pid=790091) Cleaning up tables in the relational database",
+              "message": "nbjm (pid=100352) requesting STANDARD_RESOURCE resources from RB for backup job (jobid=1712, request id:{C3ECC01E-D930-11F1-AB6F-A20C30030A81})",
               "severity": "INFO",
-              "timestamp": "2026-11-05T03:56:34.000Z"
+              "timestamp": "2026-11-05T15:51:29.000Z"
             },
-            "... 1 more"
+            "... 28 more"
           ]
         },
         "links": {
           "self": {
-            "href": "/admin/jobs/1704/try-logs/1"
+            "href": "/admin/jobs/1712/try-logs/1"
           },
           "last": {
-            "href": "/admin/jobs/1704/try-logs/1"
+            "href": "/admin/jobs/1712/try-logs/1"
           },
           "first": {
-            "href": "/admin/jobs/1704/try-logs/1"
+            "href": "/admin/jobs/1712/try-logs/1"
           }
         }
       }
@@ -1085,38 +1138,39 @@ record.result(nbu.jobs.try_logs(newest.job_id))
 [
   {
     "tryNumber": 1,
-    "jobId": 1704,
-    "tryStartTimestamp": "2026-11-05T03:56:33.000Z",
-    "tryEndTimestamp": "2026-11-05T03:56:34.000Z",
+    "jobId": 1712,
+    "tryStartTimestamp": "2026-11-05T15:51:29.000Z",
+    "tryEndTimestamp": "2026-11-05T15:51:39.000Z",
+    "tryTransport": "LAN",
     "tryStatusCode": 0,
     "tryStatusMessage": "the requested operation was successfully completed",
-    "tryKbps": 0.0,
-    "tryKbWritten": 0.0,
-    "tryFilesWritten": 0,
+    "tryKbps": 87.0,
+    "tryKbWritten": 32.0,
+    "tryFilesWritten": 1,
     "trySourceStorageUnit": "",
-    "tryDestinationStorageUnit": "",
-    "tryMediaServer": "",
-    "tryProcessId": 790091,
+    "tryDestinationStorageUnit": "storage-unit-02",
+    "tryMediaServer": "primary-01",
+    "tryProcessId": 897548,
     "trySessionId": 0,
     "tryLogEntries": [
       {
-        "message": "bpdbm (pid=790091) image catalog cleanup",
+        "message": "nbjm (pid=100352) starting backup job (jobid=1712) for client primary-01, policy bltlive-11051551-bkp, schedule bltlive-full",
         "severity": "INFO",
-        "timestamp": "2026-11-05T03:56:33.000Z"
+        "timestamp": "2026-11-05T15:51:29.000Z"
       },
       {
-        "message": "bpdbm (pid=790091) deleting images which expire before Wed Nov  4 21:56:32 2026 (1793850992)",
+        "message": "bpbrm (pid=897548) The data-in-transit encryption (DTE) is disabled for the client (primary-01) as the global DTE mode is set to 'Preferred Off' and the client DTE mode is set to 'Automatic'",
         "severity": "INFO",
-        "timestamp": "2026-11-05T03:56:33.000Z"
+        "timestamp": "2026-11-05T15:51:29.000Z"
       },
       {
-        "message": "bpdbm (pid=790091) Cleaning up tables in the relational database",
+        "message": "nbjm (pid=100352) requesting STANDARD_RESOURCE resources from RB for backup job (jobid=1712, request id:{C3ECC01E-D930-11F1-AB6F-A20C30030A81})",
         "severity": "INFO",
-        "timestamp": "2026-11-05T03:56:34.000Z"
+        "timestamp": "2026-11-05T15:51:29.000Z"
       },
-      "... 1 more"
+      "... 28 more"
     ],
-    "id": "1704-1"
+    "id": "1712-1"
   }
 ]
 ```
@@ -1129,7 +1183,7 @@ record.result(nbu.jobs.file_lists(newest.job_id))
 
 **On the wire**
 
-- `GET /admin/jobs/1704/file-lists` -> **200** (0.11 s)
+- `GET /admin/jobs/1712/file-lists` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -1137,13 +1191,15 @@ record.result(nbu.jobs.file_lists(newest.job_id))
   {
     "data": {
       "type": "file-lists",
-      "id": "1704",
+      "id": "1712",
       "attributes": {
-        "fileList": []
+        "fileList": [
+          "/usr/openv/netbackup/bin/version"
+        ]
       },
       "links": {
         "self": {
-          "href": "/admin/jobs/1704/file-lists"
+          "href": "/admin/jobs/1712/file-lists"
         }
       }
     }
@@ -1156,7 +1212,9 @@ record.result(nbu.jobs.file_lists(newest.job_id))
 
 ```json
 {
-  "fileList": [],
-  "id": "1704"
+  "fileList": [
+    "/usr/openv/netbackup/bin/version"
+  ],
+  "id": "1712"
 }
 ```

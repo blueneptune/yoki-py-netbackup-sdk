@@ -1,6 +1,6 @@
 # `nbu.raw.config`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_bulk_server_group_request` - GET /config/bulk-server-group-requests/{requestId}
 
@@ -9,9 +9,7 @@
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -23,8 +21,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -35,9 +33,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -49,14 +45,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /config/cdp-gateway` -> **200** (0.10 s)
+- `GET /config/cdp-gateway` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -91,9 +87,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -105,14 +99,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /config/credentials` -> **200** (0.09 s)
+- `GET /config/credentials` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -199,9 +193,7 @@ nbu.raw.config.get_drive_name_rules()
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -213,8 +205,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -261,9 +253,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -275,8 +265,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -323,9 +313,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -337,14 +325,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /config/hosts` -> **200** (0.05 s)
+- `GET /config/hosts` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -568,9 +556,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -582,8 +568,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -594,9 +580,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -608,8 +592,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -620,9 +604,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -634,8 +616,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -646,9 +628,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -660,8 +640,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -716,16 +696,6 @@ nbu.raw.config.get_hosts_hostmappings()
         ],
         "hostMappings": [
           {
-            "mappedHostName": "primary-01",
-            "isApproved": true,
-            "isConflicting": false,
-            "isAddedManually": false,
-            "origin": "CERTIFICATE_DEPLOYMENT",
-            "isShared": false,
-            "createdOn": 1647492988000,
-            "updatedOn": 1647492988000
-          },
-          {
             "mappedHostName": "host-03",
             "isApproved": true,
             "isConflicting": false,
@@ -734,6 +704,16 @@ nbu.raw.config.get_hosts_hostmappings()
             "isShared": false,
             "createdOn": 1705869412000,
             "updatedOn": 1705869412000
+          },
+          {
+            "mappedHostName": "primary-01",
+            "isApproved": true,
+            "isConflicting": false,
+            "isAddedManually": false,
+            "origin": "CERTIFICATE_DEPLOYMENT",
+            "isShared": false,
+            "createdOn": 1647492988000,
+            "updatedOn": 1647492988000
           }
         ]
       },
@@ -773,16 +753,6 @@ nbu.raw.config.get_hosts_hostmappings()
         ],
         "hostMappings": [
           {
-            "mappedHostName": "host-01",
-            "isApproved": true,
-            "isConflicting": false,
-            "isAddedManually": false,
-            "origin": "CERTIFICATE_DEPLOYMENT",
-            "isShared": false,
-            "createdOn": 1705868746000,
-            "updatedOn": 1705868746000
-          },
-          {
             "mappedHostName": "primary-01",
             "isApproved": false,
             "isConflicting": true,
@@ -791,6 +761,16 @@ nbu.raw.config.get_hosts_hostmappings()
             "isShared": false,
             "createdOn": 1708898758000,
             "updatedOn": 1708898758000
+          },
+          {
+            "mappedHostName": "host-01",
+            "isApproved": true,
+            "isConflicting": false,
+            "isAddedManually": false,
+            "origin": "CERTIFICATE_DEPLOYMENT",
+            "isShared": false,
+            "createdOn": 1705868746000,
+            "updatedOn": 1705868746000
           },
           {
             "mappedHostName": "host-04",
@@ -865,7 +845,7 @@ nbu.raw.config.get_hosts_pending_renewal()
 
 **On the wire**
 
-- `GET /config/hosts-pending-renewal` -> **200** (0.21 s)
+- `GET /config/hosts-pending-renewal` -> **200** (0.22 s)
 
   <details><summary>Answer</summary>
 
@@ -884,9 +864,7 @@ nbu.raw.config.get_hosts_pending_renewal()
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -898,8 +876,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -910,9 +888,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -924,8 +900,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -937,7 +913,7 @@ nbu.raw.config.get_media_server('primary-01')
 
 **On the wire**
 
-- `GET /config/media-servers` -> **200** (0.13 s)
+- `GET /config/media-servers` -> **200** (0.12 s)
 
   <details><summary>Answer</summary>
 
@@ -1006,7 +982,7 @@ nbu.raw.config.get_media_server('primary-01')
 
   </details>
 
-- `GET /config/media-servers/primary-01` -> **200** (0.09 s)
+- `GET /config/media-servers/primary-01` -> **200** (0.14 s)
 
   <details><summary>Answer</summary>
 
@@ -1058,9 +1034,7 @@ nbu.raw.config.get_media_server('primary-01')
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1072,8 +1046,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -1084,9 +1058,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1098,8 +1070,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -1110,9 +1082,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1124,21 +1094,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_remote_master_server_cacert` - GET /config/remote-master-server-cacerts/{remoteMasterServer}
+## `get_remote_master_server_cacert`
+
+GET /config/remote-master-server-cacerts/{remoteMasterServer}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1150,8 +1120,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -1163,7 +1133,7 @@ nbu.raw.config.get_resource_limit('vmware')
 
 **On the wire**
 
-- `GET /config/resource-limits` -> **200** (0.05 s)
+- `GET /config/resource-limits` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -1444,7 +1414,7 @@ nbu.raw.config.get_resource_limit_templates()
 
 **On the wire**
 
-- `GET /config/resource-limit-templates` -> **200** (0.05 s)
+- `GET /config/resource-limit-templates` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -1650,9 +1620,7 @@ nbu.raw.config.get_resource_limits()
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1664,8 +1632,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -1683,16 +1651,16 @@ def test_get(
 
   </details>
 
-## `get_servers_snapshot_mgmt_server` - GET /config/servers/snapshot-mgmt-servers/{snapshotMgmtServer}
+## `get_servers_snapshot_mgmt_server`
+
+GET /config/servers/snapshot-mgmt-servers/{snapshotMgmtServer}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1704,14 +1672,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /config/servers/snapshot-mgmt-servers` -> **200** (0.10 s)
+- `GET /config/servers/snapshot-mgmt-servers` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -1745,16 +1713,16 @@ def test_get(
 
   </details>
 
-## `get_servers_snapshot_mgmt_server_array_array_head_volume` - GET /config/servers/snapshot-mgmt-servers/{snapshot-mgmt-server}/arrays/{array}/array-heads/{array-head-id}/volumes/{volume}
+## `get_servers_snapshot_mgmt_server_array_array_head_volume`
+
+GET /config/servers/snapshot-mgmt-servers/{snapshot-mgmt-server}/arrays/{array}/array-heads/{array-head-id}/volumes/{volume}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1766,21 +1734,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_servers_snapshot_mgmt_server_array_array_head_volumes` - GET /config/servers/snapshot-mgmt-servers/{snapshot-mgmt-server}/arrays/{array}/array-heads/{array-head-id}/volumes
+## `get_servers_snapshot_mgmt_server_array_array_head_volumes`
+
+GET /config/servers/snapshot-mgmt-servers/{snapshot-mgmt-server}/arrays/{array}/array-heads/{array-head-id}/volumes
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1792,21 +1760,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_servers_snapshot_mgmt_server_array_array_heads` - GET /config/servers/snapshot-mgmt-servers/{snapshot-mgmt-server}/arrays/{array}/array-heads
+## `get_servers_snapshot_mgmt_server_array_array_heads`
+
+GET /config/servers/snapshot-mgmt-servers/{snapshot-mgmt-server}/arrays/{array}/array-heads
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1818,21 +1786,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_servers_trusted_master_server` - GET /config/servers/trusted-master-servers/{trustedMasterServerName}
+## `get_servers_trusted_master_server`
+
+GET /config/servers/trusted-master-servers/{trustedMasterServerName}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1844,14 +1812,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /config/servers/trusted-master-servers` -> **200** (0.10 s)
+- `GET /config/servers/trusted-master-servers` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -1871,7 +1839,7 @@ nbu.raw.config.get_servers_vmserver('host-05')
 
 **On the wire**
 
-- `GET /config/servers/vmservers` -> **200** (0.11 s)
+- `GET /config/servers/vmservers` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -1905,7 +1873,7 @@ nbu.raw.config.get_servers_vmserver('host-05')
 
   </details>
 
-- `GET /config/servers/vmservers/host-05` -> **200** (0.07 s)
+- `GET /config/servers/vmservers/host-05` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -1945,7 +1913,7 @@ nbu.raw.config.get_servers_wssendpoints()
 
 **On the wire**
 
-- `GET /config/servers/wssendpoints` -> **200** (0.12 s)
+- `GET /config/servers/wssendpoints` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -1963,7 +1931,7 @@ nbu.raw.config.get_slp('1M_primary-01_DS3')
 
 **On the wire**
 
-- `GET /config/slps` -> **200** (0.13 s)
+- `GET /config/slps` -> **200** (0.15 s)
 
   <details><summary>Answer</summary>
 
@@ -2317,7 +2285,7 @@ nbu.raw.config.get_slp('1M_primary-01_DS3')
 
   </details>
 
-- `GET /config/slps/1M_primary-01_DS3` -> **200** (0.15 s)
+- `GET /config/slps/1M_primary-01_DS3` -> **200** (0.12 s)
 
   <details><summary>Answer</summary>
 
@@ -2441,9 +2409,7 @@ nbu.raw.config.get_slp('1M_primary-01_DS3')
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -2455,8 +2421,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -2468,7 +2434,7 @@ nbu.raw.config.get_slp_window('Default_24x7_Window')
 
 **On the wire**
 
-- `GET /config/slp-windows` -> **200** (0.06 s)
+- `GET /config/slp-windows` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -2539,7 +2505,7 @@ nbu.raw.config.get_slp_window('Default_24x7_Window')
 
   </details>
 
-- `GET /config/slp-windows/Default_24x7_Window` -> **200** (0.08 s)
+- `GET /config/slp-windows/Default_24x7_Window` -> **200** (0.12 s)
 
   <details><summary>Answer</summary>
 
@@ -2612,16 +2578,16 @@ nbu.raw.config.get_smtpserver()
 
   </details>
 
-## `get_snapshot_mgmt_servers_cacert_port` - GET /config/snapshot-mgmt-servers-cacerts/{snapshotMgmtServer}/ports/{port}
+## `get_snapshot_mgmt_servers_cacert_port`
+
+GET /config/snapshot-mgmt-servers-cacerts/{snapshotMgmtServer}/ports/{port}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -2633,21 +2599,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_snapshotproviders_configured_application` - GET /config/snapshotproviders/configured-applications/{applicationAssetId}
+## `get_snapshotproviders_configured_application`
+
+GET /config/snapshotproviders/configured-applications/{applicationAssetId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -2659,21 +2625,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_snapshotproviders_configuredplugin_instance` - GET /config/snapshotproviders/configuredplugins/{pluginType}/instances/{instanceName}
+## `get_snapshotproviders_configuredplugin_instance`
+
+GET /config/snapshotproviders/configuredplugins/{pluginType}/instances/{instanceName}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -2685,14 +2651,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /config/snapshotproviders/configuredplugins` -> **200** (0.10 s)
+- `GET /config/snapshotproviders/configuredplugins` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -2704,16 +2670,16 @@ def test_get(
 
   </details>
 
-## `get_snapshotproviders_configuredplugin_instances` - GET /config/snapshotproviders/configuredplugins/{pluginType}/instances
+## `get_snapshotproviders_configuredplugin_instances`
+
+GET /config/snapshotproviders/configuredplugins/{pluginType}/instances
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -2725,21 +2691,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_snapshotproviders_connected_virtual_machine` - GET /config/snapshotproviders/connected-virtual-machines/{virtualMachineId}
+## `get_snapshotproviders_connected_virtual_machine`
+
+GET /config/snapshotproviders/connected-virtual-machines/{virtualMachineId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -2751,21 +2717,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_snapshotproviders_supportedplugin` - GET /config/snapshotproviders/supportedplugins/{pluginType}
+## `get_snapshotproviders_supportedplugin`
+
+GET /config/snapshotproviders/supportedplugins/{pluginType}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -2777,14 +2743,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /config/snapshotproviders/supportedplugins` -> **500** (0.08 s)
+- `GET /config/snapshotproviders/supportedplugins` -> **500** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -2807,9 +2773,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -2821,14 +2785,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /config/workloads/ndmp/hosts` -> **200** (0.21 s)
+- `GET /config/workloads/ndmp/hosts` -> **200** (0.26 s)
 
   <details><summary>Answer</summary>
 
@@ -2869,9 +2833,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -2883,8 +2845,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -2896,7 +2858,7 @@ nbu.raw.config.list_agentless_hosts()
 
 **On the wire**
 
-- `GET /config/agentless-hosts` -> **200** (0.11 s)
+- `GET /config/agentless-hosts` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -2938,7 +2900,7 @@ nbu.raw.config.list_cdp_gateway()
 
 **On the wire**
 
-- `GET /config/cdp-gateway` -> **200** (0.06 s)
+- `GET /config/cdp-gateway` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -2974,7 +2936,7 @@ nbu.raw.config.list_credential_schemas()
 
 **On the wire**
 
-- `GET /config/credential-schemas` -> **200** (0.06 s)
+- `GET /config/credential-schemas` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -3047,7 +3009,7 @@ nbu.raw.config.list_credentials()
 
 **On the wire**
 
-- `GET /config/credentials` -> **200** (0.06 s)
+- `GET /config/credentials` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -3083,7 +3045,7 @@ nbu.raw.config.list_disk_array_hosts()
 
 **On the wire**
 
-- `GET /config/disk-array-hosts` -> **200** (0.11 s)
+- `GET /config/disk-array-hosts` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -3125,7 +3087,7 @@ nbu.raw.config.list_ecms_agents()
 
 **On the wire**
 
-- `GET /config/ecms-agents` -> **200** (0.11 s)
+- `GET /config/ecms-agents` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -3167,7 +3129,7 @@ nbu.raw.config.list_ecms_providers()
 
 **On the wire**
 
-- `GET /config/ecms-providers` -> **200** (0.06 s)
+- `GET /config/ecms-providers` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -3208,9 +3170,7 @@ nbu.raw.config.list_ecms_providers()
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -3222,8 +3182,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -3235,7 +3195,7 @@ nbu.raw.config.list_hosts()
 
 **On the wire**
 
-- `GET /config/hosts` -> **200** (0.05 s)
+- `GET /config/hosts` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -3460,7 +3420,7 @@ nbu.raw.config.list_media_servers()
 
 **On the wire**
 
-- `GET /config/media-servers` -> **200** (0.15 s)
+- `GET /config/media-servers` -> **200** (0.14 s)
 
   <details><summary>Answer</summary>
 
@@ -3537,7 +3497,7 @@ nbu.raw.config.list_policies()
 
 **On the wire**
 
-- `GET /config/policies/` -> **200** (0.06 s)
+- `GET /config/policies/` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -3732,7 +3692,7 @@ nbu.raw.config.list_server_groups()
 
 **On the wire**
 
-- `GET /config/server-groups` -> **200** (0.10 s)
+- `GET /config/server-groups` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -3744,16 +3704,16 @@ nbu.raw.config.list_server_groups()
 
   </details>
 
-## `list_servers_snapshot_mgmt_server_configured_plugin_instances` - GET /config/servers/snapshot-mgmt-servers/{snapshotMgmtServer}/configuredPlugins/{pluginType}/instances
+## `list_servers_snapshot_mgmt_server_configured_plugin_instances`
+
+GET /config/servers/snapshot-mgmt-servers/{snapshotMgmtServer}/configuredPlugins/{pluginType}/instances
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -3765,21 +3725,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `list_servers_snapshot_mgmt_server_extensions` - GET /config/servers/snapshot-mgmt-servers/{snapshotMgmtServer}/extensions
+## `list_servers_snapshot_mgmt_server_extensions`
+
+GET /config/servers/snapshot-mgmt-servers/{snapshotMgmtServer}/extensions
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -3791,21 +3751,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `list_servers_snapshot_mgmt_server_relationships_media_servers` - GET /config/servers/snapshot-mgmt-servers/{snapshotMgmtServer}/relationships/media-servers
+## `list_servers_snapshot_mgmt_server_relationships_media_servers`
+
+GET /config/servers/snapshot-mgmt-servers/{snapshotMgmtServer}/relationships/media-servers
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -3817,21 +3777,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `list_servers_snapshot_mgmt_server_tokens` - GET /config/servers/snapshot-mgmt-servers/{snapshotMgmtServer}/tokens
+## `list_servers_snapshot_mgmt_server_tokens`
+
+GET /config/servers/snapshot-mgmt-servers/{snapshotMgmtServer}/tokens
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -3843,8 +3803,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -3898,7 +3858,7 @@ nbu.raw.config.list_servers_trusted_master_servers()
 
 **On the wire**
 
-- `GET /config/servers/trusted-master-servers` -> **200** (0.11 s)
+- `GET /config/servers/trusted-master-servers` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -4039,7 +3999,7 @@ nbu.raw.config.list_slps()
 
 **On the wire**
 
-- `GET /config/slps` -> **200** (0.13 s)
+- `GET /config/slps` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -4393,16 +4353,16 @@ nbu.raw.config.list_slps()
 
   </details>
 
-## `list_snapshotproviders_configuredplugin_instance_configureddomain_region_networksecuritygroups` - GET /config/snapshotproviders/configuredplugins/{pluginType}/instances/{instanceName}/configureddomains/{serviceDomain}/regions/{region}/networksecuritygroups
+## `list_snapshotproviders_configuredplugin_instance_configureddomain_region_networksecuritygroups`
+
+GET /config/snapshotproviders/configuredplugins/{pluginType}/instances/{instanceName}/configureddomains/{serviceDomain}/regions/{region}/networksecuritygroups
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -4414,21 +4374,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `list_snapshotproviders_configuredplugin_instance_configureddomain_resourcegroups` - GET /config/snapshotproviders/configuredplugins/{pluginType}/instances/{instanceName}/configureddomains/{subscriptionId}/resourcegroups
+## `list_snapshotproviders_configuredplugin_instance_configureddomain_resourcegroups`
+
+GET /config/snapshotproviders/configuredplugins/{pluginType}/instances/{instanceName}/configureddomains/{subscriptionId}/resourcegroups
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -4440,21 +4400,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `list_snapshotproviders_configuredplugin_instance_configureddomains` - GET /config/snapshotproviders/configuredplugins/{pluginType}/instances/{instanceName}/configureddomains
+## `list_snapshotproviders_configuredplugin_instance_configureddomains`
+
+GET /config/snapshotproviders/configuredplugins/{pluginType}/instances/{instanceName}/configureddomains
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -4466,12 +4426,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `list_snapshotproviders_configuredplugins` - GET /config/snapshotproviders/configuredplugins
+## `list_snapshotproviders_configuredplugins`
+
+GET /config/snapshotproviders/configuredplugins
 
 ```python
 nbu.raw.config.list_snapshotproviders_configuredplugins()
@@ -4479,7 +4441,7 @@ nbu.raw.config.list_snapshotproviders_configuredplugins()
 
 **On the wire**
 
-- `GET /config/snapshotproviders/configuredplugins` -> **200** (0.10 s)
+- `GET /config/snapshotproviders/configuredplugins` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -4491,7 +4453,9 @@ nbu.raw.config.list_snapshotproviders_configuredplugins()
 
   </details>
 
-## `list_snapshotproviders_supported_replication_destinations` - GET /config/snapshotproviders/supported-replication-destinations
+## `list_snapshotproviders_supported_replication_destinations`
+
+GET /config/snapshotproviders/supported-replication-destinations
 
 ```python
 nbu.raw.config.list_snapshotproviders_supported_replication_destinations()
@@ -4555,7 +4519,7 @@ nbu.raw.config.list_unique_policy_clients()
 
 **On the wire**
 
-- `GET /config/unique-policy-clients` -> **200** (0.14 s)
+- `GET /config/unique-policy-clients` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -4660,7 +4624,9 @@ nbu.raw.config.list_unique_policy_clients()
 
   </details>
 
-## `list_workloads_cloud_object_store_providers` - GET /config/workloads/cloud-object-store/providers
+## `list_workloads_cloud_object_store_providers`
+
+GET /config/workloads/cloud-object-store/providers
 
 ```python
 nbu.raw.config.list_workloads_cloud_object_store_providers()
@@ -4883,9 +4849,7 @@ nbu.raw.config.list_workloads_cloud_object_store_providers()
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -4897,8 +4861,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -4910,7 +4874,7 @@ nbu.raw.config.list_workloads_ndmp_hosts()
 
 **On the wire**
 
-- `GET /config/workloads/ndmp/hosts` -> **200** (0.17 s)
+- `GET /config/workloads/ndmp/hosts` -> **200** (0.16 s)
 
   <details><summary>Answer</summary>
 

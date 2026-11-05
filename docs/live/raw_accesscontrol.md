@@ -1,6 +1,6 @@
 # `nbu.raw.accesscontrol`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_managed_object` - GET /access-control/managed-objects/{objectId}
 
@@ -9,9 +9,7 @@
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -23,21 +21,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_managed_object_access_definition` - GET /access-control/managed-objects/{objectId}/access-definitions/{accessDefinitionId}
+## `get_managed_object_access_definition`
+
+GET /access-control/managed-objects/{objectId}/access-definitions/{accessDefinitionId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -49,21 +47,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_managed_object_access_definitions` - GET /access-control/managed-objects/{objectId}/access-definitions
+## `get_managed_object_access_definitions`
+
+GET /access-control/managed-objects/{objectId}/access-definitions
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -75,21 +73,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_managed_object_access_definitions_effective_acl` - GET /access-control/managed-objects/{objectId}/access-definitions/effective-acl
+## `get_managed_object_access_definitions_effective_acl`
+
+GET /access-control/managed-objects/{objectId}/access-definitions/effective-acl
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -101,8 +99,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -116,7 +114,7 @@ nbu.raw.accesscontrol.get_operation('|OPERATIONS|ASSETS|VMWARE|VCLOUD_VAPP|RECOV
 
 **On the wire**
 
-- `GET /access-control/operations` -> **200** (0.07 s)
+- `GET /access-control/operations` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -203,7 +201,7 @@ nbu.raw.accesscontrol.get_role('0')
 
 **On the wire**
 
-- `GET /access-control/roles` -> **200** (0.17 s)
+- `GET /access-control/roles` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -442,7 +440,7 @@ nbu.raw.accesscontrol.get_service_namespaces()
 
 **On the wire**
 
-- `GET /access-control/service-namespaces` -> **200** (0.38 s)
+- `GET /access-control/service-namespaces` -> **200** (0.35 s)
 
   <details><summary>Answer</summary>
 
@@ -536,9 +534,7 @@ nbu.raw.accesscontrol.get_service_namespaces()
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -550,8 +546,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -565,7 +561,7 @@ nbu.raw.accesscontrol.list_identities()
 
 **On the wire**
 
-- `GET /rbac/identities` -> **400** (0.07 s)
+- `GET /rbac/identities` -> **400** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -581,16 +577,16 @@ nbu.raw.accesscontrol.list_identities()
 
   </details>
 
-## `list_managed_object_primary_operations` - GET /access-control/managed-objects/{objectId}/primary-operations
+## `list_managed_object_primary_operations`
+
+GET /access-control/managed-objects/{objectId}/primary-operations
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -602,8 +598,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -615,7 +611,7 @@ nbu.raw.accesscontrol.list_operations()
 
 **On the wire**
 
-- `GET /access-control/operations` -> **200** (0.11 s)
+- `GET /access-control/operations` -> **200** (0.13 s)
 
   <details><summary>Answer</summary>
 
@@ -692,7 +688,7 @@ nbu.raw.accesscontrol.list_role_access_definitions('0')
 
 **On the wire**
 
-- `GET /access-control/roles/0/access-definitions` -> **200** (0.07 s)
+- `GET /access-control/roles/0/access-definitions` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -728,7 +724,7 @@ nbu.raw.accesscontrol.list_roles()
 
 **On the wire**
 
-- `GET /access-control/roles` -> **200** (0.11 s)
+- `GET /access-control/roles` -> **200** (0.08 s)
 
   <details><summary>Answer</summary>
 

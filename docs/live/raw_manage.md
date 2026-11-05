@@ -1,6 +1,6 @@
 # `nbu.raw.manage`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_alert` - GET /manage/alerts/{alertId}
 
@@ -9,9 +9,7 @@
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -23,14 +21,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /manage/alerts` -> **200** (0.11 s)
+- `GET /manage/alerts` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -72,7 +70,7 @@ nbu.raw.manage.get_notification_category('1')
 
 **On the wire**
 
-- `GET /manage/notification-categories` -> **200** (0.12 s)
+- `GET /manage/notification-categories` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -123,7 +121,7 @@ nbu.raw.manage.get_notification_category('1')
 
   </details>
 
-- `GET /manage/notification-categories/1` -> **200** (0.11 s)
+- `GET /manage/notification-categories/1` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -158,7 +156,7 @@ nbu.raw.manage.list_alerts()
 
 **On the wire**
 
-- `GET /manage/alerts` -> **200** (0.11 s)
+- `GET /manage/alerts` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 

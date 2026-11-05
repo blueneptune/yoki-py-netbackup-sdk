@@ -175,7 +175,15 @@ NBU_LIVE_MASK_PREFIXES=<your hosts' common prefix> uv run pytest -m live
 - `docs/live/coverage.md` - which of the server's own operations the run
   proved, against `spec/operations-<release>.tsv`.
 - `NBU_LIVE_CHANGES=yes` adds the tests that create, change and delete
-  things - only their own `bltlive-<run>-*` objects.
+  things - only their own `bltlive-<run>-*` objects, removed again at the
+  end of the run:
+  - `changes.md` - policies, their clients and schedules, SLPs;
+  - `backup.md` - a real backup of one small file from the primary to its
+    own disk storage, followed to the end, its image read back from the
+    catalog and expired again (by its backup id only);
+  - `audit.md` - the audit records a policy change leaves (who, what, each
+    setting's old and new value, and the reason sent with
+    `X-NetBackup-Audit-Reason`), and an access-control role with nobody in it.
 
 `scripts/spec.py` downloads a primary's API description (it publishes it
 at `https://<primary>/api-docs/`) and writes the operations list; the

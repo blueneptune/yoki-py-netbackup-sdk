@@ -64,3 +64,18 @@ def test_leaks_found_even_encoded(masker: Masker) -> None:
 def test_pem_blocks(masker: Masker) -> None:
     pem = "-----BEGIN PUBLIC KEY-----\nMIIBIjAN\n-----END PUBLIC KEY-----"
     assert masker.text(f"key: {pem}") == "key: <public key masked>"
+
+
+def test_page_heading_is_the_first_sentence() -> None:
+    from live.recorder import _heading
+
+    assert _heading("A role: create, read,\n    rename, delete. It starts empty.\n\nMore.") == (
+        "A role: create, read, rename, delete",
+        "It starts empty.\n\nMore.",
+    )
+    long = (
+        "Create, change and delete a policy; the audit log then holds one record"
+        " for each - the operation, the user who made it, and the old and new values"
+    )
+    assert len(long) > 90
+    assert _heading(long)[0] == "Create, change and delete a policy"

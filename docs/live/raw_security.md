@@ -1,6 +1,6 @@
 # `nbu.raw.security`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_anomaly_configurations` - GET /security/anomaly-configurations
 
@@ -153,7 +153,7 @@ nbu.raw.security.get_api_key('A-2XUsd63hA=')
 
   </details>
 
-- `GET /security/api-keys/A-2XUsd63hA=` -> **200** (0.10 s)
+- `GET /security/api-keys/A-2XUsd63hA=` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -191,12 +191,12 @@ nbu.raw.security.get_api_key('A-2XUsd63hA=')
 ## `get_auditlog` - GET /security/auditlogs/{auditId}
 
 ```python
-nbu.raw.security.get_auditlog('3532')
+nbu.raw.security.get_auditlog('3678')
 ```
 
 **On the wire**
 
-- `GET /security/auditlogs` -> **200** (0.11 s)
+- `GET /security/auditlogs` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -205,16 +205,16 @@ nbu.raw.security.get_auditlog('3532')
     "data": [
       {
         "type": "audit",
-        "id": "3532",
+        "id": "3678",
         "attributes": {
           "category": "SLP",
           "operation": "DELETE",
           "messageId": 3001,
-          "message": "Storage Lifecycle Policy 'bltlive-11050645-slp' was deleted.",
+          "message": "Storage Lifecycle Policy 'bltlive-11051551-slp' was deleted.",
           "auditKeyList": [
             {
               "typeId": 1,
-              "typeIdDisplayString": "bltlive-11050645-slp"
+              "typeIdDisplayString": "bltlive-11051551-slp"
             }
           ],
           "auditRecordAttributeList": [
@@ -228,9 +228,9 @@ nbu.raw.security.get_auditlog('3532')
               "attributeId": "__UMI__3008"
             },
             {
-              "oldValue": "bltlive-11050645-slp",
+              "oldValue": "bltlive-11051551-slp",
               "newValue": "null",
-              "oldValueDisplayString": "bltlive-11050645-slp",
+              "oldValueDisplayString": "bltlive-11051551-slp",
               "newValueDisplayString": "",
               "typeId": 1,
               "attributeName": "SLP name",
@@ -253,26 +253,26 @@ nbu.raw.security.get_auditlog('3532')
             "domainType": "UNIX_PASSWORD"
           },
           "reason": "",
-          "auditDateTime": "2026-11-05T06:45:24.664Z"
+          "auditDateTime": "2026-11-05T15:51:55.718Z"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/security/auditlogs/3532"
+            "href": "https://primary-01:1556/netbackup/security/auditlogs/3678"
           }
         }
       },
       {
         "type": "audit",
-        "id": "3531",
+        "id": "3677",
         "attributes": {
           "category": "SLP",
           "operation": "MODIFY",
           "messageId": 3003,
-          "message": "Attributes of Storage Lifecycle Policy 'bltlive-11050645-slp' were modified.",
+          "message": "Attributes of Storage Lifecycle Policy 'bltlive-11051551-slp' were modified.",
           "auditKeyList": [
             {
               "typeId": 1,
-              "typeIdDisplayString": "bltlive-11050645-slp"
+              "typeIdDisplayString": "bltlive-11051551-slp"
             }
           ],
           "auditRecordAttributeList": [
@@ -292,26 +292,26 @@ nbu.raw.security.get_auditlog('3532')
             "domainType": "UNIX_PASSWORD"
           },
           "reason": "",
-          "auditDateTime": "2026-11-05T06:45:24.370Z"
+          "auditDateTime": "2026-11-05T15:51:55.452Z"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/security/auditlogs/3531"
+            "href": "https://primary-01:1556/netbackup/security/auditlogs/3677"
           }
         }
       },
       {
         "type": "audit",
-        "id": "3530",
+        "id": "3676",
         "attributes": {
           "category": "SLP",
           "operation": "CREATE",
           "messageId": 3000,
-          "message": "Storage Lifecycle Policy 'bltlive-11050645-slp' was created.",
+          "message": "Storage Lifecycle Policy 'bltlive-11051551-slp' was created.",
           "auditKeyList": [
             {
               "typeId": 1,
-              "typeIdDisplayString": "bltlive-11050645-slp"
+              "typeIdDisplayString": "bltlive-11051551-slp"
             }
           ],
           "auditRecordAttributeList": [
@@ -326,9 +326,9 @@ nbu.raw.security.get_auditlog('3532')
             },
             {
               "oldValue": "",
-              "newValue": "bltlive-11050645-slp",
+              "newValue": "bltlive-11051551-slp",
               "oldValueDisplayString": "",
-              "newValueDisplayString": "bltlive-11050645-slp",
+              "newValueDisplayString": "bltlive-11051551-slp",
               "typeId": 1,
               "attributeName": "SLP name",
               "attributeId": "__UMI__3009"
@@ -350,11 +350,11 @@ nbu.raw.security.get_auditlog('3532')
             "domainType": "UNIX_PASSWORD"
           },
           "reason": "",
-          "auditDateTime": "2026-11-05T06:45:24.006Z"
+          "auditDateTime": "2026-11-05T15:51:55.148Z"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/security/auditlogs/3530"
+            "href": "https://primary-01:1556/netbackup/security/auditlogs/3676"
           }
         }
       },
@@ -363,11 +363,11 @@ nbu.raw.security.get_auditlog('3532')
     "meta": {
       "pagination": {
         "next": 10,
-        "pages": 21,
+        "pages": 36,
         "offset": 0,
-        "last": 200,
+        "last": 350,
         "limit": 10,
-        "count": 210,
+        "count": 356,
         "page": 0,
         "first": 0
       }
@@ -377,7 +377,7 @@ nbu.raw.security.get_auditlog('3532')
         "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=10&page%5Blimit%5D=10&sort=-auditDateTime"
       },
       "last": {
-        "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=200&page%5Blimit%5D=10&sort=-auditDateTime"
+        "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=350&page%5Blimit%5D=10&sort=-auditDateTime"
       },
       "self": {
         "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=0&page%5Blimit%5D=10&sort=-auditDateTime"
@@ -391,7 +391,7 @@ nbu.raw.security.get_auditlog('3532')
 
   </details>
 
-- `GET /security/auditlogs/3532` -> **200** (0.07 s)
+- `GET /security/auditlogs/3678` -> **200** (0.08 s)
 
   <details><summary>Answer</summary>
 
@@ -399,16 +399,16 @@ nbu.raw.security.get_auditlog('3532')
   {
     "data": {
       "type": "audit",
-      "id": "3532",
+      "id": "3678",
       "attributes": {
         "category": "SLP",
         "operation": "DELETE",
         "messageId": 3001,
-        "message": "Storage Lifecycle Policy 'bltlive-11050645-slp' was deleted.",
+        "message": "Storage Lifecycle Policy 'bltlive-11051551-slp' was deleted.",
         "auditKeyList": [
           {
             "typeId": 1,
-            "typeIdDisplayString": "bltlive-11050645-slp"
+            "typeIdDisplayString": "bltlive-11051551-slp"
           }
         ],
         "auditRecordAttributeList": [
@@ -422,9 +422,9 @@ nbu.raw.security.get_auditlog('3532')
             "attributeId": "__UMI__3008"
           },
           {
-            "oldValue": "bltlive-11050645-slp",
+            "oldValue": "bltlive-11051551-slp",
             "newValue": "null",
-            "oldValueDisplayString": "bltlive-11050645-slp",
+            "oldValueDisplayString": "bltlive-11051551-slp",
             "newValueDisplayString": "",
             "typeId": 1,
             "attributeName": "SLP name",
@@ -447,11 +447,11 @@ nbu.raw.security.get_auditlog('3532')
           "domainType": "UNIX_PASSWORD"
         },
         "reason": "",
-        "auditDateTime": "2026-11-05T06:45:24.664Z"
+        "auditDateTime": "2026-11-05T15:51:55.718Z"
       },
       "links": {
         "self": {
-          "href": "https://primary-01:1556/netbackup/security/auditlogs/3532"
+          "href": "https://primary-01:1556/netbackup/security/auditlogs/3678"
         }
       }
     }
@@ -489,9 +489,7 @@ nbu.raw.security.get_cacert()
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -503,12 +501,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_certificate_authorities_hosts_pending_trust_propagation` - GET /security/certificate-authorities/hosts-pending-trust-propagation
+## `get_certificate_authorities_hosts_pending_trust_propagation`
+
+GET /security/certificate-authorities/hosts-pending-trust-propagation
 
 ```python
 nbu.raw.security.get_certificate_authorities_hosts_pending_trust_propagation()
@@ -516,7 +516,7 @@ nbu.raw.security.get_certificate_authorities_hosts_pending_trust_propagation()
 
 **On the wire**
 
-- `GET /security/certificate-authorities/hosts-pending-trust-propagation` -> **200** (0.22 s)
+- `GET /security/certificate-authorities/hosts-pending-trust-propagation` -> **200** (0.21 s)
 
   <details><summary>Answer</summary>
 
@@ -528,7 +528,9 @@ nbu.raw.security.get_certificate_authorities_hosts_pending_trust_propagation()
 
   </details>
 
-## `get_certificate_authorities_migration_summary` - GET /security/certificate-authorities/migration-summary
+## `get_certificate_authorities_migration_summary`
+
+GET /security/certificate-authorities/migration-summary
 
 ```python
 nbu.raw.security.get_certificate_authorities_migration_summary()
@@ -536,7 +538,7 @@ nbu.raw.security.get_certificate_authorities_migration_summary()
 
 **On the wire**
 
-- `GET /security/certificate-authorities/migration-summary` -> **200** (0.13 s)
+- `GET /security/certificate-authorities/migration-summary` -> **200** (0.12 s)
 
   <details><summary>Answer</summary>
 
@@ -626,7 +628,7 @@ nbu.raw.security.get_certificate_authority('<hex>')
 
   </details>
 
-- `GET /security/certificate-authorities/<hex>` -> **200** (0.07 s)
+- `GET /security/certificate-authorities/<hex>` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -668,16 +670,13 @@ nbu.raw.security.get_certificates_crl()
 
 **On the wire**
 
-- `GET /security/certificates/crl` -> **200** (0.00 s)
+- `GET /security/certificates/crl` -> **200** (0.01 s)
 
   <details><summary>Answer</summary>
 
   ```
   0��0��0  	*�H��     0710  Unbatd10U  root@primary-011  0	U
-  vx  261105063614Z  261112063614Z�00.0U  #0��͔m� ��Wt�X5ض쿳�0  U  2b0  	*�H��     � vT)�W��p��֝p�������'����Ը�c��jKY*���g�  �"� ��;xӼ
-  8Ղ��̌Z�9�1~�6Fͼ�\���V�/��+쨍F��g�T��+zs�~�h�B��Z��m����"��-���TH�s��
-  U
-  �DDo�^s��P�BxW�V��נ  ��u@e|p;��~�g#�17�InC6���W����T䉌�5����$oW�Ҁ��͌�n[�~e����r�Xq�4D>�v0-8ܡ
+  vx  261105153711Z  261112153711Z�00.0U  #0��͔m� ��Wt�X5ض쿳�0  U  2k0  	*�H��     � �=��m���d�V�M����.$  "�  ��Ы��Y�c  ��:�ΦWu��N�ܙr[E�w@^bÑDv�NEN@PKZr�  ���8��h�,�z�[�a49z��;��ȷ�iR>p��"��Q��_]+�ҩb�)���@��ޣ�  '�  r����KK@��i�s�bħ�vj�Y�  )�g�?��}f-����郸��}R   �/Ƚ?����!ua�VQ_Q  o�F~>��緮fᛟ�ǰ)� .��n��_rc8*��&�[���UD�
   ```
 
   </details>
@@ -690,7 +689,7 @@ nbu.raw.security.get_certificates_current()
 
 **On the wire**
 
-- `GET /security/certificates/current` -> **200** (0.11 s)
+- `GET /security/certificates/current` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -709,9 +708,7 @@ nbu.raw.security.get_certificates_current()
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -723,8 +720,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -736,7 +733,7 @@ nbu.raw.security.get_domains_vxat()
 
 **On the wire**
 
-- `GET /security/domains/vxat` -> **200** (0.34 s)
+- `GET /security/domains/vxat` -> **200** (0.33 s)
 
   <details><summary>Answer</summary>
 
@@ -755,9 +752,7 @@ nbu.raw.security.get_domains_vxat()
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -769,8 +764,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -781,9 +776,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -795,14 +788,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /security/external-cacerts` -> **200** (0.06 s)
+- `GET /security/external-cacerts` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -822,7 +815,7 @@ nbu.raw.security.get_external_cacerts()
 
 **On the wire**
 
-- `GET /security/external-cacerts` -> **200** (0.07 s)
+- `GET /security/external-cacerts` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -841,9 +834,7 @@ nbu.raw.security.get_external_cacerts()
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -855,14 +846,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /security/identity-providers` -> **200** (0.06 s)
+- `GET /security/identity-providers` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -903,9 +894,7 @@ def test_get(
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -917,8 +906,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -961,18 +950,80 @@ def test_get(
 ## `get_logindetail` - GET /security/logindetails/{auditId}
 
 ```python
-nbu.raw.security.get_logindetail('3437')
+nbu.raw.security.get_logindetail('3535')
 ```
 
 **On the wire**
 
-- `GET /security/logindetails` -> **200** (0.11 s)
+- `GET /security/logindetails` -> **200** (0.12 s)
 
   <details><summary>Answer</summary>
 
   ```json
   {
     "data": [
+      {
+        "type": "audit",
+        "id": "3535",
+        "attributes": {
+          "category": "LOGIN",
+          "operation": "ACCESS",
+          "messageId": 1401,
+          "message": "User 'user-01' authenticated successfully",
+          "auditKeyList": [
+            {
+              "typeId": 1,
+              "typeIdDisplayString": "user-01"
+            },
+            {
+              "typeId": 1,
+              "typeIdDisplayString": "primary-01"
+            }
+          ],
+          "auditRecordAttributeList": [
+            {
+              "oldValue": "",
+              "newValue": "2",
+              "oldValueDisplayString": "",
+              "newValueDisplayString": "NetBackup API",
+              "typeId": 2,
+              "attributeName": "Accessed From",
+              "attributeId": "__UMI__1102"
+            },
+            {
+              "oldValue": "",
+              "newValue": "",
+              "oldValueDisplayString": "",
+              "newValueDisplayString": "",
+              "typeId": 1,
+              "attributeName": "Origin Host",
+              "attributeId": "__UMI__1103"
+            },
+            {
+              "oldValue": "",
+              "newValue": "host-13",
+              "oldValueDisplayString": "",
+              "newValueDisplayString": "host-13",
+              "typeId": 1,
+              "attributeName": "Logged in to Host",
+              "attributeId": "__UMI__1104"
+            },
+            "... 2 more"
+          ],
+          "auditUserIdentity": {
+            "userName": "user-01",
+            "domainName": "primary-01",
+            "domainType": "UNIX_PASSWORD"
+          },
+          "reason": "",
+          "auditDateTime": "2026-11-05T15:34:08.776Z"
+        },
+        "links": {
+          "self": {
+            "href": "https://primary-01:1556/netbackup/security/logindetails/3535"
+          }
+        }
+      },
       {
         "type": "audit",
         "id": "3437",
@@ -1064,69 +1115,7 @@ nbu.raw.security.get_logindetail('3437')
           }
         }
       },
-      {
-        "type": "audit",
-        "id": "3433",
-        "attributes": {
-          "category": "LOGIN",
-          "operation": "ACCESS",
-          "messageId": 1401,
-          "message": "User 'user-01' authenticated successfully",
-          "auditKeyList": [
-            {
-              "typeId": 1,
-              "typeIdDisplayString": "user-01"
-            },
-            {
-              "typeId": 1,
-              "typeIdDisplayString": "primary-01"
-            }
-          ],
-          "auditRecordAttributeList": [
-            {
-              "oldValue": "",
-              "newValue": "2",
-              "oldValueDisplayString": "",
-              "newValueDisplayString": "NetBackup API",
-              "typeId": 2,
-              "attributeName": "Accessed From",
-              "attributeId": "__UMI__1102"
-            },
-            {
-              "oldValue": "",
-              "newValue": "",
-              "oldValueDisplayString": "",
-              "newValueDisplayString": "",
-              "typeId": 1,
-              "attributeName": "Origin Host",
-              "attributeId": "__UMI__1103"
-            },
-            {
-              "oldValue": "",
-              "newValue": "host-13",
-              "oldValueDisplayString": "",
-              "newValueDisplayString": "host-13",
-              "typeId": 1,
-              "attributeName": "Logged in to Host",
-              "attributeId": "__UMI__1104"
-            },
-            "... 2 more"
-          ],
-          "auditUserIdentity": {
-            "userName": "user-01",
-            "domainName": "primary-01",
-            "domainType": "UNIX_PASSWORD"
-          },
-          "reason": "",
-          "auditDateTime": "2026-11-02T17:56:06.165Z"
-        },
-        "links": {
-          "self": {
-            "href": "https://primary-01:1556/netbackup/security/logindetails/3433"
-          }
-        }
-      },
-      "... 6 more"
+      "... 7 more"
     ],
     "meta": {
       "pagination": {
@@ -1134,7 +1123,7 @@ nbu.raw.security.get_logindetail('3437')
         "offset": 0,
         "last": 0,
         "limit": 10,
-        "count": 9,
+        "count": 10,
         "page": 0,
         "first": 0
       }
@@ -1155,7 +1144,7 @@ nbu.raw.security.get_logindetail('3437')
 
   </details>
 
-- `GET /security/logindetails/3437` -> **200** (0.07 s)
+- `GET /security/logindetails/3535` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -1163,7 +1152,7 @@ nbu.raw.security.get_logindetail('3437')
   {
     "data": {
       "type": "audit",
-      "id": "3437",
+      "id": "3535",
       "attributes": {
         "category": "LOGIN",
         "operation": "ACCESS",
@@ -1215,11 +1204,11 @@ nbu.raw.security.get_logindetail('3437')
           "domainType": "UNIX_PASSWORD"
         },
         "reason": "",
-        "auditDateTime": "2026-11-05T06:08:43.582Z"
+        "auditDateTime": "2026-11-05T15:34:08.776Z"
       },
       "links": {
         "self": {
-          "href": "https://primary-01:1556/netbackup/security/logindetails/3437"
+          "href": "https://primary-01:1556/netbackup/security/logindetails/3535"
         }
       }
     }
@@ -1236,7 +1225,7 @@ nbu.raw.security.get_passphrase_constraint('DR_PKG')
 
 **On the wire**
 
-- `GET /security/passphrase-constraints` -> **200** (0.06 s)
+- `GET /security/passphrase-constraints` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -1268,7 +1257,7 @@ nbu.raw.security.get_passphrase_constraint('DR_PKG')
 
   </details>
 
-- `GET /security/passphrase-constraints/DR_PKG` -> **200** (0.09 s)
+- `GET /security/passphrase-constraints/DR_PKG` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -1306,7 +1295,7 @@ nbu.raw.security.get_passphrase_constraints()
 
 **On the wire**
 
-- `GET /security/passphrase-constraints` -> **200** (0.09 s)
+- `GET /security/passphrase-constraints` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -1351,7 +1340,7 @@ nbu.raw.security.get_ping()
   <details><summary>Answer</summary>
 
   ```json
-  1793861178254
+  1793893961171
   ```
 
   </details>
@@ -1364,7 +1353,7 @@ nbu.raw.security.get_properties()
 
 **On the wire**
 
-- `GET /security/properties` -> **200** (0.05 s)
+- `GET /security/properties` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -1462,7 +1451,7 @@ nbu.raw.security.get_securitytoken('INSTALL')
 
 **On the wire**
 
-- `GET /security/securitytokens` -> **200** (0.09 s)
+- `GET /security/securitytokens` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -1589,7 +1578,7 @@ nbu.raw.security.get_serverinfo()
 
 **On the wire**
 
-- `GET /security/serverinfo` -> **200** (0.20 s)
+- `GET /security/serverinfo` -> **200** (0.21 s)
 
   <details><summary>Answer</summary>
 
@@ -1623,7 +1612,7 @@ nbu.raw.security.get_servertime()
 
   ```json
   {
-    "serverTime": 1793861178722,
+    "serverTime": 1793893961664,
     "timeZoneName": "Central Standard Time",
     "timeZoneId": "America/Chicago"
   }
@@ -1638,9 +1627,7 @@ nbu.raw.security.get_servertime()
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1652,14 +1639,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /security/service-principal-configs` -> **200** (0.09 s)
+- `GET /security/service-principal-configs` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -1764,7 +1751,7 @@ nbu.raw.security.get_trust_version('UFYNKZJ0UEEKqbv')
 
   </details>
 
-- `GET /security/trust-versions/UFYNKZJ0UEEKqbv` -> **200** (0.09 s)
+- `GET /security/trust-versions/UFYNKZJ0UEEKqbv` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -1811,7 +1798,7 @@ nbu.raw.security.list_anomalies()
 
 **On the wire**
 
-- `GET /security/anomalies` -> **200** (0.09 s)
+- `GET /security/anomalies` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -1852,9 +1839,7 @@ nbu.raw.security.list_anomalies()
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1866,8 +1851,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -1879,7 +1864,7 @@ nbu.raw.security.list_api_keys()
 
 **On the wire**
 
-- `GET /security/api-keys` -> **200** (0.10 s)
+- `GET /security/api-keys` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -2004,16 +1989,16 @@ nbu.raw.security.list_auditlogs()
     "data": [
       {
         "type": "audit",
-        "id": "3532",
+        "id": "3678",
         "attributes": {
           "category": "SLP",
           "operation": "DELETE",
           "messageId": 3001,
-          "message": "Storage Lifecycle Policy 'bltlive-11050645-slp' was deleted.",
+          "message": "Storage Lifecycle Policy 'bltlive-11051551-slp' was deleted.",
           "auditKeyList": [
             {
               "typeId": 1,
-              "typeIdDisplayString": "bltlive-11050645-slp"
+              "typeIdDisplayString": "bltlive-11051551-slp"
             }
           ],
           "auditRecordAttributeList": [
@@ -2027,9 +2012,9 @@ nbu.raw.security.list_auditlogs()
               "attributeId": "__UMI__3008"
             },
             {
-              "oldValue": "bltlive-11050645-slp",
+              "oldValue": "bltlive-11051551-slp",
               "newValue": "null",
-              "oldValueDisplayString": "bltlive-11050645-slp",
+              "oldValueDisplayString": "bltlive-11051551-slp",
               "newValueDisplayString": "",
               "typeId": 1,
               "attributeName": "SLP name",
@@ -2052,26 +2037,26 @@ nbu.raw.security.list_auditlogs()
             "domainType": "UNIX_PASSWORD"
           },
           "reason": "",
-          "auditDateTime": "2026-11-05T06:45:24.664Z"
+          "auditDateTime": "2026-11-05T15:51:55.718Z"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/security/auditlogs/3532"
+            "href": "https://primary-01:1556/netbackup/security/auditlogs/3678"
           }
         }
       },
       {
         "type": "audit",
-        "id": "3531",
+        "id": "3677",
         "attributes": {
           "category": "SLP",
           "operation": "MODIFY",
           "messageId": 3003,
-          "message": "Attributes of Storage Lifecycle Policy 'bltlive-11050645-slp' were modified.",
+          "message": "Attributes of Storage Lifecycle Policy 'bltlive-11051551-slp' were modified.",
           "auditKeyList": [
             {
               "typeId": 1,
-              "typeIdDisplayString": "bltlive-11050645-slp"
+              "typeIdDisplayString": "bltlive-11051551-slp"
             }
           ],
           "auditRecordAttributeList": [
@@ -2091,26 +2076,26 @@ nbu.raw.security.list_auditlogs()
             "domainType": "UNIX_PASSWORD"
           },
           "reason": "",
-          "auditDateTime": "2026-11-05T06:45:24.370Z"
+          "auditDateTime": "2026-11-05T15:51:55.452Z"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/security/auditlogs/3531"
+            "href": "https://primary-01:1556/netbackup/security/auditlogs/3677"
           }
         }
       },
       {
         "type": "audit",
-        "id": "3530",
+        "id": "3676",
         "attributes": {
           "category": "SLP",
           "operation": "CREATE",
           "messageId": 3000,
-          "message": "Storage Lifecycle Policy 'bltlive-11050645-slp' was created.",
+          "message": "Storage Lifecycle Policy 'bltlive-11051551-slp' was created.",
           "auditKeyList": [
             {
               "typeId": 1,
-              "typeIdDisplayString": "bltlive-11050645-slp"
+              "typeIdDisplayString": "bltlive-11051551-slp"
             }
           ],
           "auditRecordAttributeList": [
@@ -2125,9 +2110,9 @@ nbu.raw.security.list_auditlogs()
             },
             {
               "oldValue": "",
-              "newValue": "bltlive-11050645-slp",
+              "newValue": "bltlive-11051551-slp",
               "oldValueDisplayString": "",
-              "newValueDisplayString": "bltlive-11050645-slp",
+              "newValueDisplayString": "bltlive-11051551-slp",
               "typeId": 1,
               "attributeName": "SLP name",
               "attributeId": "__UMI__3009"
@@ -2149,11 +2134,11 @@ nbu.raw.security.list_auditlogs()
             "domainType": "UNIX_PASSWORD"
           },
           "reason": "",
-          "auditDateTime": "2026-11-05T06:45:24.006Z"
+          "auditDateTime": "2026-11-05T15:51:55.148Z"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/security/auditlogs/3530"
+            "href": "https://primary-01:1556/netbackup/security/auditlogs/3676"
           }
         }
       },
@@ -2162,11 +2147,11 @@ nbu.raw.security.list_auditlogs()
     "meta": {
       "pagination": {
         "next": 10,
-        "pages": 21,
+        "pages": 36,
         "offset": 0,
-        "last": 200,
+        "last": 350,
         "limit": 10,
-        "count": 210,
+        "count": 356,
         "page": 0,
         "first": 0
       }
@@ -2176,7 +2161,7 @@ nbu.raw.security.list_auditlogs()
         "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=10&page%5Blimit%5D=10&sort=-auditDateTime"
       },
       "last": {
-        "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=200&page%5Blimit%5D=10&sort=-auditDateTime"
+        "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=350&page%5Blimit%5D=10&sort=-auditDateTime"
       },
       "self": {
         "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=0&page%5Blimit%5D=10&sort=-auditDateTime"
@@ -2264,7 +2249,7 @@ nbu.raw.security.list_identity_providers()
 
 **On the wire**
 
-- `GET /security/identity-providers` -> **200** (0.09 s)
+- `GET /security/identity-providers` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -2298,16 +2283,16 @@ nbu.raw.security.list_identity_providers()
 
   </details>
 
-## `list_key_management_service_key_details` - GET /security/key-management-services/{kmsId}/key-details
+## `list_key_management_service_key_details`
+
+GET /security/key-management-services/{kmsId}/key-details
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -2319,8 +2304,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -2374,13 +2359,75 @@ nbu.raw.security.list_logindetails()
 
 **On the wire**
 
-- `GET /security/logindetails` -> **200** (0.10 s)
+- `GET /security/logindetails` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
   ```json
   {
     "data": [
+      {
+        "type": "audit",
+        "id": "3535",
+        "attributes": {
+          "category": "LOGIN",
+          "operation": "ACCESS",
+          "messageId": 1401,
+          "message": "User 'user-01' authenticated successfully",
+          "auditKeyList": [
+            {
+              "typeId": 1,
+              "typeIdDisplayString": "user-01"
+            },
+            {
+              "typeId": 1,
+              "typeIdDisplayString": "primary-01"
+            }
+          ],
+          "auditRecordAttributeList": [
+            {
+              "oldValue": "",
+              "newValue": "2",
+              "oldValueDisplayString": "",
+              "newValueDisplayString": "NetBackup API",
+              "typeId": 2,
+              "attributeName": "Accessed From",
+              "attributeId": "__UMI__1102"
+            },
+            {
+              "oldValue": "",
+              "newValue": "",
+              "oldValueDisplayString": "",
+              "newValueDisplayString": "",
+              "typeId": 1,
+              "attributeName": "Origin Host",
+              "attributeId": "__UMI__1103"
+            },
+            {
+              "oldValue": "",
+              "newValue": "host-13",
+              "oldValueDisplayString": "",
+              "newValueDisplayString": "host-13",
+              "typeId": 1,
+              "attributeName": "Logged in to Host",
+              "attributeId": "__UMI__1104"
+            },
+            "... 2 more"
+          ],
+          "auditUserIdentity": {
+            "userName": "user-01",
+            "domainName": "primary-01",
+            "domainType": "UNIX_PASSWORD"
+          },
+          "reason": "",
+          "auditDateTime": "2026-11-05T15:34:08.776Z"
+        },
+        "links": {
+          "self": {
+            "href": "https://primary-01:1556/netbackup/security/logindetails/3535"
+          }
+        }
+      },
       {
         "type": "audit",
         "id": "3437",
@@ -2472,69 +2519,7 @@ nbu.raw.security.list_logindetails()
           }
         }
       },
-      {
-        "type": "audit",
-        "id": "3433",
-        "attributes": {
-          "category": "LOGIN",
-          "operation": "ACCESS",
-          "messageId": 1401,
-          "message": "User 'user-01' authenticated successfully",
-          "auditKeyList": [
-            {
-              "typeId": 1,
-              "typeIdDisplayString": "user-01"
-            },
-            {
-              "typeId": 1,
-              "typeIdDisplayString": "primary-01"
-            }
-          ],
-          "auditRecordAttributeList": [
-            {
-              "oldValue": "",
-              "newValue": "2",
-              "oldValueDisplayString": "",
-              "newValueDisplayString": "NetBackup API",
-              "typeId": 2,
-              "attributeName": "Accessed From",
-              "attributeId": "__UMI__1102"
-            },
-            {
-              "oldValue": "",
-              "newValue": "",
-              "oldValueDisplayString": "",
-              "newValueDisplayString": "",
-              "typeId": 1,
-              "attributeName": "Origin Host",
-              "attributeId": "__UMI__1103"
-            },
-            {
-              "oldValue": "",
-              "newValue": "host-13",
-              "oldValueDisplayString": "",
-              "newValueDisplayString": "host-13",
-              "typeId": 1,
-              "attributeName": "Logged in to Host",
-              "attributeId": "__UMI__1104"
-            },
-            "... 2 more"
-          ],
-          "auditUserIdentity": {
-            "userName": "user-01",
-            "domainName": "primary-01",
-            "domainType": "UNIX_PASSWORD"
-          },
-          "reason": "",
-          "auditDateTime": "2026-11-02T17:56:06.165Z"
-        },
-        "links": {
-          "self": {
-            "href": "https://primary-01:1556/netbackup/security/logindetails/3433"
-          }
-        }
-      },
-      "... 6 more"
+      "... 7 more"
     ],
     "meta": {
       "pagination": {
@@ -2542,7 +2527,7 @@ nbu.raw.security.list_logindetails()
         "offset": 0,
         "last": 0,
         "limit": 10,
-        "count": 9,
+        "count": 10,
         "page": 0,
         "first": 0
       }
@@ -2571,7 +2556,7 @@ nbu.raw.security.list_securitytokens()
 
 **On the wire**
 
-- `GET /security/securitytokens` -> **200** (0.06 s)
+- `GET /security/securitytokens` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -2677,7 +2662,7 @@ nbu.raw.security.list_securitytokens_state_valid()
 
 **On the wire**
 
-- `GET /security/securitytokens/state/valid` -> **200** (0.10 s)
+- `GET /security/securitytokens/state/valid` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 

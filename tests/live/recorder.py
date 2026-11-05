@@ -344,6 +344,22 @@ def _source(function: Callable[..., Any]) -> str:
     return textwrap.dedent(body).strip()
 
 
+def _heading(doc: str) -> tuple[str, str]:
+    """A test's docstring as a heading - its first sentence, or the
+    first clause of a long one - and the rest as the text below it."""
+    paragraph, _, rest = doc.strip().partition("\n\n")
+    paragraph = " ".join(paragraph.split())
+    head, sep, tail = paragraph.partition(". ")
+    if len(head) > 90:
+        for mark in ("; ", ": ", " - "):
+            if mark in head:
+                head, _, more = head.partition(mark)
+                tail = (more[0].upper() + more[1:] + sep + tail).strip()
+                break
+    body = "\n\n".join(part for part in (tail.strip(), rest.strip()) if part)
+    return head.rstrip(".:;"), body
+
+
 def write_pages(
     records: Iterable[Entry],
     masker: Masker,
@@ -376,10 +392,10 @@ def write_pages(
         out = [f"# {title_of.get(module, default)}", "", header, ""]
         for record in tests:
             doc = record.title or inspect.getdoc(record.function) or record.name
-            first, _, rest = doc.partition("\n")
-            out += [f"## {masker.text(first.rstrip('.'))}", ""]
-            if rest.strip():
-                out += [rest.strip(), ""]
+            first, rest = _heading(doc)
+            out += [f"## {masker.text(first)}", ""]
+            if rest:
+                out += [masker.text(rest), ""]
             if record.outcome != "passed":
                 why = f": {masker.text(record.reason)}" if record.reason else ""
                 out += [f"> **{record.outcome.upper()}** on this run{why}", ""]

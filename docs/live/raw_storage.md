@@ -1,6 +1,6 @@
 # `nbu.raw.storage`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_bulk_drive_request` - GET /storage/bulk-drive-requests/{requestId}
 
@@ -9,9 +9,7 @@
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -23,8 +21,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -36,7 +34,7 @@ nbu.raw.storage.get_cloud_provider('scalitywan')
 
 **On the wire**
 
-- `GET /storage/cloud/providers` -> **200** (0.14 s)
+- `GET /storage/cloud/providers` -> **200** (0.08 s)
 
   <details><summary>Answer</summary>
 
@@ -350,7 +348,7 @@ nbu.raw.storage.get_cloud_provider('scalitywan')
 
   </details>
 
-- `GET /storage/cloud/providers/scalitywan` -> **200** (0.09 s)
+- `GET /storage/cloud/providers/scalitywan` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -436,7 +434,7 @@ nbu.raw.storage.get_disk_pool('PureDisk:disk-pool-01')
 
 **On the wire**
 
-- `GET /storage/disk-pools` -> **200** (0.12 s)
+- `GET /storage/disk-pools` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -457,7 +455,7 @@ nbu.raw.storage.get_disk_pool('PureDisk:disk-pool-01')
               "diskMediaId": "@aaaah",
               "state": "UP",
               "rawSizeBytes": 8341450185728,
-              "freeSizeBytes": 8271549570048,
+              "freeSizeBytes": 8271524834304,
               "isReplicationSource": false,
               "isReplicationTarget": false,
               "wormIndelibleMinimumInterval": 0,
@@ -478,8 +476,8 @@ nbu.raw.storage.get_disk_pool('PureDisk:disk-pool-01')
           ],
           "rawSizeBytes": 8341450185728,
           "usableSizeBytes": 8341450185728,
-          "availableSpaceBytes": 8271549570048,
-          "usedCapacityBytes": 69900615680,
+          "availableSpaceBytes": 8271524834304,
+          "usedCapacityBytes": 69925351424,
           "wormCapable": false,
           "readOnly": false,
           "mediaServersCount": 1
@@ -596,7 +594,7 @@ nbu.raw.storage.get_disk_pool('PureDisk:disk-pool-01')
 
   </details>
 
-- `GET /storage/disk-pools/PureDisk:disk-pool-01` -> **200** (0.11 s)
+- `GET /storage/disk-pools/PureDisk:disk-pool-01` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -616,7 +614,7 @@ nbu.raw.storage.get_disk_pool('PureDisk:disk-pool-01')
             "diskMediaId": "@aaaah",
             "state": "UP",
             "rawSizeBytes": 8341450185728,
-            "freeSizeBytes": 8271549570048,
+            "freeSizeBytes": 8271524834304,
             "isReplicationSource": false,
             "isReplicationTarget": false,
             "wormIndelibleMinimumInterval": 0,
@@ -637,8 +635,8 @@ nbu.raw.storage.get_disk_pool('PureDisk:disk-pool-01')
         ],
         "rawSizeBytes": 8341450185728,
         "usableSizeBytes": 8341450185728,
-        "availableSpaceBytes": 8271549570048,
-        "usedCapacityBytes": 69900615680,
+        "availableSpaceBytes": 8271524834304,
+        "usedCapacityBytes": 69925351424,
         "wormCapable": false,
         "readOnly": false,
         "mediaServersCount": 1
@@ -679,7 +677,7 @@ nbu.raw.storage.get_drive_types()
 
 **On the wire**
 
-- `GET /storage/drive-types` -> **501** (0.06 s)
+- `GET /storage/drive-types` -> **501** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -705,7 +703,7 @@ nbu.raw.storage.get_key_management_services()
 
 **On the wire**
 
-- `GET /storage/key-management-services` -> **200** (19.41 s)
+- `GET /storage/key-management-services` -> **200** (19.42 s)
 
   <details><summary>Answer</summary>
 
@@ -739,7 +737,7 @@ nbu.raw.storage.get_storage_server('amazon_rawc:primary-01-s3')
 
 **On the wire**
 
-- `GET /storage/storage-servers` -> **200** (2.77 s)
+- `GET /storage/storage-servers` -> **200** (2.86 s)
 
   <details><summary>Answer</summary>
 
@@ -999,7 +997,7 @@ nbu.raw.storage.get_storage_server('amazon_rawc:primary-01-s3')
 
   </details>
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3` -> **200** (2.69 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3` -> **200** (2.74 s)
 
   <details><summary>Answer</summary>
 
@@ -1081,7 +1079,9 @@ nbu.raw.storage.get_storage_server('amazon_rawc:primary-01-s3')
 
   </details>
 
-## `get_storage_server_disk_volume` - GET /storage/storage-servers/{storageServerId}/disk-volumes/{diskVolumeId}
+## `get_storage_server_disk_volume`
+
+GET /storage/storage-servers/{storageServerId}/disk-volumes/{diskVolumeId}
 
 ```python
 nbu.raw.storage.get_storage_server_disk_volume('amazon_rawc:primary-01-s3', '63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31')
@@ -1089,7 +1089,7 @@ nbu.raw.storage.get_storage_server_disk_volume('amazon_rawc:primary-01-s3', '636
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes` -> **200** (5.77 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes` -> **200** (5.85 s)
 
   <details><summary>Answer</summary>
 
@@ -1238,7 +1238,7 @@ nbu.raw.storage.get_storage_server_disk_volume('amazon_rawc:primary-01-s3', '636
 
   </details>
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes/63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31` -> **200** (5.82 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes/63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31` -> **200** (5.75 s)
 
   <details><summary>Answer</summary>
 
@@ -1287,16 +1287,16 @@ nbu.raw.storage.get_storage_server_disk_volume('amazon_rawc:primary-01-s3', '636
 
   </details>
 
-## `get_storage_server_disk_volume_replication_target` - GET /storage/storage-servers/{storageServerId}/disk-volumes/{diskVolumeId}/replication-targets/{replicationTargetId}
+## `get_storage_server_disk_volume_replication_target`
+
+GET /storage/storage-servers/{storageServerId}/disk-volumes/{diskVolumeId}/replication-targets/{replicationTargetId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1308,14 +1308,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes/63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31/replication-targets` -> **200** (11.53 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes/63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31/replication-targets` -> **200** (11.34 s)
 
   <details><summary>Answer</summary>
 
@@ -1349,16 +1349,16 @@ def test_get(
 
   </details>
 
-## `get_storage_server_replication_target` - GET /storage/storage-servers/{storageServerId}/replication-targets/{replicationTargetId}
+## `get_storage_server_replication_target`
+
+GET /storage/storage-servers/{storageServerId}/replication-targets/{replicationTargetId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1370,14 +1370,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/replication-targets` -> **400** (2.63 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/replication-targets` -> **400** (2.69 s)
 
   <details><summary>Answer</summary>
 
@@ -1395,7 +1395,9 @@ def test_get(
 
   </details>
 
-## `get_storage_server_replication_targets` - GET /storage/storage-servers/{storageServerId}/replication-targets
+## `get_storage_server_replication_targets`
+
+GET /storage/storage-servers/{storageServerId}/replication-targets
 
 > **SKIPPED** on this run: NetBackup answered: 400 (error 7425) - Failed to get replication targets.
 
@@ -1405,7 +1407,7 @@ nbu.raw.storage.get_storage_server_replication_targets('amazon_rawc:primary-01-s
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/replication-targets` -> **400** (2.80 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/replication-targets` -> **400** (2.74 s)
 
   <details><summary>Answer</summary>
 
@@ -1423,16 +1425,16 @@ nbu.raw.storage.get_storage_server_replication_targets('amazon_rawc:primary-01-s
 
   </details>
 
-## `get_storage_server_universal_share` - GET /storage/storage-servers/{storageServerId}/universal-shares/{shareId}
+## `get_storage_server_universal_share`
+
+GET /storage/storage-servers/{storageServerId}/universal-shares/{shareId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1444,14 +1446,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/universal-shares` -> **400** (2.84 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/universal-shares` -> **400** (2.71 s)
 
   <details><summary>Answer</summary>
 
@@ -1469,7 +1471,9 @@ def test_get(
 
   </details>
 
-## `get_storage_server_universal_shares` - GET /storage/storage-servers/{storageServerId}/universal-shares
+## `get_storage_server_universal_shares`
+
+GET /storage/storage-servers/{storageServerId}/universal-shares
 
 > **SKIPPED** on this run: NetBackup answered: 400 (error 4045) - Universal share capability is not supported.
 
@@ -1479,7 +1483,7 @@ nbu.raw.storage.get_storage_server_universal_shares('amazon_rawc:primary-01-s3')
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/universal-shares` -> **400** (2.83 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/universal-shares` -> **400** (2.89 s)
 
   <details><summary>Answer</summary>
 
@@ -1505,7 +1509,7 @@ nbu.raw.storage.get_storage_unit('storage-unit-01')
 
 **On the wire**
 
-- `GET /storage/storage-units` -> **200** (0.20 s)
+- `GET /storage/storage-units` -> **200** (0.16 s)
 
   <details><summary>Answer</summary>
 
@@ -1605,9 +1609,9 @@ nbu.raw.storage.get_storage_unit('storage-unit-01')
           "primary": false,
           "instantAccessEnabled": true,
           "isCloudSTU": false,
-          "freeCapacityBytes": 8271549479936,
+          "freeCapacityBytes": 8271525391360,
           "totalCapacityBytes": 8341450185728,
-          "usedCapacityBytes": 69900705792,
+          "usedCapacityBytes": 69924794368,
           "mediaServerDetails": [
             {
               "name": "primary-01",
@@ -1682,7 +1686,7 @@ nbu.raw.storage.get_storage_unit('storage-unit-01')
 
   </details>
 
-- `GET /storage/storage-units/storage-unit-01` -> **200** (0.15 s)
+- `GET /storage/storage-units/storage-unit-01` -> **200** (0.14 s)
 
   <details><summary>Answer</summary>
 
@@ -1770,9 +1774,7 @@ nbu.raw.storage.get_storage_unit('storage-unit-01')
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -1784,14 +1786,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /storage/target-storage-servers` -> **200** (0.11 s)
+- `GET /storage/target-storage-servers` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -1813,7 +1815,7 @@ nbu.raw.storage.list_backup_sizes()
 
 **On the wire**
 
-- `GET /storage/backup-sizes` -> **404** (0.10 s)
+- `GET /storage/backup-sizes` -> **404** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -1837,7 +1839,7 @@ nbu.raw.storage.list_cloud_providers()
 
 **On the wire**
 
-- `GET /storage/cloud/providers` -> **200** (0.08 s)
+- `GET /storage/cloud/providers` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -2159,7 +2161,7 @@ nbu.raw.storage.list_disk_pools()
 
 **On the wire**
 
-- `GET /storage/disk-pools` -> **200** (0.13 s)
+- `GET /storage/disk-pools` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -2180,7 +2182,7 @@ nbu.raw.storage.list_disk_pools()
               "diskMediaId": "@aaaah",
               "state": "UP",
               "rawSizeBytes": 8341450185728,
-              "freeSizeBytes": 8271549479936,
+              "freeSizeBytes": 8271525391360,
               "isReplicationSource": false,
               "isReplicationTarget": false,
               "wormIndelibleMinimumInterval": 0,
@@ -2201,8 +2203,8 @@ nbu.raw.storage.list_disk_pools()
           ],
           "rawSizeBytes": 8341450185728,
           "usableSizeBytes": 8341450185728,
-          "availableSpaceBytes": 8271549479936,
-          "usedCapacityBytes": 69900705792,
+          "availableSpaceBytes": 8271525391360,
+          "usedCapacityBytes": 69924794368,
           "wormCapable": false,
           "readOnly": false,
           "mediaServersCount": 1
@@ -2327,7 +2329,7 @@ nbu.raw.storage.list_drives()
 
 **On the wire**
 
-- `GET /storage/drives` -> **200** (0.09 s)
+- `GET /storage/drives` -> **200** (0.12 s)
 
   <details><summary>Answer</summary>
 
@@ -2371,7 +2373,7 @@ nbu.raw.storage.list_shared_images()
 
 **On the wire**
 
-- `GET /storage/shared-images` -> **500** (0.27 s)
+- `GET /storage/shared-images` -> **500** (0.21 s)
 
   <details><summary>Answer</summary>
 
@@ -2389,7 +2391,9 @@ nbu.raw.storage.list_shared_images()
 
   </details>
 
-## `list_storage_server_disk_volume_replication_targets` - GET /storage/storage-servers/{storageServerId}/disk-volumes/{diskVolumeId}/replication-targets
+## `list_storage_server_disk_volume_replication_targets`
+
+GET /storage/storage-servers/{storageServerId}/disk-volumes/{diskVolumeId}/replication-targets
 
 ```python
 nbu.raw.storage.list_storage_server_disk_volume_replication_targets('amazon_rawc:primary-01-s3', '63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31')
@@ -2397,7 +2401,7 @@ nbu.raw.storage.list_storage_server_disk_volume_replication_targets('amazon_rawc
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes/63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31/replication-targets` -> **200** (10.93 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes/63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31/replication-targets` -> **200** (11.70 s)
 
   <details><summary>Answer</summary>
 
@@ -2431,7 +2435,9 @@ nbu.raw.storage.list_storage_server_disk_volume_replication_targets('amazon_rawc
 
   </details>
 
-## `list_storage_server_disk_volumes` - GET /storage/storage-servers/{storageServerId}/disk-volumes
+## `list_storage_server_disk_volumes`
+
+GET /storage/storage-servers/{storageServerId}/disk-volumes
 
 ```python
 nbu.raw.storage.list_storage_server_disk_volumes('amazon_rawc:primary-01-s3')
@@ -2439,7 +2445,7 @@ nbu.raw.storage.list_storage_server_disk_volumes('amazon_rawc:primary-01-s3')
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes` -> **200** (5.77 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes` -> **200** (5.69 s)
 
   <details><summary>Answer</summary>
 
@@ -2596,7 +2602,7 @@ nbu.raw.storage.list_storage_servers()
 
 **On the wire**
 
-- `GET /storage/storage-servers` -> **200** (2.75 s)
+- `GET /storage/storage-servers` -> **200** (2.79 s)
 
   <details><summary>Answer</summary>
 
@@ -2856,7 +2862,9 @@ nbu.raw.storage.list_storage_servers()
 
   </details>
 
-## `list_storage_unit_replication_relationships` - GET /storage/storage-units/{storageUnitName}/replication-relationships
+## `list_storage_unit_replication_relationships`
+
+GET /storage/storage-units/{storageUnitName}/replication-relationships
 
 ```python
 nbu.raw.storage.list_storage_unit_replication_relationships('storage-unit-01')
@@ -3006,9 +3014,9 @@ nbu.raw.storage.list_storage_units()
           "primary": false,
           "instantAccessEnabled": true,
           "isCloudSTU": false,
-          "freeCapacityBytes": 8271549500416,
+          "freeCapacityBytes": 8271525391360,
           "totalCapacityBytes": 8341450185728,
-          "usedCapacityBytes": 69900685312,
+          "usedCapacityBytes": 69924794368,
           "mediaServerDetails": [
             {
               "name": "primary-01",
@@ -3091,7 +3099,7 @@ nbu.raw.storage.list_target_storage_servers()
 
 **On the wire**
 
-- `GET /storage/target-storage-servers` -> **200** (0.06 s)
+- `GET /storage/target-storage-servers` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 

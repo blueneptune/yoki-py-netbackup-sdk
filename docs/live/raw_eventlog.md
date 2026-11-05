@@ -1,6 +1,6 @@
 # `nbu.raw.eventlog`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `list_messages` - GET /eventlog/messages
 
@@ -52,7 +52,7 @@ nbu.raw.eventlog.list_notifications()
 
 **On the wire**
 
-- `GET /eventlog/notifications` -> **200** (0.07 s)
+- `GET /eventlog/notifications` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -61,21 +61,21 @@ nbu.raw.eventlog.list_notifications()
     "data": [
       {
         "type": "notifications",
-        "id": "2465",
+        "id": "2501",
         "attributes": {
           "version": "1.0",
           "priority": "HIGH",
           "severity": "CRITICAL",
-          "createdDateTime": "2026-11-05T06:45:23.747Z",
-          "insertionDateTime": "2026-11-05T06:45:29.397Z",
-          "displayString": "The policy bltlive-11050645-parts was deleted.",
+          "createdDateTime": "2026-11-05T15:51:27.764Z",
+          "insertionDateTime": "2026-11-05T15:51:29.085Z",
+          "displayString": "The policy bltlive-11051551-audit was deleted.",
           "notificationType": "Policy",
           "producerName": "primary-01",
           "producerId": "f151f48b-17c5-4e7e-8a6b-1054db540384",
           "producerType": "NetBackup",
           "producerSubType": "Audit",
           "extendedAttributes": {
-            "policyName": "bltlive-11050645-parts",
+            "policyName": "bltlive-11051551-audit",
             "policyType": "Standard",
             "action": "Delete"
           },
@@ -83,63 +83,65 @@ nbu.raw.eventlog.list_notifications()
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/eventlog/notifications?filter=(id%20eq%202465)"
+            "href": "https://primary-01:1556/netbackup/eventlog/notifications?filter=(id%20eq%202501)"
           }
         }
       },
       {
         "type": "notifications",
-        "id": "2464",
+        "id": "2500",
         "attributes": {
           "version": "1.0",
           "priority": "HIGH",
-          "severity": "CRITICAL",
-          "createdDateTime": "2026-11-05T06:45:23.543Z",
-          "insertionDateTime": "2026-11-05T06:45:29.394Z",
-          "displayString": "The client bltlive-client.example.com was removed from the policy bltlive-11050645-parts.",
+          "severity": "INFO",
+          "createdDateTime": "2026-11-05T15:51:27.374Z",
+          "insertionDateTime": "2026-11-05T15:51:29.081Z",
+          "displayString": "The policy bltlive-11051551-audit was created.",
           "notificationType": "Policy",
           "producerName": "primary-01",
           "producerId": "f151f48b-17c5-4e7e-8a6b-1054db540384",
           "producerType": "NetBackup",
           "producerSubType": "Audit",
           "extendedAttributes": {
-            "clientNames": "bltlive-client.example.com",
-            "policyName": "bltlive-11050645-parts",
-            "action": "Update"
+            "policyGeneration": "2",
+            "policyName": "bltlive-11051551-audit",
+            "policyType": "Standard",
+            "action": "Create",
+            "policyPriority": "9"
           },
-          "namespace": "eventlog.vrts.nbu.audit.policy.client.delete"
+          "namespace": "eventlog.vrts.nbu.audit.policy.create"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/eventlog/notifications?filter=(id%20eq%202464)"
+            "href": "https://primary-01:1556/netbackup/eventlog/notifications?filter=(id%20eq%202500)"
           }
         }
       },
       {
         "type": "notifications",
-        "id": "2463",
+        "id": "2499",
         "attributes": {
           "version": "1.0",
           "priority": "HIGH",
           "severity": "CRITICAL",
-          "createdDateTime": "2026-11-05T06:45:23.432Z",
-          "insertionDateTime": "2026-11-05T06:45:29.391Z",
-          "displayString": "The schedule bltlive-full was removed from the policy bltlive-11050645-parts.",
+          "createdDateTime": "2026-11-05T15:48:13.127Z",
+          "insertionDateTime": "2026-11-05T15:48:28.977Z",
+          "displayString": "The policy bltlive-11051547-parts was deleted.",
           "notificationType": "Policy",
           "producerName": "primary-01",
           "producerId": "f151f48b-17c5-4e7e-8a6b-1054db540384",
           "producerType": "NetBackup",
           "producerSubType": "Audit",
           "extendedAttributes": {
-            "policyName": "bltlive-11050645-parts",
-            "scheduleNames": "bltlive-full",
-            "action": "Update"
+            "policyName": "bltlive-11051547-parts",
+            "policyType": "Standard",
+            "action": "Delete"
           },
-          "namespace": "eventlog.vrts.nbu.audit.schedule.delete"
+          "namespace": "eventlog.vrts.nbu.audit.policy.delete"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/eventlog/notifications?filter=(id%20eq%202463)"
+            "href": "https://primary-01:1556/netbackup/eventlog/notifications?filter=(id%20eq%202499)"
           }
         }
       },
@@ -148,11 +150,11 @@ nbu.raw.eventlog.list_notifications()
     "meta": {
       "pagination": {
         "next": 10,
-        "pages": 6,
+        "pages": 10,
         "offset": 0,
-        "last": 50,
+        "last": 90,
         "limit": 10,
-        "count": 60,
+        "count": 92,
         "page": 0,
         "first": 0
       }
@@ -162,7 +164,7 @@ nbu.raw.eventlog.list_notifications()
         "href": "https://primary-01:1556/netbackup/eventlog/notifications?page%5Boffset%5D=10&page%5Blimit%5D=10&sort=-createdDateTime"
       },
       "last": {
-        "href": "https://primary-01:1556/netbackup/eventlog/notifications?page%5Boffset%5D=50&page%5Blimit%5D=10&sort=-createdDateTime"
+        "href": "https://primary-01:1556/netbackup/eventlog/notifications?page%5Boffset%5D=90&page%5Blimit%5D=10&sort=-createdDateTime"
       },
       "self": {
         "href": "https://primary-01:1556/netbackup/eventlog/notifications?page%5Boffset%5D=0&page%5Blimit%5D=10&sort=-createdDateTime"
