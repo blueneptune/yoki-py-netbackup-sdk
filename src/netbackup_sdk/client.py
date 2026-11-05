@@ -28,6 +28,7 @@ from sdk_primer import APIClient
 from .auth import ApiKeyAuth, PasswordAuth
 from .inventory import Assets, Hosts, Images, Policies, Server, Storage
 from .jobs import Jobs
+from .raw import Raw
 from .versions import ApiVersion
 
 # Sent on every request. Only the policy endpoints read it: without it
@@ -134,6 +135,8 @@ class NetBackupClient:
         self.hosts = Hosts(self)
         self.storage = Storage(self)
         self.assets = Assets(self)
+        # Every operation of the API, generated from the spec (scripts/generate.py).
+        self.raw = Raw(self)
 
     @property
     def api_version(self) -> str:

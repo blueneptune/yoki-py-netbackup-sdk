@@ -46,6 +46,10 @@ extend-exclude = ["*.md"]
 [tool.ruff.lint]
 select = ["E", "F", "I", "UP", "B"]
 
+[tool.ruff.lint.per-file-ignores]
+# Generated (scripts/generate.py): docstrings carry NetBackup's long paths.
+"src/netbackup_sdk/raw/*" = ["E501"]
+
 [tool.mypy]
 plugins = ["pydantic.mypy"]
 files = ["src", "tests/live", "scripts"]

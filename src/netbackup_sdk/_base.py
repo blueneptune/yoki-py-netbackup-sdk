@@ -46,6 +46,18 @@ def json_body(response: httpx.Response) -> Any:
         ) from None
 
 
+def decode(response: httpx.Response) -> Any:
+    """An answer as Python: JSON parsed, text as str, anything else bytes."""
+    if not response.content:
+        return None
+    kind = response.headers.get("content-type", "")
+    if "json" in kind:
+        return json_body(response)
+    if kind.startswith("text/"):
+        return response.text
+    return response.content
+
+
 def timestamp(value: datetime) -> str:
     """A time as NetBackup's filters take it: ISO 8601, UTC, with Z."""
     if value.tzinfo is None:
@@ -113,6 +125,44 @@ class Resource:
 
     def _all(self, path: str, params: dict[str, Any] | None = None) -> Entities:
         return [flatten(item) for page in self._pages(path, params) for item in page]
+
+    def _call(
+        self,
+        method: str,
+        path: str,
+        *,
+        params: dict[str, Any] | None = None,
+        headers: dict[str, Any] | None = None,
+        body: Any = None,
+        form: Any = None,
+        files: Any = None,
+        accept: str | None = None,
+        change: bool = False,
+    ) -> Any:
+        """Any operation (the generated `nbu.raw` calls): reads retried,
+        changes refused on a read-only client and sent once. The answer
+        comes back decoded - JSON, text, or bytes - and None when empty."""
+        if change and not self._client.allow_changes:
+            raise ChangesNotAllowed(
+                f"{method} {path} would change NetBackup; this client is read-only. "
+                "Build it with allow_changes=True if that is really intended."
+            )
+        sent = {k: str(v) for k, v in (headers or {}).items() if v is not None}
+        if accept:
+            # The version is added by the client (versions.ApiVersion.apply).
+            sent["Accept"] = accept
+        kwargs: dict[str, Any] = {
+            "params": {k: v for k, v in (params or {}).items() if v is not None},
+            "headers": sent,
+        }
+        if body is not None:
+            kwargs["json"] = body
+        if form is not None:
+            kwargs["data"] = form
+        if files is not None:
+            kwargs["files"] = files
+        api = self._client.api_once if change else self._client.api
+        return decode(api.request(method, path, **kwargs))
 
     def _change(self, method: str, path: str, body: Entity | None = None) -> Any:
         if not self._client.allow_changes:

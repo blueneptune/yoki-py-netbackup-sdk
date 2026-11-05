@@ -83,6 +83,27 @@ Paths are under `https://<primary>:1556/netbackup`.
 | `nbu.storage.units()`, `.disk_pools()` | `GET /storage/...` | storage units, disk pools |
 | `nbu.assets.workload(w)` | `GET /asset-service/workloads/{w}/assets` | discovered VMware, SQL, ... assets |
 
+### Everything else: `nbu.raw`
+
+Every operation of the API - all 733 of NetBackup 10.2 - one method each,
+generated from the API description the primary itself publishes
+(`scripts/spec.py`, then `scripts/generate.py <release>`):
+
+```python
+nbu.raw.storage.list_disk_pools(filter_="sType eq 'PureDisk'")
+nbu.raw.config.get_slp("Gold-Weekly")
+nbu.raw.security.list_auditlogs(filter_="auditCategory eq 'POLICY'")
+nbu.raw.storage.patch_storage_unit("stu1", body={...})   # allow_changes=True
+```
+
+Named from the path (`GET /config/policies` -> `list_policies`, `.../{name}`
+-> `get_policy`, `POST /admin/jobs/{id}/cancel` -> `post_job_cancel`); path
+parameters positional, query parameters and headers by keyword (`filter_`,
+`page_limit`, ...), a body as `body=`. Answers come back decoded: JSON,
+text, or bytes. Anything but a GET is refused unless the client was built
+with `allow_changes=True`, and is sent once, never retried.
+`docs/live/raw_<area>.md` shows each read as it really answered.
+
 **Changing calls** - refused unless built with `allow_changes=True`, and
 never retried: `nbu.jobs.cancel(id)`, `.suspend(id)`, `.resume(id)`,
 `.restart(id)`.

@@ -70,13 +70,14 @@ class Recorder(httpx.BaseTransport):
 # Keys whose values are never shown, whatever they hold.
 SECRET_KEY = re.compile(
     r"password|passwd|secret|token|apikey|api_key|fingerprint|serial|certificate|"
-    r"privatekey|licen[cs]e|signature|^key$|credential",
+    r"privatekey|licen[cs]e|signature|^key$|credential|^pem$|crl|keystore|passphrase",
     re.I,
 )
 IPV4 = re.compile(r"\b(?:\d{1,3}\.){3}\d{1,3}\b")
 IPV6 = re.compile(r"\b(?:[0-9a-f]{1,4}:){3,7}[0-9a-f]{1,4}\b", re.I)
 EMAIL = re.compile(r"\b[\w.+-]+@[\w-]+\.[\w.-]+\b")
 HEX_PAIRS = re.compile(r"\b(?:[0-9A-F]{2}:){7,}[0-9A-F]{2}\b", re.I)
+PEM = re.compile(r"-----BEGIN ([A-Z ]+)-----.*?-----END \1-----", re.S)
 # Text NetBackup hex-encodes into ids: a disk volume "<host>_cloud"
 # becomes 657468...6F7564.
 HEX_TEXT = re.compile(r"\b(?:[0-9A-F]{2}){6,}\b")
@@ -187,6 +188,13 @@ class Masker:
         masked = self.text(decoded)
         return match.group(0) if masked == decoded else masked.encode().hex().upper()
 
+    def _host(self, match: re.Match[str]) -> str:
+        real = match.group(0)
+        if real.lower().endswith("example.com") or IPV4.fullmatch(real):
+            return real
+        self.add(real, "host")
+        return self.names.get(real, real)
+
     def _named(self, real: str) -> str:
         if real.lower().startswith("bltlive"):
             return real
@@ -206,15 +214,17 @@ class Masker:
                 self._pattern = re.compile("|".join(_matcher(n) for n in ordered), re.I)
             lower = {k.lower(): v for k, v in self.names.items()}
             value = self._pattern.sub(lambda m: lower[m.group(0).lower()], value)
+        value = PEM.sub(lambda m: f"<{m.group(1).lower()} masked>", value)
         value = HEX_TEXT.sub(self._hex, value)
         for prefix in self.prefixes:
             value = re.sub(
-                rf"\b{re.escape(prefix)}[\w.-]*",
+                rf"(?<![A-Za-z0-9]){re.escape(prefix)}[A-Za-z0-9.-]*",
                 lambda m: self._named(m.group(0)),
                 value,
                 flags=re.I,
             )
         value = EMAIL.sub("someone@example.com", value)
+        value = FQDN.sub(self._host, value)
         value = HEX_PAIRS.sub("<hex>", value)
         value = IPV6.sub("2001:db8::1", value)
         return IPV4.sub(self._address, value)
@@ -243,7 +253,9 @@ class Masker:
                 pass
         page = page + "\n" + "\n".join(decoded)
         found = [n for n in self.names if re.search(_matcher(n), page, re.I)]
-        found += [p for p in self.prefixes if re.search(rf"\b{re.escape(p)}", page, re.I)]
+        found += [
+            p for p in self.prefixes if re.search(rf"(?<![A-Za-z0-9]){re.escape(p)}", page, re.I)
+        ]
         found += [h for h in FQDN.findall(page) if not h.lower().endswith("example.com")]
         return found
 
@@ -274,6 +286,12 @@ class Entry:
     notes: list[str] = field(default_factory=list)
     results: list[Any] = field(default_factory=list)
     outcome: str = "passed"
+    reason: str = ""
+    # Set by a test that stands for many (the sweep): its own heading and
+    # code in place of the function's docstring and source.
+    title: str = ""
+    code: str = ""
+    page: str = ""
 
     def note(self, text: str) -> None:
         self.notes.append(text)
@@ -347,21 +365,26 @@ def write_pages(
             masker.learn(_jsonable(value))
     by_module: dict[str, list[Entry]] = {}
     for record in records:
-        by_module.setdefault(record.module, []).append(record)
+        by_module.setdefault(record.page or record.module, []).append(record)
     DOCS.mkdir(parents=True, exist_ok=True)
     written = []
     for module, tests in sorted(by_module.items()):
         name = module.removeprefix("test_")
-        out = [f"# {title_of.get(module, name.replace('_', ' ').capitalize())}", "", header, ""]
+        default = name.replace("_", " ").capitalize()
+        if name.startswith("raw_"):
+            default = f"`nbu.raw.{name.removeprefix('raw_')}`: every read, live"
+        out = [f"# {title_of.get(module, default)}", "", header, ""]
         for record in tests:
-            doc = inspect.getdoc(record.function) or record.name
+            doc = record.title or inspect.getdoc(record.function) or record.name
             first, _, rest = doc.partition("\n")
-            out += [f"## {first.rstrip('.')}", ""]
+            out += [f"## {masker.text(first.rstrip('.'))}", ""]
             if rest.strip():
                 out += [rest.strip(), ""]
             if record.outcome != "passed":
-                out += [f"> **{record.outcome.upper()}** on this run.", ""]
-            out += ["```python", _source(record.function), "```", ""]
+                why = f": {masker.text(record.reason)}" if record.reason else ""
+                out += [f"> **{record.outcome.upper()}** on this run{why}", ""]
+            code = masker.text(record.code) if record.code else _source(record.function)
+            out += ["```python", code, "```", ""]
             for text in record.notes:
                 out += [masker.text(text), ""]
             if record.exchanges:
