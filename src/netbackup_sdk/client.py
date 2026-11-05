@@ -55,6 +55,10 @@ class NetBackupClient:
     Give either `api_key`, or `username` and `password` (with
     `domain_type`, and `domain_name` for a Windows or LDAP domain).
     Read-only unless built with allow_changes=True.
+
+    `transport` carries every request, login included, in place of
+    httpx's own - for a proxy, or for the live tests' recorder
+    (tests/live). TLS settings are then the transport's to make.
     """
 
     def __init__(
@@ -72,6 +76,7 @@ class NetBackupClient:
         page_size: int = 100,
         timeout: float = 120.0,
         allow_changes: bool = False,
+        transport: httpx.BaseTransport | None = None,
     ) -> None:
         if not api_key and not (username and password):
             raise ValueError("Give api_key, or username and password.")
@@ -87,7 +92,10 @@ class NetBackupClient:
         if verify_tls and ca_bundle is not None:
             verify = tls_context(ca_bundle)
 
-        self._login_client = httpx.Client(verify=verify, timeout=timeout)
+        def wire() -> httpx.BaseTransport:
+            return transport or httpx.HTTPTransport(verify=verify)
+
+        self._login_client = httpx.Client(verify=verify, timeout=timeout, transport=wire())
         self._auth: ApiKeyAuth | PasswordAuth
         if api_key:
             self._auth = ApiKeyAuth(api_key, self.version)
@@ -108,7 +116,7 @@ class NetBackupClient:
             auth=self._auth,
             default_headers=DEFAULT_HEADERS,
             timeout=timeout,
-            transport=httpx.HTTPTransport(verify=verify),
+            transport=wire(),
         )
         self._api_once = APIClient(
             base_url=self.base_url,
@@ -116,7 +124,7 @@ class NetBackupClient:
             default_headers=DEFAULT_HEADERS,
             timeout=timeout,
             max_attempts=1,
-            transport=httpx.HTTPTransport(verify=verify),
+            transport=wire(),
         )
 
         self.server = Server(self)

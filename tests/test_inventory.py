@@ -68,8 +68,8 @@ def test_the_probe_reports_each_call_and_the_version(nbu_api: respx.MockRouter) 
 def test_hosts_come_as_one_flat_list(nbu_api: respx.MockRouter) -> None:
     # As a 10.2 primary answers at API 9.0: not JSON:API, and unpaged.
     hosts = nbu_api.get("/config/hosts").respond(
-        json={"hosts": [{"hostName": "eth00bck01", "uuid": "u1", "osType": "UNIX"}]}
+        json={"hosts": [{"hostName": "primary01", "uuid": "u1", "osType": "UNIX"}]}
     )
     with NetBackupClient(BASE, api_key="k") as nbu:
-        assert nbu.hosts.list() == [{"hostName": "eth00bck01", "uuid": "u1", "osType": "UNIX"}]
+        assert nbu.hosts.list() == [{"hostName": "primary01", "uuid": "u1", "osType": "UNIX"}]
     assert "page[limit]" not in hosts.calls[0].request.url.params
