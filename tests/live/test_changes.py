@@ -122,7 +122,7 @@ def test_policy_schedules_and_clients(nbu: NetBackupClient, record: Entry) -> No
             body={"data": {"type": "schedule", "id": "bltlive-full", "attributes": schedule}},
         )
     except SDKError as error:
-        record.note(f"Adding the schedule was refused: {getattr(error, 'detail', error)}")
+        record.note(f"Adding the schedule was refused: {error.server_message or error}")
         raise
     full = nbu.raw.config.get_policy(name)["data"]["attributes"]["policy"]
     record.result(

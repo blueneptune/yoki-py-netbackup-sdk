@@ -13,7 +13,6 @@ scanning) - the page says which, and coverage counts only real answers.
 from __future__ import annotations
 
 import inspect
-import json
 import re
 from functools import cache
 from typing import Any
@@ -23,7 +22,7 @@ from sdk_primer import SDKError
 
 from netbackup_sdk import NetBackupClient
 
-from .recorder import Entry, Recorder
+from .recorder import Entry
 
 # GETs that start work or hand back large files rather than describe
 # something; read with care, not swept.
@@ -95,19 +94,13 @@ def _resolve(nbu: NetBackupClient, template: str) -> list[str] | None:
     return values
 
 
-def _why(recorder: Recorder) -> str:
-    """NetBackup's own account of the last refusal: status, code, message."""
-    last = recorder.exchanges[-1]
-    try:
-        body = json.loads(last.body)
-    except ValueError:
-        return f"{last.status}"
-    if not isinstance(body, dict):
-        return f"{last.status}"
-    code = body.get("errorCode")
-    message = body.get("errorMessage") or body.get("detail") or ""
+def _why(error: SDKError) -> str:
+    """NetBackup's own account of a refusal: status, code, message."""
+    detail = error.detail if isinstance(error.detail, dict) else {}
+    code = detail.get("errorCode")
+    message = error.server_message or ""
     return (
-        f"{last.status}"
+        f"{error.status_code}"
         + (f" (error {code})" if code else "")
         + (f" - {message}" if message else "")
     )
@@ -116,9 +109,7 @@ def _why(recorder: Recorder) -> str:
 @pytest.mark.parametrize(
     ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -130,6 +121,6 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
