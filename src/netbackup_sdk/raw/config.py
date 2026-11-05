@@ -14,12 +14,28 @@ from .._base import Resource
 class Config(Resource):
     """`config`: 176 operations."""
 
-    def list_agentless_hosts(self, *, filter_: Any = None, sort: Any = None) -> Any:
+    def list_agentless_hosts(
+        self,
+        *,
+        filter_: Any = None,
+        sort: Any = None,
+        page_offset: Any = None,
+        page_limit: Any = None,
+    ) -> Any:
         """`GET /config/agentless-hosts`
 
-        Query: filter, sort."""
+        Query: filter, sort, page[offset], page[limit]."""
         path = "/config/agentless-hosts"
-        return self._call("GET", path, params={"filter": filter_, "sort": sort})
+        return self._call(
+            "GET",
+            path,
+            params={
+                "filter": filter_,
+                "sort": sort,
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+            },
+        )
 
     def delete_agentless_host(self, host_id: str | int) -> Any:
         """`DELETE /config/agentless-hosts/{hostId}`"""
@@ -263,12 +279,18 @@ class Config(Resource):
         path = f"/config/drive-name-rules/{rule_id}"
         return self._call("DELETE", path, change=True)
 
-    def list_ecms_agents(self, *, filter_: Any = None) -> Any:
+    def list_ecms_agents(
+        self, *, page_offset: Any = None, page_limit: Any = None, filter_: Any = None
+    ) -> Any:
         """`GET /config/ecms-agents`
 
-        Query: filter."""
+        Query: page[offset], page[limit], filter."""
         path = "/config/ecms-agents"
-        return self._call("GET", path, params={"filter": filter_})
+        return self._call(
+            "GET",
+            path,
+            params={"page[offset]": page_offset, "page[limit]": page_limit, "filter": filter_},
+        )
 
     def post_ecms_agents(
         self, *, x_netbackup_initial_owner_role: Any = None, body: Any = None
@@ -302,12 +324,18 @@ class Config(Resource):
         path = f"/config/ecms-agents/{ecms_agent_id}"
         return self._call("PUT", path, body=body, change=True)
 
-    def list_ecms_providers(self, *, filter_: Any = None) -> Any:
+    def list_ecms_providers(
+        self, *, page_offset: Any = None, page_limit: Any = None, filter_: Any = None
+    ) -> Any:
         """`GET /config/ecms-providers`
 
-        Query: filter."""
+        Query: page[offset], page[limit], filter."""
         path = "/config/ecms-providers"
-        return self._call("GET", path, params={"filter": filter_})
+        return self._call(
+            "GET",
+            path,
+            params={"page[offset]": page_offset, "page[limit]": page_limit, "filter": filter_},
+        )
 
     def post_ecms_providers(self, *, body: Any = None) -> Any:
         """`POST /config/ecms-providers`
@@ -347,12 +375,18 @@ class Config(Resource):
         path = "/config/hosts"
         return self._call("GET", path, params={"filter": filter_})
 
-    def post_hosts(self, *, body: Any = None) -> Any:
+    def post_hosts(self, *, x_net_backup_audit_reason: Any = None, body: Any = None) -> Any:
         """`POST /config/hosts`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = "/config/hosts"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def get_hosts_pending_renewal(self) -> Any:
         """`GET /config/hosts-pending-renewal`"""
@@ -389,12 +423,20 @@ class Config(Resource):
         path = f"/config/hosts/{host_id}"
         return self._call("GET", path)
 
-    def patch_host(self, host_id: str | int, *, body: Any = None) -> Any:
+    def patch_host(
+        self, host_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`PATCH /config/hosts/{hostId}`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/config/hosts/{host_id}"
-        return self._call("PATCH", path, body=body, change=True)
+        return self._call(
+            "PATCH",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def put_host_comment(self, host_id: str | int, *, body: Any = None) -> Any:
         """`PUT /config/hosts/{hostId}/comment`
@@ -408,17 +450,38 @@ class Config(Resource):
         path = f"/config/hosts/{host_id}/configurations"
         return self._call("GET", path)
 
-    def post_host_configurations(self, host_id: str | int, *, body: Any = None) -> Any:
+    def post_host_configurations(
+        self, host_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`POST /config/hosts/{hostId}/configurations`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/config/hosts/{host_id}/configurations"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def delete_host_configuration(self, host_id: str | int, configuration_name: str | int) -> Any:
-        """`DELETE /config/hosts/{hostId}/configurations/{configurationName}`"""
+    def delete_host_configuration(
+        self,
+        host_id: str | int,
+        configuration_name: str | int,
+        *,
+        x_net_backup_audit_reason: Any = None,
+    ) -> Any:
+        """`DELETE /config/hosts/{hostId}/configurations/{configurationName}`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/config/hosts/{host_id}/configurations/{configuration_name}"
-        return self._call("DELETE", path, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_host_configuration(self, host_id: str | int, configuration_name: str | int) -> Any:
         """`GET /config/hosts/{hostId}/configurations/{configurationName}`"""
@@ -426,22 +489,48 @@ class Config(Resource):
         return self._call("GET", path)
 
     def put_host_configuration(
-        self, host_id: str | int, configuration_name: str | int, *, body: Any = None
+        self,
+        host_id: str | int,
+        configuration_name: str | int,
+        *,
+        x_net_backup_audit_reason: Any = None,
+        body: Any = None,
     ) -> Any:
         """`PUT /config/hosts/{hostId}/configurations/{configurationName}`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/config/hosts/{host_id}/configurations/{configuration_name}"
-        return self._call("PUT", path, body=body, change=True)
+        return self._call(
+            "PUT",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def list_host_devices(
-        self, host_id: str | int, *, filter_: Any = None, sort: Any = None
+        self,
+        host_id: str | int,
+        *,
+        filter_: Any = None,
+        page_offset: Any = None,
+        page_limit: Any = None,
+        sort: Any = None,
     ) -> Any:
         """`GET /config/hosts/{hostId}/devices`
 
-        Query: filter, sort."""
+        Query: filter, page[offset], page[limit], sort."""
         path = f"/config/hosts/{host_id}/devices"
-        return self._call("GET", path, params={"filter": filter_, "sort": sort})
+        return self._call(
+            "GET",
+            path,
+            params={
+                "filter": filter_,
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+            },
+        )
 
     def get_host_hostmappings(self, host_id: str | int, *, isapproved: Any = None) -> Any:
         """`GET /config/hosts/{hostId}/hostmappings`
@@ -450,24 +539,55 @@ class Config(Resource):
         path = f"/config/hosts/{host_id}/hostmappings"
         return self._call("GET", path, params={"isapproved": isapproved})
 
-    def delete_host_hostmapping(self, host_id: str | int, mapped_host_name: str | int) -> Any:
-        """`DELETE /config/hosts/{hostId}/hostmappings/{mappedHostName}`"""
+    def delete_host_hostmapping(
+        self,
+        host_id: str | int,
+        mapped_host_name: str | int,
+        *,
+        x_net_backup_audit_reason: Any = None,
+    ) -> Any:
+        """`DELETE /config/hosts/{hostId}/hostmappings/{mappedHostName}`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/config/hosts/{host_id}/hostmappings/{mapped_host_name}"
-        return self._call("DELETE", path, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def put_host_hostmapping(
-        self, host_id: str | int, mapped_host_name: str | int, *, body: Any = None
+        self,
+        host_id: str | int,
+        mapped_host_name: str | int,
+        *,
+        x_net_backup_audit_reason: Any = None,
+        body: Any = None,
     ) -> Any:
         """`PUT /config/hosts/{hostId}/hostmappings/{mappedHostName}`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/config/hosts/{host_id}/hostmappings/{mapped_host_name}"
-        return self._call("PUT", path, body=body, change=True)
+        return self._call(
+            "PUT",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def put_host_reset(self, host_id: str | int) -> Any:
-        """`PUT /config/hosts/{hostId}/reset`"""
+    def put_host_reset(self, host_id: str | int, *, x_net_backup_audit_reason: Any = None) -> Any:
+        """`PUT /config/hosts/{hostId}/reset`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/config/hosts/{host_id}/reset"
-        return self._call("PUT", path, change=True)
+        return self._call(
+            "PUT",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_host_server_lists(self, host_id: str | int) -> Any:
         """`GET /config/hosts/{hostId}/server-lists`"""
@@ -567,12 +687,27 @@ class Config(Resource):
             headers={"X-NetBackup-Force-Cache-Refresh": x_net_backup_force_cache_refresh},
         )
 
-    def post_policies(self, *, body: Any = None) -> Any:
+    def post_policies(
+        self,
+        *,
+        x_net_backup_audit_reason: Any = None,
+        x_net_backup_policy_use_generic_schema: Any = None,
+        body: Any = None,
+    ) -> Any:
         """`POST /config/policies/`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason, X-NetBackup-Policy-Use-Generic-Schema. Body: application/vnd.netbackup+json."""
         path = "/config/policies/"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={
+                "X-NetBackup-Audit-Reason": x_net_backup_audit_reason,
+                "X-NetBackup-Policy-Use-Generic-Schema": x_net_backup_policy_use_generic_schema,
+            },
+            body=body,
+            change=True,
+        )
 
     def delete_policies_bulk_policy_request(self, request_id: str | int) -> Any:
         """`DELETE /config/policies/bulk-policy-requests/{requestId}`"""
@@ -584,23 +719,37 @@ class Config(Resource):
         path = f"/config/policies/bulk-policy-requests/{request_id}"
         return self._call("GET", path)
 
-    def delete_policy(self, policy_name: str | int) -> Any:
-        """`DELETE /config/policies/{policyName}`"""
+    def delete_policy(
+        self, policy_name: str | int, *, x_net_backup_audit_reason: Any = None
+    ) -> Any:
+        """`DELETE /config/policies/{policyName}`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/config/policies/{policy_name}"
-        return self._call("DELETE", path, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_policy(
-        self, policy_name: str | int, *, x_net_backup_include_vmware_odata_filter: Any = None
+        self,
+        policy_name: str | int,
+        *,
+        x_net_backup_policy_use_generic_schema: Any = None,
+        x_net_backup_include_vmware_odata_filter: Any = None,
     ) -> Any:
         """`GET /config/policies/{policyName}`
 
-        Headers: X-NetBackup-Include-VMware-Odata-Filter."""
+        Headers: X-NetBackup-Policy-Use-Generic-Schema, X-NetBackup-Include-VMware-Odata-Filter."""
         path = f"/config/policies/{policy_name}"
         return self._call(
             "GET",
             path,
             headers={
-                "X-NetBackup-Include-VMware-Odata-Filter": x_net_backup_include_vmware_odata_filter
+                "X-NetBackup-Policy-Use-Generic-Schema": x_net_backup_policy_use_generic_schema,
+                "X-NetBackup-Include-VMware-Odata-Filter": x_net_backup_include_vmware_odata_filter,
             },
         )
 
@@ -608,18 +757,20 @@ class Config(Resource):
         self,
         policy_name: str | int,
         *,
+        x_net_backup_audit_reason: Any = None,
         x_net_backup_policy_use_generic_schema: Any = None,
         if_match: Any = None,
         body: Any = None,
     ) -> Any:
         """`PATCH /config/policies/{policyName}`
 
-        Headers: X-NetBackup-Policy-Use-Generic-Schema, If-Match. Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason, X-NetBackup-Policy-Use-Generic-Schema, If-Match. Body: application/vnd.netbackup+json."""
         path = f"/config/policies/{policy_name}"
         return self._call(
             "PATCH",
             path,
             headers={
+                "X-NetBackup-Audit-Reason": x_net_backup_audit_reason,
                 "X-NetBackup-Policy-Use-Generic-Schema": x_net_backup_policy_use_generic_schema,
                 "If-Match": if_match,
             },
@@ -627,57 +778,106 @@ class Config(Resource):
             change=True,
         )
 
-    def put_policy(self, policy_name: str | int, *, if_match: Any = None, body: Any = None) -> Any:
+    def put_policy(
+        self,
+        policy_name: str | int,
+        *,
+        x_net_backup_audit_reason: Any = None,
+        x_net_backup_policy_use_generic_schema: Any = None,
+        if_match: Any = None,
+        body: Any = None,
+    ) -> Any:
         """`PUT /config/policies/{policyName}`
 
-        Headers: If-Match. Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason, X-NetBackup-Policy-Use-Generic-Schema, If-Match. Body: application/vnd.netbackup+json."""
         path = f"/config/policies/{policy_name}"
-        return self._call("PUT", path, headers={"If-Match": if_match}, body=body, change=True)
+        return self._call(
+            "PUT",
+            path,
+            headers={
+                "X-NetBackup-Audit-Reason": x_net_backup_audit_reason,
+                "X-NetBackup-Policy-Use-Generic-Schema": x_net_backup_policy_use_generic_schema,
+                "If-Match": if_match,
+            },
+            body=body,
+            change=True,
+        )
 
     def delete_policy_backupselections(
-        self, policy_name: str | int, *, if_match: Any = None
+        self, policy_name: str | int, *, x_net_backup_audit_reason: Any = None, if_match: Any = None
     ) -> Any:
         """`DELETE /config/policies/{policyName}/backupselections`
 
-        Headers: If-Match."""
+        Headers: X-NetBackup-Audit-Reason, If-Match."""
         path = f"/config/policies/{policy_name}/backupselections"
-        return self._call("DELETE", path, headers={"If-Match": if_match}, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason, "If-Match": if_match},
+            change=True,
+        )
 
     def put_policy_backupselections(
-        self, policy_name: str | int, *, if_match: Any = None, body: Any = None
+        self,
+        policy_name: str | int,
+        *,
+        x_net_backup_audit_reason: Any = None,
+        if_match: Any = None,
+        body: Any = None,
     ) -> Any:
         """`PUT /config/policies/{policyName}/backupselections`
 
-        Headers: If-Match. Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason, If-Match. Body: application/vnd.netbackup+json."""
         path = f"/config/policies/{policy_name}/backupselections"
-        return self._call("PUT", path, headers={"If-Match": if_match}, body=body, change=True)
+        return self._call(
+            "PUT",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason, "If-Match": if_match},
+            body=body,
+            change=True,
+        )
 
     def delete_policy_client(
-        self, policy_name: str | int, client_name: str | int, *, if_match: Any = None
+        self,
+        policy_name: str | int,
+        client_name: str | int,
+        *,
+        x_net_backup_audit_reason: Any = None,
+        if_match: Any = None,
     ) -> Any:
         """`DELETE /config/policies/{policyName}/clients/{clientName}`
 
-        Headers: If-Match."""
+        Headers: X-NetBackup-Audit-Reason, If-Match."""
         path = f"/config/policies/{policy_name}/clients/{client_name}"
-        return self._call("DELETE", path, headers={"If-Match": if_match}, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason, "If-Match": if_match},
+            change=True,
+        )
 
     def put_policy_client(
         self,
         policy_name: str | int,
         client_name: str | int,
         *,
+        x_net_backup_audit_reason: Any = None,
         if_match: Any = None,
         x_net_backup_read_scale_ag: Any = None,
         body: Any = None,
     ) -> Any:
         """`PUT /config/policies/{policyName}/clients/{clientName}`
 
-        Headers: If-Match, X-NetBackup-Read-Scale-AG. Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason, If-Match, X-NetBackup-Read-Scale-AG. Body: application/vnd.netbackup+json."""
         path = f"/config/policies/{policy_name}/clients/{client_name}"
         return self._call(
             "PUT",
             path,
-            headers={"If-Match": if_match, "X-NetBackup-Read-Scale-AG": x_net_backup_read_scale_ag},
+            headers={
+                "X-NetBackup-Audit-Reason": x_net_backup_audit_reason,
+                "If-Match": if_match,
+                "X-NetBackup-Read-Scale-AG": x_net_backup_read_scale_ag,
+            },
             body=body,
             change=True,
         )
@@ -690,27 +890,44 @@ class Config(Resource):
         return self._call("POST", path, body=body, change=True)
 
     def delete_policy_schedule(
-        self, policy_name: str | int, schedule_name: str | int, *, if_match: Any = None
+        self,
+        policy_name: str | int,
+        schedule_name: str | int,
+        *,
+        x_net_backup_audit_reason: Any = None,
+        if_match: Any = None,
     ) -> Any:
         """`DELETE /config/policies/{policyName}/schedules/{scheduleName}`
 
-        Headers: If-Match."""
+        Headers: X-NetBackup-Audit-Reason, If-Match."""
         path = f"/config/policies/{policy_name}/schedules/{schedule_name}"
-        return self._call("DELETE", path, headers={"If-Match": if_match}, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason, "If-Match": if_match},
+            change=True,
+        )
 
     def put_policy_schedule(
         self,
         policy_name: str | int,
         schedule_name: str | int,
         *,
+        x_net_backup_audit_reason: Any = None,
         if_match: Any = None,
         body: Any = None,
     ) -> Any:
         """`PUT /config/policies/{policyName}/schedules/{scheduleName}`
 
-        Headers: If-Match. Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason, If-Match. Body: application/vnd.netbackup+json."""
         path = f"/config/policies/{policy_name}/schedules/{schedule_name}"
-        return self._call("PUT", path, headers={"If-Match": if_match}, body=body, change=True)
+        return self._call(
+            "PUT",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason, "If-Match": if_match},
+            body=body,
+            change=True,
+        )
 
     def post_policy_validate_snapshot_configuration(
         self, policy_name: str | int, *, body: Any = None
@@ -1135,12 +1352,18 @@ class Config(Resource):
             },
         )
 
-    def post_slps(self, *, body: Any = None) -> Any:
+    def post_slps(self, *, x_net_backup_audit_reason: Any = None, body: Any = None) -> Any:
         """`POST /config/slps`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = "/config/slps"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def delete_slp(self, slp_name: str | int) -> Any:
         """`DELETE /config/slps/{slpName}`"""
@@ -1154,26 +1377,50 @@ class Config(Resource):
         path = f"/config/slps/{slp_name}"
         return self._call("GET", path, params={"meta": meta})
 
-    def patch_slp(self, slp_name: str | int, *, body: Any = None) -> Any:
+    def patch_slp(
+        self, slp_name: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`PATCH /config/slps/{slpName}`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/config/slps/{slp_name}"
-        return self._call("PATCH", path, body=body, change=True)
+        return self._call(
+            "PATCH",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def put_slp(self, slp_name: str | int, *, body: Any = None) -> Any:
+    def put_slp(
+        self, slp_name: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`PUT /config/slps/{slpName}`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/config/slps/{slp_name}"
-        return self._call("PUT", path, body=body, change=True)
+        return self._call(
+            "PUT",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def post_slp_check_conflicts(self, slp_name: str | int, *, body: Any = None) -> Any:
+    def post_slp_check_conflicts(
+        self, slp_name: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`POST /config/slps/{slpName}/check-conflicts`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/config/slps/{slp_name}/check-conflicts"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def get_slp_version(
         self, slp_name: str | int, version_number: str | int, *, meta: Any = None
@@ -1305,13 +1552,23 @@ class Config(Resource):
         return self._call("PUT", path, body=body, change=True)
 
     def list_snapshotproviders_configuredplugin_instance_configureddomains(
-        self, plugin_type: str | int, instance_name: str | int, *, filter_: Any = None
+        self,
+        plugin_type: str | int,
+        instance_name: str | int,
+        *,
+        filter_: Any = None,
+        page_offset: Any = None,
+        page_limit: Any = None,
     ) -> Any:
         """`GET /config/snapshotproviders/configuredplugins/{pluginType}/instances/{instanceName}/configureddomains`
 
-        Query: filter."""
+        Query: filter, page[offset], page[limit]."""
         path = f"/config/snapshotproviders/configuredplugins/{plugin_type}/instances/{instance_name}/configureddomains"
-        return self._call("GET", path, params={"filter": filter_})
+        return self._call(
+            "GET",
+            path,
+            params={"filter": filter_, "page[offset]": page_offset, "page[limit]": page_limit},
+        )
 
     def list_snapshotproviders_configuredplugin_instance_configureddomain_region_networksecuritygroups(
         self,
@@ -1321,12 +1578,18 @@ class Config(Resource):
         region: str | int,
         *,
         filter_: Any = None,
+        page_offset: Any = None,
+        page_limit: Any = None,
     ) -> Any:
         """`GET /config/snapshotproviders/configuredplugins/{pluginType}/instances/{instanceName}/configureddomains/{serviceDomain}/regions/{region}/networksecuritygroups`
 
-        Query: filter."""
+        Query: filter, page[offset], page[limit]."""
         path = f"/config/snapshotproviders/configuredplugins/{plugin_type}/instances/{instance_name}/configureddomains/{service_domain}/regions/{region}/networksecuritygroups"
-        return self._call("GET", path, params={"filter": filter_})
+        return self._call(
+            "GET",
+            path,
+            params={"filter": filter_, "page[offset]": page_offset, "page[limit]": page_limit},
+        )
 
     def list_snapshotproviders_configuredplugin_instance_configureddomain_resourcegroups(
         self,
@@ -1336,12 +1599,23 @@ class Config(Resource):
         *,
         filter_: Any = None,
         sort: Any = None,
+        page_offset: Any = None,
+        page_limit: Any = None,
     ) -> Any:
         """`GET /config/snapshotproviders/configuredplugins/{pluginType}/instances/{instanceName}/configureddomains/{subscriptionId}/resourcegroups`
 
-        Query: filter, sort."""
+        Query: filter, sort, page[offset], page[limit]."""
         path = f"/config/snapshotproviders/configuredplugins/{plugin_type}/instances/{instance_name}/configureddomains/{subscription_id}/resourcegroups"
-        return self._call("GET", path, params={"filter": filter_, "sort": sort})
+        return self._call(
+            "GET",
+            path,
+            params={
+                "filter": filter_,
+                "sort": sort,
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+            },
+        )
 
     def get_snapshotproviders_connected_virtual_machine(self, virtual_machine_id: str | int) -> Any:
         """`GET /config/snapshotproviders/connected-virtual-machines/{virtualMachineId}`"""

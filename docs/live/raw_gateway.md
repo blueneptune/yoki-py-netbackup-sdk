@@ -1,6 +1,6 @@
 # `nbu.raw.gateway`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_authorization_context` - GET /authorization-context
 
@@ -89,12 +89,12 @@ nbu.raw.gateway.get_ping()
 
 **On the wire**
 
-- `GET /ping` -> **200** (0.09 s)
+- `GET /ping` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
   ```json
-  1793860710297
+  1793861163133
   ```
 
   </details>
@@ -109,7 +109,7 @@ nbu.raw.gateway.get_saml2_metadata()
 
 **On the wire**
 
-- `GET /sso/saml2/metadata` -> **400** (0.02 s)
+- `GET /sso/saml2/metadata` -> **400** (0.01 s)
 
   <details><summary>Answer</summary>
 
@@ -135,7 +135,7 @@ nbu.raw.gateway.get_tokenkey()
 
 **On the wire**
 
-- `GET /tokenkey` -> **200** (0.07 s)
+- `GET /tokenkey` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 

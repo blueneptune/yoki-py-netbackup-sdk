@@ -1,6 +1,6 @@
 # `nbu.raw.config`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_bulk_server_group_request` - GET /config/bulk-server-group-requests/{requestId}
 
@@ -112,7 +112,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /config/credentials` -> **200** (0.05 s)
+- `GET /config/credentials` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -176,7 +176,7 @@ nbu.raw.config.get_drive_name_rules()
 
 **On the wire**
 
-- `GET /config/drive-name-rules` -> **500** (0.11 s)
+- `GET /config/drive-name-rules` -> **500** (0.15 s)
 
   <details><summary>Answer</summary>
 
@@ -220,7 +220,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /config/ecms-agents` -> **200** (0.18 s)
+- `GET /config/ecms-agents` -> **200** (0.19 s)
 
   <details><summary>Answer</summary>
 
@@ -282,7 +282,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /config/ecms-providers` -> **200** (0.09 s)
+- `GET /config/ecms-providers` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -344,7 +344,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /config/hosts` -> **200** (0.06 s)
+- `GET /config/hosts` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -673,7 +673,7 @@ nbu.raw.config.get_hosts_hostmappings()
 
 **On the wire**
 
-- `GET /config/hosts/hostmappings` -> **200** (0.06 s)
+- `GET /config/hosts/hostmappings` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -716,16 +716,6 @@ nbu.raw.config.get_hosts_hostmappings()
         ],
         "hostMappings": [
           {
-            "mappedHostName": "host-03",
-            "isApproved": true,
-            "isConflicting": false,
-            "isAddedManually": false,
-            "origin": "COMMUNICATION_DISCOVERY",
-            "isShared": false,
-            "createdOn": 1705869412000,
-            "updatedOn": 1705869412000
-          },
-          {
             "mappedHostName": "primary-01",
             "isApproved": true,
             "isConflicting": false,
@@ -734,6 +724,16 @@ nbu.raw.config.get_hosts_hostmappings()
             "isShared": false,
             "createdOn": 1647492988000,
             "updatedOn": 1647492988000
+          },
+          {
+            "mappedHostName": "host-03",
+            "isApproved": true,
+            "isConflicting": false,
+            "isAddedManually": false,
+            "origin": "COMMUNICATION_DISCOVERY",
+            "isShared": false,
+            "createdOn": 1705869412000,
+            "updatedOn": 1705869412000
           }
         ]
       },
@@ -937,7 +937,7 @@ nbu.raw.config.get_media_server('primary-01')
 
 **On the wire**
 
-- `GET /config/media-servers` -> **200** (0.12 s)
+- `GET /config/media-servers` -> **200** (0.13 s)
 
   <details><summary>Answer</summary>
 
@@ -1006,7 +1006,7 @@ nbu.raw.config.get_media_server('primary-01')
 
   </details>
 
-- `GET /config/media-servers/primary-01` -> **200** (0.10 s)
+- `GET /config/media-servers/primary-01` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -1261,7 +1261,7 @@ nbu.raw.config.get_resource_limit('vmware')
 
   </details>
 
-- `GET /config/resource-limits/vmware` -> **200** (0.05 s)
+- `GET /config/resource-limits/vmware` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -1403,7 +1403,7 @@ nbu.raw.config.get_resource_limit_template('cdp')
 
   </details>
 
-- `GET /config/resource-limit-templates/cdp` -> **200** (0.10 s)
+- `GET /config/resource-limit-templates/cdp` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -1444,7 +1444,7 @@ nbu.raw.config.get_resource_limit_templates()
 
 **On the wire**
 
-- `GET /config/resource-limit-templates` -> **200** (0.07 s)
+- `GET /config/resource-limit-templates` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -1545,7 +1545,7 @@ nbu.raw.config.get_resource_limits()
 
 **On the wire**
 
-- `GET /config/resource-limits` -> **200** (0.07 s)
+- `GET /config/resource-limits` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -1711,7 +1711,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /config/servers/snapshot-mgmt-servers` -> **200** (0.12 s)
+- `GET /config/servers/snapshot-mgmt-servers` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -1851,7 +1851,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /config/servers/trusted-master-servers` -> **200** (0.12 s)
+- `GET /config/servers/trusted-master-servers` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -1871,7 +1871,7 @@ nbu.raw.config.get_servers_vmserver('host-05')
 
 **On the wire**
 
-- `GET /config/servers/vmservers` -> **200** (0.07 s)
+- `GET /config/servers/vmservers` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -1905,7 +1905,7 @@ nbu.raw.config.get_servers_vmserver('host-05')
 
   </details>
 
-- `GET /config/servers/vmservers/host-05` -> **200** (0.12 s)
+- `GET /config/servers/vmservers/host-05` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -1945,7 +1945,7 @@ nbu.raw.config.get_servers_wssendpoints()
 
 **On the wire**
 
-- `GET /config/servers/wssendpoints` -> **200** (0.10 s)
+- `GET /config/servers/wssendpoints` -> **200** (0.12 s)
 
   <details><summary>Answer</summary>
 
@@ -1963,7 +1963,7 @@ nbu.raw.config.get_slp('1M_primary-01_DS3')
 
 **On the wire**
 
-- `GET /config/slps` -> **200** (0.10 s)
+- `GET /config/slps` -> **200** (0.13 s)
 
   <details><summary>Answer</summary>
 
@@ -2317,7 +2317,7 @@ nbu.raw.config.get_slp('1M_primary-01_DS3')
 
   </details>
 
-- `GET /config/slps/1M_primary-01_DS3` -> **200** (0.14 s)
+- `GET /config/slps/1M_primary-01_DS3` -> **200** (0.15 s)
 
   <details><summary>Answer</summary>
 
@@ -2539,7 +2539,7 @@ nbu.raw.config.get_slp_window('Default_24x7_Window')
 
   </details>
 
-- `GET /config/slp-windows/Default_24x7_Window` -> **200** (0.10 s)
+- `GET /config/slp-windows/Default_24x7_Window` -> **200** (0.08 s)
 
   <details><summary>Answer</summary>
 
@@ -2596,7 +2596,7 @@ nbu.raw.config.get_smtpserver()
 
 **On the wire**
 
-- `GET /config/smtpserver` -> **404** (0.10 s)
+- `GET /config/smtpserver` -> **404** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -2784,7 +2784,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /config/snapshotproviders/supportedplugins` -> **500** (0.07 s)
+- `GET /config/snapshotproviders/supportedplugins` -> **500** (0.08 s)
 
   <details><summary>Answer</summary>
 
@@ -2828,7 +2828,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /config/workloads/ndmp/hosts` -> **200** (0.23 s)
+- `GET /config/workloads/ndmp/hosts` -> **200** (0.21 s)
 
   <details><summary>Answer</summary>
 
@@ -2896,7 +2896,7 @@ nbu.raw.config.list_agentless_hosts()
 
 **On the wire**
 
-- `GET /config/agentless-hosts` -> **200** (0.09 s)
+- `GET /config/agentless-hosts` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -2938,7 +2938,7 @@ nbu.raw.config.list_cdp_gateway()
 
 **On the wire**
 
-- `GET /config/cdp-gateway` -> **200** (0.09 s)
+- `GET /config/cdp-gateway` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -2974,7 +2974,7 @@ nbu.raw.config.list_credential_schemas()
 
 **On the wire**
 
-- `GET /config/credential-schemas` -> **200** (0.05 s)
+- `GET /config/credential-schemas` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -3047,7 +3047,7 @@ nbu.raw.config.list_credentials()
 
 **On the wire**
 
-- `GET /config/credentials` -> **200** (0.05 s)
+- `GET /config/credentials` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -3083,7 +3083,7 @@ nbu.raw.config.list_disk_array_hosts()
 
 **On the wire**
 
-- `GET /config/disk-array-hosts` -> **200** (0.10 s)
+- `GET /config/disk-array-hosts` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -3125,7 +3125,7 @@ nbu.raw.config.list_ecms_agents()
 
 **On the wire**
 
-- `GET /config/ecms-agents` -> **200** (0.09 s)
+- `GET /config/ecms-agents` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -3167,7 +3167,7 @@ nbu.raw.config.list_ecms_providers()
 
 **On the wire**
 
-- `GET /config/ecms-providers` -> **200** (0.09 s)
+- `GET /config/ecms-providers` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -3460,7 +3460,7 @@ nbu.raw.config.list_media_servers()
 
 **On the wire**
 
-- `GET /config/media-servers` -> **200** (0.11 s)
+- `GET /config/media-servers` -> **200** (0.15 s)
 
   <details><summary>Answer</summary>
 
@@ -3856,7 +3856,7 @@ nbu.raw.config.list_servers_snapshot_mgmt_servers()
 
 **On the wire**
 
-- `GET /config/servers/snapshot-mgmt-servers` -> **200** (0.10 s)
+- `GET /config/servers/snapshot-mgmt-servers` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -3898,7 +3898,7 @@ nbu.raw.config.list_servers_trusted_master_servers()
 
 **On the wire**
 
-- `GET /config/servers/trusted-master-servers` -> **200** (0.06 s)
+- `GET /config/servers/trusted-master-servers` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -3918,7 +3918,7 @@ nbu.raw.config.list_servers_vmservers()
 
 **On the wire**
 
-- `GET /config/servers/vmservers` -> **200** (0.06 s)
+- `GET /config/servers/vmservers` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -3960,7 +3960,7 @@ nbu.raw.config.list_slp_windows()
 
 **On the wire**
 
-- `GET /config/slp-windows` -> **200** (0.06 s)
+- `GET /config/slp-windows` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -4039,7 +4039,7 @@ nbu.raw.config.list_slps()
 
 **On the wire**
 
-- `GET /config/slps` -> **200** (0.17 s)
+- `GET /config/slps` -> **200** (0.13 s)
 
   <details><summary>Answer</summary>
 
@@ -4479,7 +4479,7 @@ nbu.raw.config.list_snapshotproviders_configuredplugins()
 
 **On the wire**
 
-- `GET /config/snapshotproviders/configuredplugins` -> **200** (0.07 s)
+- `GET /config/snapshotproviders/configuredplugins` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -4499,7 +4499,7 @@ nbu.raw.config.list_snapshotproviders_supported_replication_destinations()
 
 **On the wire**
 
-- `GET /config/snapshotproviders/supported-replication-destinations` -> **200** (0.12 s)
+- `GET /config/snapshotproviders/supported-replication-destinations` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -4531,7 +4531,7 @@ nbu.raw.config.list_snapshotproviders_supportedplugins()
 
 **On the wire**
 
-- `GET /config/snapshotproviders/supportedplugins` -> **500** (0.08 s)
+- `GET /config/snapshotproviders/supportedplugins` -> **500** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -4555,7 +4555,7 @@ nbu.raw.config.list_unique_policy_clients()
 
 **On the wire**
 
-- `GET /config/unique-policy-clients` -> **200** (0.12 s)
+- `GET /config/unique-policy-clients` -> **200** (0.14 s)
 
   <details><summary>Answer</summary>
 
@@ -4668,7 +4668,7 @@ nbu.raw.config.list_workloads_cloud_object_store_providers()
 
 **On the wire**
 
-- `GET /config/workloads/cloud-object-store/providers` -> **200** (0.10 s)
+- `GET /config/workloads/cloud-object-store/providers` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -4910,7 +4910,7 @@ nbu.raw.config.list_workloads_ndmp_hosts()
 
 **On the wire**
 
-- `GET /config/workloads/ndmp/hosts` -> **200** (0.15 s)
+- `GET /config/workloads/ndmp/hosts` -> **200** (0.17 s)
 
   <details><summary>Answer</summary>
 

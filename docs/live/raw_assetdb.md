@@ -1,6 +1,6 @@
 # `nbu.raw.assetdb`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_asset_groups` - GET /assets/{GUID}/asset-groups
 
@@ -40,7 +40,7 @@ def test_get(
 
   </details>
 
-## `get_user-05_by_asset_group_guid` - GET /asset-groups/{assetGroupGuid}
+## `get_root_by_asset_group_guid` - GET /asset-groups/{assetGroupGuid}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
@@ -68,7 +68,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /asset-groups` -> **200** (0.10 s)
+- `GET /asset-groups` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -102,7 +102,7 @@ def test_get(
 
   </details>
 
-## `get_user-05_by_guid` - GET /assets/{GUID}
+## `get_root_by_guid` - GET /assets/{GUID}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 

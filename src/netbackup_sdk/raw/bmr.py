@@ -15,14 +15,26 @@ class Bmr(Resource):
     """`bmr`: 72 operations."""
 
     def list_boot_servers(
-        self, *, page_limit: Any = None, sort: Any = None, filter_: Any = None
+        self,
+        *,
+        page_offset: Any = None,
+        page_limit: Any = None,
+        sort: Any = None,
+        filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/boot-servers`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = "/bare-metal-restore/boot-servers"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def delete_boot_server(self, boot_server_id: str | int) -> Any:
@@ -30,13 +42,27 @@ class Bmr(Resource):
         path = f"/bare-metal-restore/boot-servers/{boot_server_id}"
         return self._call("DELETE", path, change=True)
 
-    def list_clients(self, *, page_limit: Any = None, sort: Any = None, filter_: Any = None) -> Any:
+    def list_clients(
+        self,
+        *,
+        page_offset: Any = None,
+        page_limit: Any = None,
+        sort: Any = None,
+        filter_: Any = None,
+    ) -> Any:
         """`GET /bare-metal-restore/clients`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = "/bare-metal-restore/clients"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def delete_client(self, client_name: str | int) -> Any:
@@ -53,16 +79,24 @@ class Bmr(Resource):
         self,
         client_name: str | int,
         *,
+        page_offset: Any = None,
         page_limit: Any = None,
         sort: Any = None,
         filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/clients/{clientName}/configurations`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = f"/bare-metal-restore/clients/{client_name}/configurations"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def post_client_configurations(self, client_name: str | int, *, body: Any = None) -> Any:
@@ -195,16 +229,24 @@ class Bmr(Resource):
         self,
         configuration_id: str | int,
         *,
+        page_offset: Any = None,
         page_limit: Any = None,
         sort: Any = None,
         filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/configurations/{configurationId}/disks`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = f"/bare-metal-restore/configurations/{configuration_id}/disks"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def patch_configuration_disk(
@@ -220,16 +262,24 @@ class Bmr(Resource):
         self,
         configuration_id: str | int,
         *,
+        page_offset: Any = None,
         page_limit: Any = None,
         sort: Any = None,
         filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/configurations/{configurationId}/empty-disks`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = f"/bare-metal-restore/configurations/{configuration_id}/empty-disks"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def post_configuration_initialize(
@@ -293,32 +343,48 @@ class Bmr(Resource):
         self,
         configuration_id: str | int,
         *,
+        page_offset: Any = None,
         page_limit: Any = None,
         sort: Any = None,
         filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/configurations/{configurationId}/native-disks`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = f"/bare-metal-restore/configurations/{configuration_id}/native-disks"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def list_configuration_native_partitions(
         self,
         configuration_id: str | int,
         *,
+        page_offset: Any = None,
         page_limit: Any = None,
         sort: Any = None,
         filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/configurations/{configurationId}/native-partitions`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = f"/bare-metal-restore/configurations/{configuration_id}/native-partitions"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def list_configuration_network_interfaces(
@@ -383,26 +449,36 @@ class Bmr(Resource):
         self,
         configuration_id: str | int,
         *,
+        page_offset: Any = None,
         page_limit: Any = None,
         sort: Any = None,
         filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/configurations/{configurationId}/non-managed-disks`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = f"/bare-metal-restore/configurations/{configuration_id}/non-managed-disks"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def list_configuration_packages(
-        self, configuration_id: str | int, *, page_limit: Any = None
+        self, configuration_id: str | int, *, page_offset: Any = None, page_limit: Any = None
     ) -> Any:
         """`GET /bare-metal-restore/configurations/{configurationId}/packages`
 
-        Query: page[limit]."""
+        Query: page[offset], page[limit]."""
         path = f"/bare-metal-restore/configurations/{configuration_id}/packages"
-        return self._call("GET", path, params={"page[limit]": page_limit})
+        return self._call(
+            "GET", path, params={"page[offset]": page_offset, "page[limit]": page_limit}
+        )
 
     def list_configuration_partitions(
         self, configuration_id: str | int, *, sort: Any = None, filter_: Any = None
@@ -510,16 +586,24 @@ class Bmr(Resource):
         self,
         configuration_id: str | int,
         *,
+        page_offset: Any = None,
         page_limit: Any = None,
         sort: Any = None,
         filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/configurations/{configurationId}/volumes`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = f"/bare-metal-restore/configurations/{configuration_id}/volumes"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def patch_configuration_volume(
@@ -532,13 +616,15 @@ class Bmr(Resource):
         return self._call("PATCH", path, body=body, change=True)
 
     def list_configuration_windows_devices(
-        self, configuration_id: str | int, *, page_limit: Any = None
+        self, configuration_id: str | int, *, page_offset: Any = None, page_limit: Any = None
     ) -> Any:
         """`GET /bare-metal-restore/configurations/{configurationId}/windows-devices`
 
-        Query: page[limit]."""
+        Query: page[offset], page[limit]."""
         path = f"/bare-metal-restore/configurations/{configuration_id}/windows-devices"
-        return self._call("GET", path, params={"page[limit]": page_limit})
+        return self._call(
+            "GET", path, params={"page[offset]": page_offset, "page[limit]": page_limit}
+        )
 
     def patch_configuration_windows_devices(
         self, configuration_id: str | int, *, body: Any = None
@@ -562,16 +648,24 @@ class Bmr(Resource):
         self,
         configuration_id: str | int,
         *,
+        page_offset: Any = None,
         page_limit: Any = None,
         sort: Any = None,
         filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/configurations/{configurationId}/zfs-file-systems`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = f"/bare-metal-restore/configurations/{configuration_id}/zfs-file-systems"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def patch_configuration_zfs_file_system(
@@ -587,16 +681,24 @@ class Bmr(Resource):
         self,
         configuration_id: str | int,
         *,
+        page_offset: Any = None,
         page_limit: Any = None,
         sort: Any = None,
         filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/configurations/{configurationId}/zfs-volumes`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = f"/bare-metal-restore/configurations/{configuration_id}/zfs-volumes"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def patch_configuration_zfs_volume(
@@ -633,25 +735,49 @@ class Bmr(Resource):
         return self._call("POST", path, body=body, change=True)
 
     def list_discovered_configurations(
-        self, *, page_limit: Any = None, sort: Any = None, filter_: Any = None
+        self,
+        *,
+        page_offset: Any = None,
+        page_limit: Any = None,
+        sort: Any = None,
+        filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/discovered-configurations`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = "/bare-metal-restore/discovered-configurations"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def list_packages(
-        self, *, page_limit: Any = None, sort: Any = None, filter_: Any = None
+        self,
+        *,
+        page_offset: Any = None,
+        page_limit: Any = None,
+        sort: Any = None,
+        filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/packages`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = "/bare-metal-restore/packages"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def delete_package(self, package_id: str | int) -> Any:
@@ -660,14 +786,26 @@ class Bmr(Resource):
         return self._call("DELETE", path, change=True)
 
     def list_shared_resource_trees(
-        self, *, page_limit: Any = None, sort: Any = None, filter_: Any = None
+        self,
+        *,
+        page_offset: Any = None,
+        page_limit: Any = None,
+        sort: Any = None,
+        filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/shared-resource-trees`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = "/bare-metal-restore/shared-resource-trees"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def delete_shared_resource_tree(self, shared_resource_tree_id: str | int) -> Any:
@@ -680,13 +818,27 @@ class Bmr(Resource):
         path = f"/bare-metal-restore/shared-resource-trees/{shared_resource_tree_id}"
         return self._call("GET", path)
 
-    def list_tasks(self, *, page_limit: Any = None, sort: Any = None, filter_: Any = None) -> Any:
+    def list_tasks(
+        self,
+        *,
+        page_offset: Any = None,
+        page_limit: Any = None,
+        sort: Any = None,
+        filter_: Any = None,
+    ) -> Any:
         """`GET /bare-metal-restore/tasks`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = "/bare-metal-restore/tasks"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def delete_task(self, task_id: str | int) -> Any:
@@ -695,14 +847,26 @@ class Bmr(Resource):
         return self._call("DELETE", path, change=True)
 
     def list_vm_conversion_tasks(
-        self, *, page_limit: Any = None, sort: Any = None, filter_: Any = None
+        self,
+        *,
+        page_offset: Any = None,
+        page_limit: Any = None,
+        sort: Any = None,
+        filter_: Any = None,
     ) -> Any:
         """`GET /bare-metal-restore/vm-conversion-tasks`
 
-        Query: page[limit], sort, filter."""
+        Query: page[offset], page[limit], sort, filter."""
         path = "/bare-metal-restore/vm-conversion-tasks"
         return self._call(
-            "GET", path, params={"page[limit]": page_limit, "sort": sort, "filter": filter_}
+            "GET",
+            path,
+            params={
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+                "sort": sort,
+                "filter": filter_,
+            },
         )
 
     def delete_vm_conversion_task(self, task_id: str | int) -> Any:

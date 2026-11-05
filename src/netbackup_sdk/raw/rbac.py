@@ -14,60 +14,102 @@ from .._base import Resource
 class Rbac(Resource):
     """`rbac`: 19 operations."""
 
-    def get_access_rules(self, *, include: Any = None) -> Any:
+    def get_access_rules(self, *, meta: Any = None, include: Any = None) -> Any:
         """`GET /rbac/access-rules`
 
-        Query: include."""
+        Query: meta, include."""
         path = "/rbac/access-rules"
-        return self._call("GET", path, params={"include": include})
+        return self._call("GET", path, params={"meta": meta, "include": include})
 
-    def post_access_rules(self, *, body: Any = None) -> Any:
+    def post_access_rules(self, *, x_net_backup_audit_reason: Any = None, body: Any = None) -> Any:
         """`POST /rbac/access-rules`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = "/rbac/access-rules"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def delete_access_rule(self, rule_id: str | int) -> Any:
-        """`DELETE /rbac/access-rules/{ruleId}`"""
+    def delete_access_rule(
+        self, rule_id: str | int, *, x_net_backup_audit_reason: Any = None
+    ) -> Any:
+        """`DELETE /rbac/access-rules/{ruleId}`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/rbac/access-rules/{rule_id}"
-        return self._call("DELETE", path, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
-    def get_access_rule(self, rule_id: str | int, *, include: Any = None) -> Any:
+    def get_access_rule(self, rule_id: str | int, *, meta: Any = None, include: Any = None) -> Any:
         """`GET /rbac/access-rules/{ruleId}`
 
-        Query: include."""
+        Query: meta, include."""
         path = f"/rbac/access-rules/{rule_id}"
-        return self._call("GET", path, params={"include": include})
+        return self._call("GET", path, params={"meta": meta, "include": include})
 
-    def put_access_rule(self, rule_id: str | int, *, body: Any = None) -> Any:
+    def put_access_rule(
+        self, rule_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`PUT /rbac/access-rules/{ruleId}`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/rbac/access-rules/{rule_id}"
-        return self._call("PUT", path, body=body, change=True)
+        return self._call(
+            "PUT",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def get_object_groups(self) -> Any:
-        """`GET /rbac/object-groups`"""
+    def get_object_groups(self, *, meta: Any = None) -> Any:
+        """`GET /rbac/object-groups`
+
+        Query: meta."""
         path = "/rbac/object-groups"
-        return self._call("GET", path)
+        return self._call("GET", path, params={"meta": meta})
 
-    def post_object_groups(self, *, body: Any = None) -> Any:
+    def post_object_groups(self, *, x_net_backup_audit_reason: Any = None, body: Any = None) -> Any:
         """`POST /rbac/object-groups`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = "/rbac/object-groups"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def delete_object_group(self, object_group_id: str | int) -> Any:
-        """`DELETE /rbac/object-groups/{objectGroupId}`"""
-        path = f"/rbac/object-groups/{object_group_id}"
-        return self._call("DELETE", path, change=True)
+    def delete_object_group(
+        self, object_group_id: str | int, *, x_net_backup_audit_reason: Any = None
+    ) -> Any:
+        """`DELETE /rbac/object-groups/{objectGroupId}`
 
-    def get_object_group(self, object_group_id: str | int) -> Any:
-        """`GET /rbac/object-groups/{objectGroupId}`"""
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/rbac/object-groups/{object_group_id}"
-        return self._call("GET", path)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
+
+    def get_object_group(self, object_group_id: str | int, *, meta: Any = None) -> Any:
+        """`GET /rbac/object-groups/{objectGroupId}`
+
+        Query: meta."""
+        path = f"/rbac/object-groups/{object_group_id}"
+        return self._call("GET", path, params={"meta": meta})
 
     def put_object_group(self, object_group_id: str | int, *, body: Any = None) -> Any:
         """`PUT /rbac/object-groups/{objectGroupId}`
@@ -81,50 +123,77 @@ class Rbac(Resource):
         path = "/rbac/object-types"
         return self._call("GET", path)
 
-    def get_permission_categories(self) -> Any:
-        """`GET /rbac/permission-categories`"""
+    def get_permission_categories(self, *, meta: Any = None) -> Any:
+        """`GET /rbac/permission-categories`
+
+        Query: meta."""
         path = "/rbac/permission-categories"
-        return self._call("GET", path)
+        return self._call("GET", path, params={"meta": meta})
 
-    def get_permissions(self) -> Any:
-        """`GET /rbac/permissions`"""
+    def get_permissions(self, *, meta: Any = None) -> Any:
+        """`GET /rbac/permissions`
+
+        Query: meta."""
         path = "/rbac/permissions"
-        return self._call("GET", path)
+        return self._call("GET", path, params={"meta": meta})
 
-    def get_permission(self, permission_id: str | int) -> Any:
-        """`GET /rbac/permissions/{permissionId}`"""
+    def get_permission(self, permission_id: str | int, *, meta: Any = None) -> Any:
+        """`GET /rbac/permissions/{permissionId}`
+
+        Query: meta."""
         path = f"/rbac/permissions/{permission_id}"
-        return self._call("GET", path)
+        return self._call("GET", path, params={"meta": meta})
 
-    def get_roles(self, *, include: Any = None) -> Any:
+    def get_roles(self, *, meta: Any = None, include: Any = None) -> Any:
         """`GET /rbac/roles`
 
-        Query: include."""
+        Query: meta, include."""
         path = "/rbac/roles"
-        return self._call("GET", path, params={"include": include})
+        return self._call("GET", path, params={"meta": meta, "include": include})
 
-    def post_roles(self, *, body: Any = None) -> Any:
+    def post_roles(self, *, x_net_backup_audit_reason: Any = None, body: Any = None) -> Any:
         """`POST /rbac/roles`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = "/rbac/roles"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def delete_role(self, role_id: str | int) -> Any:
-        """`DELETE /rbac/roles/{roleId}`"""
+    def delete_role(self, role_id: str | int, *, x_net_backup_audit_reason: Any = None) -> Any:
+        """`DELETE /rbac/roles/{roleId}`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/rbac/roles/{role_id}"
-        return self._call("DELETE", path, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
-    def get_role(self, role_id: str | int, *, include: Any = None) -> Any:
+    def get_role(self, role_id: str | int, *, meta: Any = None, include: Any = None) -> Any:
         """`GET /rbac/roles/{roleId}`
 
-        Query: include."""
+        Query: meta, include."""
         path = f"/rbac/roles/{role_id}"
-        return self._call("GET", path, params={"include": include})
+        return self._call("GET", path, params={"meta": meta, "include": include})
 
-    def put_role(self, role_id: str | int, *, body: Any = None) -> Any:
+    def put_role(
+        self, role_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`PUT /rbac/roles/{roleId}`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/rbac/roles/{role_id}"
-        return self._call("PUT", path, body=body, change=True)
+        return self._call(
+            "PUT",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )

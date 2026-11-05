@@ -85,12 +85,30 @@ class Admin(Resource):
         path = f"/admin/hosts/{host_id}/services/{service_name}"
         return self._call("PATCH", path, body=body, change=True)
 
-    def list_jobs(self, *, filter_: Any = None, sort: Any = None) -> Any:
+    def list_jobs(
+        self,
+        *,
+        filter_: Any = None,
+        page_limit: Any = None,
+        page_after: Any = None,
+        page_before: Any = None,
+        sort: Any = None,
+    ) -> Any:
         """`GET /admin/jobs`
 
-        Query: filter, sort."""
+        Query: filter, page[limit], page[after], page[before], sort."""
         path = "/admin/jobs"
-        return self._call("GET", path, params={"filter": filter_, "sort": sort})
+        return self._call(
+            "GET",
+            path,
+            params={
+                "filter": filter_,
+                "page[limit]": page_limit,
+                "page[after]": page_after,
+                "page[before]": page_before,
+                "sort": sort,
+            },
+        )
 
     def post_jobs_count_requests(self, *, body: Any = None) -> Any:
         """`POST /admin/jobs-count-requests`
@@ -99,20 +117,34 @@ class Admin(Resource):
         path = "/admin/jobs-count-requests"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_job(self, job_id: str | int) -> Any:
-        """`DELETE /admin/jobs/{jobId}`"""
+    def delete_job(self, job_id: str | int, *, x_net_backup_audit_reason: Any = None) -> Any:
+        """`DELETE /admin/jobs/{jobId}`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/admin/jobs/{job_id}"
-        return self._call("DELETE", path, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_job(self, job_id: str | int) -> Any:
         """`GET /admin/jobs/{jobId}`"""
         path = f"/admin/jobs/{job_id}"
         return self._call("GET", path)
 
-    def post_job_cancel(self, job_id: str | int) -> Any:
-        """`POST /admin/jobs/{jobId}/cancel`"""
+    def post_job_cancel(self, job_id: str | int, *, x_net_backup_audit_reason: Any = None) -> Any:
+        """`POST /admin/jobs/{jobId}/cancel`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/admin/jobs/{job_id}/cancel"
-        return self._call("POST", path, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_job_file_lists(self, job_id: str | int) -> Any:
         """`GET /admin/jobs/{jobId}/file-lists`"""
@@ -130,22 +162,44 @@ class Admin(Resource):
             "GET", path, params={"page[limit]": page_limit, "page[offset]": page_offset}
         )
 
-    def post_job_restart(self, job_id: str | int, *, body: Any = None) -> Any:
+    def post_job_restart(
+        self, job_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`POST /admin/jobs/{jobId}/restart`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/admin/jobs/{job_id}/restart"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def post_job_resume(self, job_id: str | int) -> Any:
-        """`POST /admin/jobs/{jobId}/resume`"""
+    def post_job_resume(self, job_id: str | int, *, x_net_backup_audit_reason: Any = None) -> Any:
+        """`POST /admin/jobs/{jobId}/resume`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/admin/jobs/{job_id}/resume"
-        return self._call("POST", path, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
-    def post_job_suspend(self, job_id: str | int) -> Any:
-        """`POST /admin/jobs/{jobId}/suspend`"""
+    def post_job_suspend(self, job_id: str | int, *, x_net_backup_audit_reason: Any = None) -> Any:
+        """`POST /admin/jobs/{jobId}/suspend`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/admin/jobs/{job_id}/suspend"
-        return self._call("POST", path, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_job_try_logs(self, job_id: str | int) -> Any:
         """`GET /admin/jobs/{jobId}/try-logs`"""

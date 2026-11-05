@@ -1,6 +1,6 @@
 # `nbu.raw.accesscontrol`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_managed_object` - GET /access-control/managed-objects/{objectId}
 
@@ -116,7 +116,7 @@ nbu.raw.accesscontrol.get_operation('|OPERATIONS|ASSETS|VMWARE|VCLOUD_VAPP|RECOV
 
 **On the wire**
 
-- `GET /access-control/operations` -> **200** (0.06 s)
+- `GET /access-control/operations` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -203,7 +203,7 @@ nbu.raw.accesscontrol.get_role('0')
 
 **On the wire**
 
-- `GET /access-control/roles` -> **200** (0.14 s)
+- `GET /access-control/roles` -> **200** (0.17 s)
 
   <details><summary>Answer</summary>
 
@@ -366,7 +366,7 @@ nbu.raw.accesscontrol.get_role('0')
 
   </details>
 
-- `GET /access-control/roles/0` -> **200** (0.11 s)
+- `GET /access-control/roles/0` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -442,7 +442,7 @@ nbu.raw.accesscontrol.get_service_namespaces()
 
 **On the wire**
 
-- `GET /access-control/service-namespaces` -> **200** (0.30 s)
+- `GET /access-control/service-namespaces` -> **200** (0.38 s)
 
   <details><summary>Answer</summary>
 
@@ -565,7 +565,7 @@ nbu.raw.accesscontrol.list_identities()
 
 **On the wire**
 
-- `GET /rbac/identities` -> **400** (0.05 s)
+- `GET /rbac/identities` -> **400** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -692,7 +692,7 @@ nbu.raw.accesscontrol.list_role_access_definitions('0')
 
 **On the wire**
 
-- `GET /access-control/roles/0/access-definitions` -> **200** (0.10 s)
+- `GET /access-control/roles/0/access-definitions` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -728,7 +728,7 @@ nbu.raw.accesscontrol.list_roles()
 
 **On the wire**
 
-- `GET /access-control/roles` -> **200** (0.09 s)
+- `GET /access-control/roles` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 

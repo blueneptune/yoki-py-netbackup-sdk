@@ -1,6 +1,6 @@
 # `nbu.raw.security`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_anomaly_configurations` - GET /security/anomaly-configurations
 
@@ -10,7 +10,7 @@ nbu.raw.security.get_anomaly_configurations()
 
 **On the wire**
 
-- `GET /security/anomaly-configurations` -> **200** (0.06 s)
+- `GET /security/anomaly-configurations` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -45,7 +45,7 @@ nbu.raw.security.get_api_key('A-2XUsd63hA=')
 
 **On the wire**
 
-- `GET /security/api-keys` -> **200** (0.07 s)
+- `GET /security/api-keys` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -153,7 +153,7 @@ nbu.raw.security.get_api_key('A-2XUsd63hA=')
 
   </details>
 
-- `GET /security/api-keys/A-2XUsd63hA=` -> **200** (0.11 s)
+- `GET /security/api-keys/A-2XUsd63hA=` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -191,12 +191,12 @@ nbu.raw.security.get_api_key('A-2XUsd63hA=')
 ## `get_auditlog` - GET /security/auditlogs/{auditId}
 
 ```python
-nbu.raw.security.get_auditlog('3440')
+nbu.raw.security.get_auditlog('3532')
 ```
 
 **On the wire**
 
-- `GET /security/auditlogs` -> **200** (0.09 s)
+- `GET /security/auditlogs` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -205,121 +205,156 @@ nbu.raw.security.get_auditlog('3440')
     "data": [
       {
         "type": "audit",
-        "id": "3440",
+        "id": "3532",
         "attributes": {
-          "category": "EVENT_AUDIT",
-          "operation": "ACCESS",
-          "messageId": 4990,
-          "message": "[bprd],[-],[Peer:host-13, f151f48b-17c5-4e7e-8a6b-1054db540384, 192.0.2.1:51315],[Destination: 192.0.2.1:13720],[Operation:Login Attempted, UserName:user-06, DomainName:domain-01, Response time (ms):33, Exit code:0]",
+          "category": "SLP",
+          "operation": "DELETE",
+          "messageId": 3001,
+          "message": "Storage Lifecycle Policy 'bltlive-11050645-slp' was deleted.",
           "auditKeyList": [
             {
               "typeId": 1,
-              "typeIdDisplayString": "[bprd],[-],[Peer:host-13, f151f48b-17c5-4e7e-8a6b-1054db540384, 192.0.2.1:51315],[Destination: 192.0.2.1:13720],[Operation:Login Attempted, UserName:user-06, DomainName:domain-01, Response time (ms):33, Exit code:0]"
-            }
-          ],
-          "auditRecordAttributeList": [],
-          "auditUserIdentity": {
-            "userName": "user-05",
-            "domainName": "primary-01",
-            "domainType": "LOCAL_HOST"
-          },
-          "reason": "",
-          "auditDateTime": "2026-11-05T06:25:56.694Z"
-        },
-        "links": {
-          "self": {
-            "href": "https://primary-01:1556/netbackup/security/auditlogs/3440"
-          }
-        }
-      },
-      {
-        "type": "audit",
-        "id": "3439",
-        "attributes": {
-          "category": "LOGIN",
-          "operation": "ACCESS",
-          "messageId": 1100,
-          "message": "User 'user-06' was successfully authenticated with host 'host-13'",
-          "auditKeyList": [
-            {
-              "typeId": 1,
-              "typeIdDisplayString": "user-06"
-            },
-            {
-              "typeId": 1,
-              "typeIdDisplayString": "host-13"
+              "typeIdDisplayString": "bltlive-11050645-slp"
             }
           ],
           "auditRecordAttributeList": [
             {
               "oldValue": "",
-              "newValue": "0",
-              "oldValueDisplayString": "",
-              "newValueDisplayString": "NetBackup Administration Console",
+              "newValue": "null",
+              "oldValueDisplayString": "(none specified)",
+              "newValueDisplayString": "",
+              "typeId": 1,
+              "attributeName": "Data classification",
+              "attributeId": "__UMI__3008"
+            },
+            {
+              "oldValue": "bltlive-11050645-slp",
+              "newValue": "null",
+              "oldValueDisplayString": "bltlive-11050645-slp",
+              "newValueDisplayString": "",
+              "typeId": 1,
+              "attributeName": "SLP name",
+              "attributeId": "__UMI__3009"
+            },
+            {
+              "oldValue": "2147483647",
+              "newValue": "null",
+              "oldValueDisplayString": "Unlimited",
+              "newValueDisplayString": "",
               "typeId": 2,
-              "attributeName": "Accessed From",
-              "attributeId": "__UMI__1102"
+              "attributeName": "Max jobs",
+              "attributeId": "__UMI__3010"
             },
-            {
-              "oldValue": "",
-              "newValue": "host-13",
-              "oldValueDisplayString": "",
-              "newValueDisplayString": "host-13",
-              "typeId": 1,
-              "attributeName": "Origin Host",
-              "attributeId": "__UMI__1103"
-            },
-            {
-              "oldValue": "",
-              "newValue": "host-13",
-              "oldValueDisplayString": "",
-              "newValueDisplayString": "host-13",
-              "typeId": 1,
-              "attributeName": "Logged in to Host",
-              "attributeId": "__UMI__1104"
-            },
-            "... 2 more"
+            "... 35 more"
           ],
           "auditUserIdentity": {
-            "userName": "user-06",
-            "domainName": "domain-01",
-            "domainType": "UNKNOWN"
+            "userName": "user-01",
+            "domainName": "primary-01",
+            "domainType": "UNIX_PASSWORD"
           },
           "reason": "",
-          "auditDateTime": "2026-11-05T06:25:56.655Z"
+          "auditDateTime": "2026-11-05T06:45:24.664Z"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/security/auditlogs/3439"
+            "href": "https://primary-01:1556/netbackup/security/auditlogs/3532"
           }
         }
       },
       {
         "type": "audit",
-        "id": "3438",
+        "id": "3531",
         "attributes": {
-          "category": "EVENT_LOG",
-          "operation": "DELETE",
-          "messageId": 3730,
-          "message": "Automatic cleanup process deleted '4' system events.",
+          "category": "SLP",
+          "operation": "MODIFY",
+          "messageId": 3003,
+          "message": "Attributes of Storage Lifecycle Policy 'bltlive-11050645-slp' were modified.",
           "auditKeyList": [
             {
               "typeId": 1,
-              "typeIdDisplayString": "4"
+              "typeIdDisplayString": "bltlive-11050645-slp"
             }
           ],
-          "auditRecordAttributeList": [],
+          "auditRecordAttributeList": [
+            {
+              "oldValue": "0",
+              "newValue": "5",
+              "oldValueDisplayString": "0",
+              "newValueDisplayString": "5",
+              "typeId": 2,
+              "attributeName": "Priority for secondary operations",
+              "attributeId": "__UMI__3011"
+            }
+          ],
           "auditUserIdentity": {
-            "userName": "user-06",
-            "domainName": "domain-01",
-            "domainType": "VXAT_PRIVATE"
+            "userName": "user-01",
+            "domainName": "primary-01",
+            "domainType": "UNIX_PASSWORD"
           },
           "reason": "",
-          "auditDateTime": "2026-11-05T06:20:49.389Z"
+          "auditDateTime": "2026-11-05T06:45:24.370Z"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/security/auditlogs/3438"
+            "href": "https://primary-01:1556/netbackup/security/auditlogs/3531"
+          }
+        }
+      },
+      {
+        "type": "audit",
+        "id": "3530",
+        "attributes": {
+          "category": "SLP",
+          "operation": "CREATE",
+          "messageId": 3000,
+          "message": "Storage Lifecycle Policy 'bltlive-11050645-slp' was created.",
+          "auditKeyList": [
+            {
+              "typeId": 1,
+              "typeIdDisplayString": "bltlive-11050645-slp"
+            }
+          ],
+          "auditRecordAttributeList": [
+            {
+              "oldValue": "",
+              "newValue": "",
+              "oldValueDisplayString": "",
+              "newValueDisplayString": "(none specified)",
+              "typeId": 1,
+              "attributeName": "Data classification",
+              "attributeId": "__UMI__3008"
+            },
+            {
+              "oldValue": "",
+              "newValue": "bltlive-11050645-slp",
+              "oldValueDisplayString": "",
+              "newValueDisplayString": "bltlive-11050645-slp",
+              "typeId": 1,
+              "attributeName": "SLP name",
+              "attributeId": "__UMI__3009"
+            },
+            {
+              "oldValue": "",
+              "newValue": "2147483647",
+              "oldValueDisplayString": "",
+              "newValueDisplayString": "Unlimited",
+              "typeId": 2,
+              "attributeName": "Max jobs",
+              "attributeId": "__UMI__3010"
+            },
+            "... 35 more"
+          ],
+          "auditUserIdentity": {
+            "userName": "user-01",
+            "domainName": "primary-01",
+            "domainType": "UNIX_PASSWORD"
+          },
+          "reason": "",
+          "auditDateTime": "2026-11-05T06:45:24.006Z"
+        },
+        "links": {
+          "self": {
+            "href": "https://primary-01:1556/netbackup/security/auditlogs/3530"
           }
         }
       },
@@ -328,11 +363,11 @@ nbu.raw.security.get_auditlog('3440')
     "meta": {
       "pagination": {
         "next": 10,
-        "pages": 12,
+        "pages": 21,
         "offset": 0,
-        "last": 110,
+        "last": 200,
         "limit": 10,
-        "count": 118,
+        "count": 210,
         "page": 0,
         "first": 0
       }
@@ -342,7 +377,7 @@ nbu.raw.security.get_auditlog('3440')
         "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=10&page%5Blimit%5D=10&sort=-auditDateTime"
       },
       "last": {
-        "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=110&page%5Blimit%5D=10&sort=-auditDateTime"
+        "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=200&page%5Blimit%5D=10&sort=-auditDateTime"
       },
       "self": {
         "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=0&page%5Blimit%5D=10&sort=-auditDateTime"
@@ -356,7 +391,7 @@ nbu.raw.security.get_auditlog('3440')
 
   </details>
 
-- `GET /security/auditlogs/3440` -> **200** (0.06 s)
+- `GET /security/auditlogs/3532` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -364,30 +399,59 @@ nbu.raw.security.get_auditlog('3440')
   {
     "data": {
       "type": "audit",
-      "id": "3440",
+      "id": "3532",
       "attributes": {
-        "category": "EVENT_AUDIT",
-        "operation": "ACCESS",
-        "messageId": 4990,
-        "message": "[bprd],[-],[Peer:host-13, f151f48b-17c5-4e7e-8a6b-1054db540384, 192.0.2.1:51315],[Destination: 192.0.2.1:13720],[Operation:Login Attempted, UserName:user-06, DomainName:domain-01, Response time (ms):33, Exit code:0]",
+        "category": "SLP",
+        "operation": "DELETE",
+        "messageId": 3001,
+        "message": "Storage Lifecycle Policy 'bltlive-11050645-slp' was deleted.",
         "auditKeyList": [
           {
             "typeId": 1,
-            "typeIdDisplayString": "[bprd],[-],[Peer:host-13, f151f48b-17c5-4e7e-8a6b-1054db540384, 192.0.2.1:51315],[Destination: 192.0.2.1:13720],[Operation:Login Attempted, UserName:user-06, DomainName:domain-01, Response time (ms):33, Exit code:0]"
+            "typeIdDisplayString": "bltlive-11050645-slp"
           }
         ],
-        "auditRecordAttributeList": [],
+        "auditRecordAttributeList": [
+          {
+            "oldValue": "",
+            "newValue": "null",
+            "oldValueDisplayString": "(none specified)",
+            "newValueDisplayString": "",
+            "typeId": 1,
+            "attributeName": "Data classification",
+            "attributeId": "__UMI__3008"
+          },
+          {
+            "oldValue": "bltlive-11050645-slp",
+            "newValue": "null",
+            "oldValueDisplayString": "bltlive-11050645-slp",
+            "newValueDisplayString": "",
+            "typeId": 1,
+            "attributeName": "SLP name",
+            "attributeId": "__UMI__3009"
+          },
+          {
+            "oldValue": "2147483647",
+            "newValue": "null",
+            "oldValueDisplayString": "Unlimited",
+            "newValueDisplayString": "",
+            "typeId": 2,
+            "attributeName": "Max jobs",
+            "attributeId": "__UMI__3010"
+          },
+          "... 35 more"
+        ],
         "auditUserIdentity": {
-          "userName": "user-05",
+          "userName": "user-01",
           "domainName": "primary-01",
-          "domainType": "LOCAL_HOST"
+          "domainType": "UNIX_PASSWORD"
         },
         "reason": "",
-        "auditDateTime": "2026-11-05T06:25:56.694Z"
+        "auditDateTime": "2026-11-05T06:45:24.664Z"
       },
       "links": {
         "self": {
-          "href": "https://primary-01:1556/netbackup/security/auditlogs/3440"
+          "href": "https://primary-01:1556/netbackup/security/auditlogs/3532"
         }
       }
     }
@@ -452,7 +516,7 @@ nbu.raw.security.get_certificate_authorities_hosts_pending_trust_propagation()
 
 **On the wire**
 
-- `GET /security/certificate-authorities/hosts-pending-trust-propagation` -> **200** (0.21 s)
+- `GET /security/certificate-authorities/hosts-pending-trust-propagation` -> **200** (0.22 s)
 
   <details><summary>Answer</summary>
 
@@ -472,7 +536,7 @@ nbu.raw.security.get_certificate_authorities_migration_summary()
 
 **On the wire**
 
-- `GET /security/certificate-authorities/migration-summary` -> **200** (0.12 s)
+- `GET /security/certificate-authorities/migration-summary` -> **200** (0.13 s)
 
   <details><summary>Answer</summary>
 
@@ -520,8 +584,8 @@ nbu.raw.security.get_certificate_authority('<hex>')
             "serialNumber": "<masked>",
             "notBefore": "2022-03-17T03:39:00.000Z",
             "notAfter": "2042-03-12T04:54:00.000Z",
-            "subjectName": "O=vx,OU=user-05@primary-01,CN=nbatd",
-            "subjectOU": "user-05@primary-01",
+            "subjectName": "O=vx,OU=root@primary-01,CN=nbatd",
+            "subjectOU": "root@primary-01",
             "state": "ACTIVE",
             "keySize": 2048,
             "fingerprint": "<masked>",
@@ -562,7 +626,7 @@ nbu.raw.security.get_certificate_authority('<hex>')
 
   </details>
 
-- `GET /security/certificate-authorities/<hex>` -> **200** (0.10 s)
+- `GET /security/certificate-authorities/<hex>` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -577,8 +641,8 @@ nbu.raw.security.get_certificate_authority('<hex>')
           "serialNumber": "<masked>",
           "notBefore": "2022-03-17T03:39:00.000Z",
           "notAfter": "2042-03-12T04:54:00.000Z",
-          "subjectName": "O=vx,OU=user-05@primary-01,CN=nbatd",
-          "subjectOU": "user-05@primary-01",
+          "subjectName": "O=vx,OU=root@primary-01,CN=nbatd",
+          "subjectOU": "root@primary-01",
           "state": "ACTIVE",
           "keySize": 2048,
           "fingerprint": "<masked>",
@@ -609,7 +673,7 @@ nbu.raw.security.get_certificates_crl()
   <details><summary>Answer</summary>
 
   ```
-  0��0��0  	*�H��     0710  Unbatd10U  user-05@primary-011  0	U
+  0��0��0  	*�H��     0710  Unbatd10U  root@primary-011  0	U
   vx  261105063614Z  261112063614Z�00.0U  #0��͔m� ��Wt�X5ض쿳�0  U  2b0  	*�H��     � vT)�W��p��֝p�������'����Ը�c��jKY*���g�  �"� ��;xӼ
   8Ղ��̌Z�9�1~�6Fͼ�\���V�/��+쨍F��g�T��+zs�~�h�B��Z��m����"��-���TH�s��
   U
@@ -626,7 +690,7 @@ nbu.raw.security.get_certificates_current()
 
 **On the wire**
 
-- `GET /security/certificates/current` -> **200** (0.10 s)
+- `GET /security/certificates/current` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -672,7 +736,7 @@ nbu.raw.security.get_domains_vxat()
 
 **On the wire**
 
-- `GET /security/domains/vxat` -> **200** (0.30 s)
+- `GET /security/domains/vxat` -> **200** (0.34 s)
 
   <details><summary>Answer</summary>
 
@@ -738,7 +802,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /security/external-cacerts` -> **200** (0.11 s)
+- `GET /security/external-cacerts` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -758,7 +822,7 @@ nbu.raw.security.get_external_cacerts()
 
 **On the wire**
 
-- `GET /security/external-cacerts` -> **200** (0.10 s)
+- `GET /security/external-cacerts` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -798,7 +862,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /security/identity-providers` -> **200** (0.11 s)
+- `GET /security/identity-providers` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -902,7 +966,7 @@ nbu.raw.security.get_logindetail('3437')
 
 **On the wire**
 
-- `GET /security/logindetails` -> **200** (0.10 s)
+- `GET /security/logindetails` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -1091,7 +1155,7 @@ nbu.raw.security.get_logindetail('3437')
 
   </details>
 
-- `GET /security/logindetails/3437` -> **200** (0.06 s)
+- `GET /security/logindetails/3437` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -1172,7 +1236,7 @@ nbu.raw.security.get_passphrase_constraint('DR_PKG')
 
 **On the wire**
 
-- `GET /security/passphrase-constraints` -> **200** (0.10 s)
+- `GET /security/passphrase-constraints` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -1204,7 +1268,7 @@ nbu.raw.security.get_passphrase_constraint('DR_PKG')
 
   </details>
 
-- `GET /security/passphrase-constraints/DR_PKG` -> **200** (0.10 s)
+- `GET /security/passphrase-constraints/DR_PKG` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -1242,7 +1306,7 @@ nbu.raw.security.get_passphrase_constraints()
 
 **On the wire**
 
-- `GET /security/passphrase-constraints` -> **200** (0.05 s)
+- `GET /security/passphrase-constraints` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -1287,7 +1351,7 @@ nbu.raw.security.get_ping()
   <details><summary>Answer</summary>
 
   ```json
-  1793860725044
+  1793861178254
   ```
 
   </details>
@@ -1300,7 +1364,7 @@ nbu.raw.security.get_properties()
 
 **On the wire**
 
-- `GET /security/properties` -> **200** (0.08 s)
+- `GET /security/properties` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -1398,7 +1462,7 @@ nbu.raw.security.get_securitytoken('INSTALL')
 
 **On the wire**
 
-- `GET /security/securitytokens` -> **200** (0.06 s)
+- `GET /security/securitytokens` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -1525,7 +1589,7 @@ nbu.raw.security.get_serverinfo()
 
 **On the wire**
 
-- `GET /security/serverinfo` -> **200** (0.17 s)
+- `GET /security/serverinfo` -> **200** (0.20 s)
 
   <details><summary>Answer</summary>
 
@@ -1559,7 +1623,7 @@ nbu.raw.security.get_servertime()
 
   ```json
   {
-    "serverTime": 1793860725477,
+    "serverTime": 1793861178722,
     "timeZoneName": "Central Standard Time",
     "timeZoneId": "America/Chicago"
   }
@@ -1595,7 +1659,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /security/service-principal-configs` -> **200** (0.10 s)
+- `GET /security/service-principal-configs` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -1700,7 +1764,7 @@ nbu.raw.security.get_trust_version('UFYNKZJ0UEEKqbv')
 
   </details>
 
-- `GET /security/trust-versions/UFYNKZJ0UEEKqbv` -> **200** (0.10 s)
+- `GET /security/trust-versions/UFYNKZJ0UEEKqbv` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -1747,7 +1811,7 @@ nbu.raw.security.list_anomalies()
 
 **On the wire**
 
-- `GET /security/anomalies` -> **200** (0.10 s)
+- `GET /security/anomalies` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -1940,121 +2004,156 @@ nbu.raw.security.list_auditlogs()
     "data": [
       {
         "type": "audit",
-        "id": "3440",
+        "id": "3532",
         "attributes": {
-          "category": "EVENT_AUDIT",
-          "operation": "ACCESS",
-          "messageId": 4990,
-          "message": "[bprd],[-],[Peer:host-13, f151f48b-17c5-4e7e-8a6b-1054db540384, 192.0.2.1:51315],[Destination: 192.0.2.1:13720],[Operation:Login Attempted, UserName:user-06, DomainName:domain-01, Response time (ms):33, Exit code:0]",
+          "category": "SLP",
+          "operation": "DELETE",
+          "messageId": 3001,
+          "message": "Storage Lifecycle Policy 'bltlive-11050645-slp' was deleted.",
           "auditKeyList": [
             {
               "typeId": 1,
-              "typeIdDisplayString": "[bprd],[-],[Peer:host-13, f151f48b-17c5-4e7e-8a6b-1054db540384, 192.0.2.1:51315],[Destination: 192.0.2.1:13720],[Operation:Login Attempted, UserName:user-06, DomainName:domain-01, Response time (ms):33, Exit code:0]"
-            }
-          ],
-          "auditRecordAttributeList": [],
-          "auditUserIdentity": {
-            "userName": "user-05",
-            "domainName": "primary-01",
-            "domainType": "LOCAL_HOST"
-          },
-          "reason": "",
-          "auditDateTime": "2026-11-05T06:25:56.694Z"
-        },
-        "links": {
-          "self": {
-            "href": "https://primary-01:1556/netbackup/security/auditlogs/3440"
-          }
-        }
-      },
-      {
-        "type": "audit",
-        "id": "3439",
-        "attributes": {
-          "category": "LOGIN",
-          "operation": "ACCESS",
-          "messageId": 1100,
-          "message": "User 'user-06' was successfully authenticated with host 'host-13'",
-          "auditKeyList": [
-            {
-              "typeId": 1,
-              "typeIdDisplayString": "user-06"
-            },
-            {
-              "typeId": 1,
-              "typeIdDisplayString": "host-13"
+              "typeIdDisplayString": "bltlive-11050645-slp"
             }
           ],
           "auditRecordAttributeList": [
             {
               "oldValue": "",
-              "newValue": "0",
-              "oldValueDisplayString": "",
-              "newValueDisplayString": "NetBackup Administration Console",
+              "newValue": "null",
+              "oldValueDisplayString": "(none specified)",
+              "newValueDisplayString": "",
+              "typeId": 1,
+              "attributeName": "Data classification",
+              "attributeId": "__UMI__3008"
+            },
+            {
+              "oldValue": "bltlive-11050645-slp",
+              "newValue": "null",
+              "oldValueDisplayString": "bltlive-11050645-slp",
+              "newValueDisplayString": "",
+              "typeId": 1,
+              "attributeName": "SLP name",
+              "attributeId": "__UMI__3009"
+            },
+            {
+              "oldValue": "2147483647",
+              "newValue": "null",
+              "oldValueDisplayString": "Unlimited",
+              "newValueDisplayString": "",
               "typeId": 2,
-              "attributeName": "Accessed From",
-              "attributeId": "__UMI__1102"
+              "attributeName": "Max jobs",
+              "attributeId": "__UMI__3010"
             },
-            {
-              "oldValue": "",
-              "newValue": "host-13",
-              "oldValueDisplayString": "",
-              "newValueDisplayString": "host-13",
-              "typeId": 1,
-              "attributeName": "Origin Host",
-              "attributeId": "__UMI__1103"
-            },
-            {
-              "oldValue": "",
-              "newValue": "host-13",
-              "oldValueDisplayString": "",
-              "newValueDisplayString": "host-13",
-              "typeId": 1,
-              "attributeName": "Logged in to Host",
-              "attributeId": "__UMI__1104"
-            },
-            "... 2 more"
+            "... 35 more"
           ],
           "auditUserIdentity": {
-            "userName": "user-06",
-            "domainName": "domain-01",
-            "domainType": "UNKNOWN"
+            "userName": "user-01",
+            "domainName": "primary-01",
+            "domainType": "UNIX_PASSWORD"
           },
           "reason": "",
-          "auditDateTime": "2026-11-05T06:25:56.655Z"
+          "auditDateTime": "2026-11-05T06:45:24.664Z"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/security/auditlogs/3439"
+            "href": "https://primary-01:1556/netbackup/security/auditlogs/3532"
           }
         }
       },
       {
         "type": "audit",
-        "id": "3438",
+        "id": "3531",
         "attributes": {
-          "category": "EVENT_LOG",
-          "operation": "DELETE",
-          "messageId": 3730,
-          "message": "Automatic cleanup process deleted '4' system events.",
+          "category": "SLP",
+          "operation": "MODIFY",
+          "messageId": 3003,
+          "message": "Attributes of Storage Lifecycle Policy 'bltlive-11050645-slp' were modified.",
           "auditKeyList": [
             {
               "typeId": 1,
-              "typeIdDisplayString": "4"
+              "typeIdDisplayString": "bltlive-11050645-slp"
             }
           ],
-          "auditRecordAttributeList": [],
+          "auditRecordAttributeList": [
+            {
+              "oldValue": "0",
+              "newValue": "5",
+              "oldValueDisplayString": "0",
+              "newValueDisplayString": "5",
+              "typeId": 2,
+              "attributeName": "Priority for secondary operations",
+              "attributeId": "__UMI__3011"
+            }
+          ],
           "auditUserIdentity": {
-            "userName": "user-06",
-            "domainName": "domain-01",
-            "domainType": "VXAT_PRIVATE"
+            "userName": "user-01",
+            "domainName": "primary-01",
+            "domainType": "UNIX_PASSWORD"
           },
           "reason": "",
-          "auditDateTime": "2026-11-05T06:20:49.389Z"
+          "auditDateTime": "2026-11-05T06:45:24.370Z"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/security/auditlogs/3438"
+            "href": "https://primary-01:1556/netbackup/security/auditlogs/3531"
+          }
+        }
+      },
+      {
+        "type": "audit",
+        "id": "3530",
+        "attributes": {
+          "category": "SLP",
+          "operation": "CREATE",
+          "messageId": 3000,
+          "message": "Storage Lifecycle Policy 'bltlive-11050645-slp' was created.",
+          "auditKeyList": [
+            {
+              "typeId": 1,
+              "typeIdDisplayString": "bltlive-11050645-slp"
+            }
+          ],
+          "auditRecordAttributeList": [
+            {
+              "oldValue": "",
+              "newValue": "",
+              "oldValueDisplayString": "",
+              "newValueDisplayString": "(none specified)",
+              "typeId": 1,
+              "attributeName": "Data classification",
+              "attributeId": "__UMI__3008"
+            },
+            {
+              "oldValue": "",
+              "newValue": "bltlive-11050645-slp",
+              "oldValueDisplayString": "",
+              "newValueDisplayString": "bltlive-11050645-slp",
+              "typeId": 1,
+              "attributeName": "SLP name",
+              "attributeId": "__UMI__3009"
+            },
+            {
+              "oldValue": "",
+              "newValue": "2147483647",
+              "oldValueDisplayString": "",
+              "newValueDisplayString": "Unlimited",
+              "typeId": 2,
+              "attributeName": "Max jobs",
+              "attributeId": "__UMI__3010"
+            },
+            "... 35 more"
+          ],
+          "auditUserIdentity": {
+            "userName": "user-01",
+            "domainName": "primary-01",
+            "domainType": "UNIX_PASSWORD"
+          },
+          "reason": "",
+          "auditDateTime": "2026-11-05T06:45:24.006Z"
+        },
+        "links": {
+          "self": {
+            "href": "https://primary-01:1556/netbackup/security/auditlogs/3530"
           }
         }
       },
@@ -2063,11 +2162,11 @@ nbu.raw.security.list_auditlogs()
     "meta": {
       "pagination": {
         "next": 10,
-        "pages": 12,
+        "pages": 21,
         "offset": 0,
-        "last": 110,
+        "last": 200,
         "limit": 10,
-        "count": 118,
+        "count": 210,
         "page": 0,
         "first": 0
       }
@@ -2077,7 +2176,7 @@ nbu.raw.security.list_auditlogs()
         "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=10&page%5Blimit%5D=10&sort=-auditDateTime"
       },
       "last": {
-        "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=110&page%5Blimit%5D=10&sort=-auditDateTime"
+        "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=200&page%5Blimit%5D=10&sort=-auditDateTime"
       },
       "self": {
         "href": "https://primary-01:1556/netbackup/security/auditlogs?page%5Boffset%5D=0&page%5Blimit%5D=10&sort=-auditDateTime"
@@ -2115,8 +2214,8 @@ nbu.raw.security.list_certificate_authorities()
             "serialNumber": "<masked>",
             "notBefore": "2022-03-17T03:39:00.000Z",
             "notAfter": "2042-03-12T04:54:00.000Z",
-            "subjectName": "O=vx,OU=user-05@primary-01,CN=nbatd",
-            "subjectOU": "user-05@primary-01",
+            "subjectName": "O=vx,OU=root@primary-01,CN=nbatd",
+            "subjectOU": "root@primary-01",
             "state": "ACTIVE",
             "keySize": 2048,
             "fingerprint": "<masked>",
@@ -2165,7 +2264,7 @@ nbu.raw.security.list_identity_providers()
 
 **On the wire**
 
-- `GET /security/identity-providers` -> **200** (0.05 s)
+- `GET /security/identity-providers` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -2233,7 +2332,7 @@ nbu.raw.security.list_key_management_services()
 
 **On the wire**
 
-- `GET /security/key-management-services` -> **200** (0.09 s)
+- `GET /security/key-management-services` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -2275,7 +2374,7 @@ nbu.raw.security.list_logindetails()
 
 **On the wire**
 
-- `GET /security/logindetails` -> **200** (0.08 s)
+- `GET /security/logindetails` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -2578,7 +2677,7 @@ nbu.raw.security.list_securitytokens_state_valid()
 
 **On the wire**
 
-- `GET /security/securitytokens/state/valid` -> **200** (0.09 s)
+- `GET /security/securitytokens/state/valid` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -2620,7 +2719,7 @@ nbu.raw.security.list_service_principal_configs()
 
 **On the wire**
 
-- `GET /security/service-principal-configs` -> **200** (0.09 s)
+- `GET /security/service-principal-configs` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 

@@ -1,6 +1,6 @@
 # `nbu.raw.hostproperties`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_data_classifications` - GET /config/data-classifications
 
@@ -10,7 +10,7 @@ nbu.raw.hostproperties.get_data_classifications()
 
 **On the wire**
 
-- `GET /config/data-classifications` -> **200** (0.10 s)
+- `GET /config/data-classifications` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -160,7 +160,7 @@ nbu.raw.hostproperties.get_login_banner_details()
 
 **On the wire**
 
-- `GET /config/login-banner-details` -> **200** (0.10 s)
+- `GET /config/login-banner-details` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -182,7 +182,7 @@ nbu.raw.hostproperties.get_ndmp_global_credentials()
 
 **On the wire**
 
-- `GET /config/ndmp-global-credentials` -> **404** (0.05 s)
+- `GET /config/ndmp-global-credentials` -> **404** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -273,7 +273,7 @@ nbu.raw.hostproperties.get_slp_settings()
 
 **On the wire**
 
-- `GET /config/slp-settings` -> **200** (0.56 s)
+- `GET /config/slp-settings` -> **200** (0.51 s)
 
   <details><summary>Answer</summary>
 
@@ -358,7 +358,7 @@ nbu.raw.hostproperties.get_user_session_settings()
 
 **On the wire**
 
-- `GET /config/user-session-settings` -> **200** (1.54 s)
+- `GET /config/user-session-settings` -> **200** (1.52 s)
 
   <details><summary>Answer</summary>
 
@@ -387,7 +387,7 @@ nbu.raw.hostproperties.list_all_hosts()
 
 **On the wire**
 
-- `GET /config/all-hosts` -> **200** (0.32 s)
+- `GET /config/all-hosts` -> **200** (0.34 s)
 
   <details><summary>Answer</summary>
 
@@ -501,7 +501,7 @@ nbu.raw.hostproperties.list_paused_clients()
 
 **On the wire**
 
-- `GET /config/paused-clients` -> **200** (0.12 s)
+- `GET /config/paused-clients` -> **200** (0.15 s)
 
   <details><summary>Answer</summary>
 

@@ -221,12 +221,18 @@ class Hostproperties(Resource):
             "GET", path, headers={"X-NetBackup-Default-Values": x_net_backup_default_values}
         )
 
-    def patch_slp_settings(self, *, body: Any = None) -> Any:
+    def patch_slp_settings(self, *, x_net_backup_audit_reason: Any = None, body: Any = None) -> Any:
         """`PATCH /config/slp-settings`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = "/config/slp-settings"
-        return self._call("PATCH", path, body=body, change=True)
+        return self._call(
+            "PATCH",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def get_user_session_settings(self) -> Any:
         """`GET /config/user-session-settings`"""

@@ -1,6 +1,6 @@
 # `nbu.raw.assetservice`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_query` - GET /asset-service/queries/{queryId}
 
@@ -36,7 +36,7 @@ nbu.raw.assetservice.get_workload('asset-18')
 
 **On the wire**
 
-- `GET /asset-service/workloads` -> **200** (0.05 s)
+- `GET /asset-service/workloads` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -136,7 +136,7 @@ nbu.raw.assetservice.get_workload('asset-18')
 
   </details>
 
-- `GET /asset-service/workloads/asset-18` -> **200** (0.09 s)
+- `GET /asset-service/workloads/asset-18` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -195,7 +195,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /asset-service/workloads/asset-18/assets` -> **200** (0.09 s)
+- `GET /asset-service/workloads/asset-18/assets` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -257,7 +257,7 @@ nbu.raw.assetservice.get_workload_schema('asset-18', 'asset-asset')
 
 **On the wire**
 
-- `GET /asset-service/workloads/asset-18/schemas` -> **200** (0.07 s)
+- `GET /asset-service/workloads/asset-18/schemas` -> **200** (0.08 s)
 
   <details><summary>Answer</summary>
 
@@ -1427,7 +1427,7 @@ nbu.raw.assetservice.get_workload_schema('asset-18', 'asset-asset')
 
   </details>
 
-- `GET /asset-service/workloads/asset-18/schemas/asset-asset` -> **200** (0.10 s)
+- `GET /asset-service/workloads/asset-18/schemas/asset-asset` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -1603,7 +1603,7 @@ nbu.raw.assetservice.list_workload_schemas('asset-18')
 
 **On the wire**
 
-- `GET /asset-service/workloads/asset-18/schemas` -> **200** (0.08 s)
+- `GET /asset-service/workloads/asset-18/schemas` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 

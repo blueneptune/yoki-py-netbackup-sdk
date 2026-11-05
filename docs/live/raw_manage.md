@@ -1,6 +1,6 @@
 # `nbu.raw.manage`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_alert` - GET /manage/alerts/{alertId}
 
@@ -30,7 +30,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /manage/alerts` -> **200** (0.10 s)
+- `GET /manage/alerts` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -72,7 +72,7 @@ nbu.raw.manage.get_notification_category('1')
 
 **On the wire**
 
-- `GET /manage/notification-categories` -> **200** (0.11 s)
+- `GET /manage/notification-categories` -> **200** (0.12 s)
 
   <details><summary>Answer</summary>
 
@@ -123,7 +123,7 @@ nbu.raw.manage.get_notification_category('1')
 
   </details>
 
-- `GET /manage/notification-categories/1` -> **200** (0.10 s)
+- `GET /manage/notification-categories/1` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -158,7 +158,7 @@ nbu.raw.manage.list_alerts()
 
 **On the wire**
 
-- `GET /manage/alerts` -> **200** (0.10 s)
+- `GET /manage/alerts` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -200,7 +200,7 @@ nbu.raw.manage.list_notification_categories()
 
 **On the wire**
 
-- `GET /manage/notification-categories` -> **200** (0.06 s)
+- `GET /manage/notification-categories` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 

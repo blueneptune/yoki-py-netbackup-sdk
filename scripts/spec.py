@@ -26,6 +26,7 @@ import yaml
 
 ROOT = Path(__file__).resolve().parent.parent
 METHODS = ("get", "post", "put", "patch", "delete")
+REF = re.compile(r"""\$ref["']?:\s*["']?(?:\./)?([\w.-]+\.(?:yaml|json))#""")
 
 
 def main() -> int:
@@ -51,12 +52,22 @@ def main() -> int:
         names = sorted(set(re.findall(r"yamls/([\w.-]+\.yaml)", index.text)))
         target = ROOT / "spec" / release
         target.mkdir(parents=True, exist_ok=True)
-        rows = []
-        for name in names:
+        # The areas' files refer to shared ones (common.yaml,
+        # config_policies.yaml, PolicyType_Generic.json, ...) that the index
+        # does not list: fetch whatever is referred to, until nothing new is.
+        wanted, fetched = list(names), set()
+        while wanted:
+            name = wanted.pop()
+            if name in fetched:
+                continue
+            fetched.add(name)
             body = http.get(f"{docs}/yamls/{name}")
             body.raise_for_status()
             (target / name).write_bytes(body.content)
-            spec = yaml.safe_load(body.text)
+            wanted += [r for r in REF.findall(body.text) if r not in fetched]
+        rows = []
+        for name in names:
+            spec = yaml.safe_load((target / name).read_text())
             area = name.removesuffix(".yaml")
             for path, item in (spec.get("paths") or {}).items():
                 for method in METHODS:
@@ -68,7 +79,10 @@ def main() -> int:
     out = ROOT / "spec" / f"operations-{release}.tsv"
     out.write_text("area\tmethod\tpath\toperationId\n" + "".join("\t".join(r) + "\n" for r in rows))
     where = out.relative_to(ROOT)
-    print(f"NetBackup {release}: {len(rows)} operations in {len(names)} areas -> {where}")
+    print(
+        f"NetBackup {release}: {len(rows)} operations in {len(names)} areas "
+        f"({len(fetched)} files) -> {where}"
+    )
     return 0
 
 

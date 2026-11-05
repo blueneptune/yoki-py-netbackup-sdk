@@ -1,6 +1,6 @@
 # `nbu.raw.storage`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_bulk_drive_request` - GET /storage/bulk-drive-requests/{requestId}
 
@@ -36,7 +36,7 @@ nbu.raw.storage.get_cloud_provider('scalitywan')
 
 **On the wire**
 
-- `GET /storage/cloud/providers` -> **200** (0.09 s)
+- `GET /storage/cloud/providers` -> **200** (0.14 s)
 
   <details><summary>Answer</summary>
 
@@ -436,7 +436,7 @@ nbu.raw.storage.get_disk_pool('PureDisk:disk-pool-01')
 
 **On the wire**
 
-- `GET /storage/disk-pools` -> **200** (0.11 s)
+- `GET /storage/disk-pools` -> **200** (0.12 s)
 
   <details><summary>Answer</summary>
 
@@ -457,7 +457,7 @@ nbu.raw.storage.get_disk_pool('PureDisk:disk-pool-01')
               "diskMediaId": "@aaaah",
               "state": "UP",
               "rawSizeBytes": 8341450185728,
-              "freeSizeBytes": 8271549996032,
+              "freeSizeBytes": 8271549570048,
               "isReplicationSource": false,
               "isReplicationTarget": false,
               "wormIndelibleMinimumInterval": 0,
@@ -478,8 +478,8 @@ nbu.raw.storage.get_disk_pool('PureDisk:disk-pool-01')
           ],
           "rawSizeBytes": 8341450185728,
           "usableSizeBytes": 8341450185728,
-          "availableSpaceBytes": 8271549996032,
-          "usedCapacityBytes": 69900189696,
+          "availableSpaceBytes": 8271549570048,
+          "usedCapacityBytes": 69900615680,
           "wormCapable": false,
           "readOnly": false,
           "mediaServersCount": 1
@@ -596,7 +596,7 @@ nbu.raw.storage.get_disk_pool('PureDisk:disk-pool-01')
 
   </details>
 
-- `GET /storage/disk-pools/PureDisk:disk-pool-01` -> **200** (0.10 s)
+- `GET /storage/disk-pools/PureDisk:disk-pool-01` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -616,7 +616,7 @@ nbu.raw.storage.get_disk_pool('PureDisk:disk-pool-01')
             "diskMediaId": "@aaaah",
             "state": "UP",
             "rawSizeBytes": 8341450185728,
-            "freeSizeBytes": 8271549996032,
+            "freeSizeBytes": 8271549570048,
             "isReplicationSource": false,
             "isReplicationTarget": false,
             "wormIndelibleMinimumInterval": 0,
@@ -637,8 +637,8 @@ nbu.raw.storage.get_disk_pool('PureDisk:disk-pool-01')
         ],
         "rawSizeBytes": 8341450185728,
         "usableSizeBytes": 8341450185728,
-        "availableSpaceBytes": 8271549996032,
-        "usedCapacityBytes": 69900189696,
+        "availableSpaceBytes": 8271549570048,
+        "usedCapacityBytes": 69900615680,
         "wormCapable": false,
         "readOnly": false,
         "mediaServersCount": 1
@@ -679,7 +679,7 @@ nbu.raw.storage.get_drive_types()
 
 **On the wire**
 
-- `GET /storage/drive-types` -> **501** (0.07 s)
+- `GET /storage/drive-types` -> **501** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -705,7 +705,7 @@ nbu.raw.storage.get_key_management_services()
 
 **On the wire**
 
-- `GET /storage/key-management-services` -> **200** (19.36 s)
+- `GET /storage/key-management-services` -> **200** (19.41 s)
 
   <details><summary>Answer</summary>
 
@@ -739,7 +739,7 @@ nbu.raw.storage.get_storage_server('amazon_rawc:primary-01-s3')
 
 **On the wire**
 
-- `GET /storage/storage-servers` -> **200** (2.80 s)
+- `GET /storage/storage-servers` -> **200** (2.77 s)
 
   <details><summary>Answer</summary>
 
@@ -999,7 +999,7 @@ nbu.raw.storage.get_storage_server('amazon_rawc:primary-01-s3')
 
   </details>
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3` -> **200** (2.68 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3` -> **200** (2.69 s)
 
   <details><summary>Answer</summary>
 
@@ -1089,7 +1089,7 @@ nbu.raw.storage.get_storage_server_disk_volume('amazon_rawc:primary-01-s3', '636
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes` -> **200** (5.64 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes` -> **200** (5.77 s)
 
   <details><summary>Answer</summary>
 
@@ -1238,7 +1238,7 @@ nbu.raw.storage.get_storage_server_disk_volume('amazon_rawc:primary-01-s3', '636
 
   </details>
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes/63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31` -> **200** (5.87 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes/63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31` -> **200** (5.82 s)
 
   <details><summary>Answer</summary>
 
@@ -1315,7 +1315,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes/63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31/replication-targets` -> **200** (11.11 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes/63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31/replication-targets` -> **200** (11.53 s)
 
   <details><summary>Answer</summary>
 
@@ -1377,7 +1377,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/replication-targets` -> **400** (2.77 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/replication-targets` -> **400** (2.63 s)
 
   <details><summary>Answer</summary>
 
@@ -1405,7 +1405,7 @@ nbu.raw.storage.get_storage_server_replication_targets('amazon_rawc:primary-01-s
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/replication-targets` -> **400** (2.92 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/replication-targets` -> **400** (2.80 s)
 
   <details><summary>Answer</summary>
 
@@ -1451,7 +1451,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/universal-shares` -> **400** (2.70 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/universal-shares` -> **400** (2.84 s)
 
   <details><summary>Answer</summary>
 
@@ -1479,7 +1479,7 @@ nbu.raw.storage.get_storage_server_universal_shares('amazon_rawc:primary-01-s3')
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/universal-shares` -> **400** (2.86 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/universal-shares` -> **400** (2.83 s)
 
   <details><summary>Answer</summary>
 
@@ -1505,7 +1505,7 @@ nbu.raw.storage.get_storage_unit('storage-unit-01')
 
 **On the wire**
 
-- `GET /storage/storage-units` -> **200** (0.22 s)
+- `GET /storage/storage-units` -> **200** (0.20 s)
 
   <details><summary>Answer</summary>
 
@@ -1605,9 +1605,9 @@ nbu.raw.storage.get_storage_unit('storage-unit-01')
           "primary": false,
           "instantAccessEnabled": true,
           "isCloudSTU": false,
-          "freeCapacityBytes": 8271549778944,
+          "freeCapacityBytes": 8271549479936,
           "totalCapacityBytes": 8341450185728,
-          "usedCapacityBytes": 69900406784,
+          "usedCapacityBytes": 69900705792,
           "mediaServerDetails": [
             {
               "name": "primary-01",
@@ -2159,7 +2159,7 @@ nbu.raw.storage.list_disk_pools()
 
 **On the wire**
 
-- `GET /storage/disk-pools` -> **200** (0.15 s)
+- `GET /storage/disk-pools` -> **200** (0.13 s)
 
   <details><summary>Answer</summary>
 
@@ -2180,7 +2180,7 @@ nbu.raw.storage.list_disk_pools()
               "diskMediaId": "@aaaah",
               "state": "UP",
               "rawSizeBytes": 8341450185728,
-              "freeSizeBytes": 8271549778944,
+              "freeSizeBytes": 8271549479936,
               "isReplicationSource": false,
               "isReplicationTarget": false,
               "wormIndelibleMinimumInterval": 0,
@@ -2201,8 +2201,8 @@ nbu.raw.storage.list_disk_pools()
           ],
           "rawSizeBytes": 8341450185728,
           "usableSizeBytes": 8341450185728,
-          "availableSpaceBytes": 8271549778944,
-          "usedCapacityBytes": 69900406784,
+          "availableSpaceBytes": 8271549479936,
+          "usedCapacityBytes": 69900705792,
           "wormCapable": false,
           "readOnly": false,
           "mediaServersCount": 1
@@ -2327,7 +2327,7 @@ nbu.raw.storage.list_drives()
 
 **On the wire**
 
-- `GET /storage/drives` -> **200** (0.14 s)
+- `GET /storage/drives` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -2371,7 +2371,7 @@ nbu.raw.storage.list_shared_images()
 
 **On the wire**
 
-- `GET /storage/shared-images` -> **500** (0.24 s)
+- `GET /storage/shared-images` -> **500** (0.27 s)
 
   <details><summary>Answer</summary>
 
@@ -2397,7 +2397,7 @@ nbu.raw.storage.list_storage_server_disk_volume_replication_targets('amazon_rawc
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes/63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31/replication-targets` -> **200** (11.07 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes/63662D74656D706C617465732D686C636138356C6D727269362D75732D656173742D31/replication-targets` -> **200** (10.93 s)
 
   <details><summary>Answer</summary>
 
@@ -2439,7 +2439,7 @@ nbu.raw.storage.list_storage_server_disk_volumes('amazon_rawc:primary-01-s3')
 
 **On the wire**
 
-- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes` -> **200** (5.54 s)
+- `GET /storage/storage-servers/amazon_rawc:primary-01-s3/disk-volumes` -> **200** (5.77 s)
 
   <details><summary>Answer</summary>
 
@@ -2596,7 +2596,7 @@ nbu.raw.storage.list_storage_servers()
 
 **On the wire**
 
-- `GET /storage/storage-servers` -> **200** (2.73 s)
+- `GET /storage/storage-servers` -> **200** (2.75 s)
 
   <details><summary>Answer</summary>
 
@@ -2906,7 +2906,7 @@ nbu.raw.storage.list_storage_units()
 
 **On the wire**
 
-- `GET /storage/storage-units` -> **200** (0.12 s)
+- `GET /storage/storage-units` -> **200** (0.13 s)
 
   <details><summary>Answer</summary>
 
@@ -3006,9 +3006,9 @@ nbu.raw.storage.list_storage_units()
           "primary": false,
           "instantAccessEnabled": true,
           "isCloudSTU": false,
-          "freeCapacityBytes": 8271549778944,
+          "freeCapacityBytes": 8271549500416,
           "totalCapacityBytes": 8341450185728,
-          "usedCapacityBytes": 69900406784,
+          "usedCapacityBytes": 69900685312,
           "mediaServerDetails": [
             {
               "name": "primary-01",
@@ -3091,7 +3091,7 @@ nbu.raw.storage.list_target_storage_servers()
 
 **On the wire**
 
-- `GET /storage/target-storage-servers` -> **200** (0.10 s)
+- `GET /storage/target-storage-servers` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
