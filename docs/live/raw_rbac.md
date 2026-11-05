@@ -1,6 +1,6 @@
 # `nbu.raw.rbac`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_access_rule` - GET /rbac/access-rules/{ruleId}
 
@@ -9,9 +9,7 @@
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -23,14 +21,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /rbac/access-rules` -> **200** (0.11 s)
+- `GET /rbac/access-rules` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -50,7 +48,7 @@ nbu.raw.rbac.get_access_rules()
 
 **On the wire**
 
-- `GET /rbac/access-rules` -> **200** (0.11 s)
+- `GET /rbac/access-rules` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -70,7 +68,7 @@ nbu.raw.rbac.get_object_group('1')
 
 **On the wire**
 
-- `GET /rbac/object-groups` -> **200** (0.07 s)
+- `GET /rbac/object-groups` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -313,7 +311,7 @@ nbu.raw.rbac.get_permission('8')
 
 **On the wire**
 
-- `GET /rbac/permissions` -> **200** (0.07 s)
+- `GET /rbac/permissions` -> **200** (0.08 s)
 
   <details><summary>Answer</summary>
 
@@ -366,7 +364,7 @@ nbu.raw.rbac.get_permission('8')
 
   </details>
 
-- `GET /rbac/permissions/8` -> **200** (0.11 s)
+- `GET /rbac/permissions/8` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -398,7 +396,7 @@ nbu.raw.rbac.get_permission_categories()
 
 **On the wire**
 
-- `GET /rbac/permission-categories` -> **200** (0.06 s)
+- `GET /rbac/permission-categories` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -521,7 +519,7 @@ nbu.raw.rbac.get_permissions()
 
 **On the wire**
 
-- `GET /rbac/permissions` -> **200** (0.11 s)
+- `GET /rbac/permissions` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -709,7 +707,7 @@ nbu.raw.rbac.get_role('4')
 
   </details>
 
-- `GET /rbac/roles/4` -> **200** (0.10 s)
+- `GET /rbac/roles/4` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -766,7 +764,7 @@ nbu.raw.rbac.get_roles()
 
 **On the wire**
 
-- `GET /rbac/roles` -> **200** (0.07 s)
+- `GET /rbac/roles` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 

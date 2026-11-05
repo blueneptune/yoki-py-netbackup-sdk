@@ -1,17 +1,17 @@
 # `nbu.raw.recovery`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
-## `get_workloads_cloud_paas_instant_access_image` - GET /recovery/workloads/cloud/paas/instant-access-images/{imageId}
+## `get_workloads_cloud_paas_instant_access_image`
+
+GET /recovery/workloads/cloud/paas/instant-access-images/{imageId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -23,14 +23,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /recovery/workloads/cloud/paas/instant-access-images` -> **200** (0.23 s)
+- `GET /recovery/workloads/cloud/paas/instant-access-images` -> **200** (0.26 s)
 
   <details><summary>Answer</summary>
 
@@ -42,16 +42,16 @@ def test_get(
 
   </details>
 
-## `get_workloads_cloud_paas_instant_access_mount` - GET /recovery/workloads/cloud/paas/instant-access-mounts/{mountId}
+## `get_workloads_cloud_paas_instant_access_mount`
+
+GET /recovery/workloads/cloud/paas/instant-access-mounts/{mountId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -63,14 +63,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /recovery/workloads/cloud/paas/instant-access-mounts` -> **200** (0.23 s)
+- `GET /recovery/workloads/cloud/paas/instant-access-mounts` -> **200** (0.24 s)
 
   <details><summary>Answer</summary>
 
@@ -82,16 +82,16 @@ def test_get(
 
   </details>
 
-## `get_workloads_cloud_vm_instant_access_mount` - GET /recovery/workloads/cloud/vm/instant-access-mounts/{mountId}
+## `get_workloads_cloud_vm_instant_access_mount`
+
+GET /recovery/workloads/cloud/vm/instant-access-mounts/{mountId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -103,8 +103,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -122,16 +122,16 @@ def test_get(
 
   </details>
 
-## `get_workloads_dynamic_nas_instant_access_mount` - GET /recovery/workloads/dynamic-nas/instant-access-mounts/{mountId}
+## `get_workloads_dynamic_nas_instant_access_mount`
+
+GET /recovery/workloads/dynamic-nas/instant-access-mounts/{mountId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -143,14 +143,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /recovery/workloads/dynamic-nas/instant-access-mounts` -> **200** (0.19 s)
+- `GET /recovery/workloads/dynamic-nas/instant-access-mounts` -> **200** (0.24 s)
 
   <details><summary>Answer</summary>
 
@@ -162,16 +162,16 @@ def test_get(
 
   </details>
 
-## `get_workloads_ms_windows_instant_access_mount` - GET /recovery/workloads/ms-windows/instant-access-mounts/{mountId}
+## `get_workloads_ms_windows_instant_access_mount`
+
+GET /recovery/workloads/ms-windows/instant-access-mounts/{mountId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -183,14 +183,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /recovery/workloads/ms-windows/instant-access-mounts` -> **200** (0.24 s)
+- `GET /recovery/workloads/ms-windows/instant-access-mounts` -> **200** (0.25 s)
 
   <details><summary>Answer</summary>
 
@@ -202,16 +202,16 @@ def test_get(
 
   </details>
 
-## `get_workloads_mssql_instant_access_mount` - GET /recovery/workloads/mssql/instant-access-mounts/{mountId}
+## `get_workloads_mssql_instant_access_mount`
+
+GET /recovery/workloads/mssql/instant-access-mounts/{mountId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -223,14 +223,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /recovery/workloads/mssql/instant-access-mounts` -> **200** (0.22 s)
+- `GET /recovery/workloads/mssql/instant-access-mounts` -> **200** (0.21 s)
 
   <details><summary>Answer</summary>
 
@@ -242,16 +242,16 @@ def test_get(
 
   </details>
 
-## `get_workloads_oracle_instant_access_mount` - GET /recovery/workloads/oracle/instant-access-mounts/{mountId}
+## `get_workloads_oracle_instant_access_mount`
+
+GET /recovery/workloads/oracle/instant-access-mounts/{mountId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -263,14 +263,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /recovery/workloads/oracle/instant-access-mounts` -> **200** (0.26 s)
+- `GET /recovery/workloads/oracle/instant-access-mounts` -> **200** (0.22 s)
 
   <details><summary>Answer</summary>
 
@@ -282,16 +282,16 @@ def test_get(
 
   </details>
 
-## `get_workloads_standard_instant_access_mount` - GET /recovery/workloads/standard/instant-access-mounts/{mountId}
+## `get_workloads_standard_instant_access_mount`
+
+GET /recovery/workloads/standard/instant-access-mounts/{mountId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -303,14 +303,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /recovery/workloads/standard/instant-access-mounts` -> **200** (0.25 s)
+- `GET /recovery/workloads/standard/instant-access-mounts` -> **200** (0.22 s)
 
   <details><summary>Answer</summary>
 
@@ -322,16 +322,16 @@ def test_get(
 
   </details>
 
-## `get_workloads_universal_share_instant_access_mount` - GET /recovery/workloads/universal-share/instant-access-mounts/{mountId}
+## `get_workloads_universal_share_instant_access_mount`
+
+GET /recovery/workloads/universal-share/instant-access-mounts/{mountId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -343,14 +343,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /recovery/workloads/universal-share/instant-access-mounts` -> **200** (0.30 s)
+- `GET /recovery/workloads/universal-share/instant-access-mounts` -> **200** (0.23 s)
 
   <details><summary>Answer</summary>
 
@@ -362,16 +362,16 @@ def test_get(
 
   </details>
 
-## `get_workloads_vmware_instant_access_mount` - GET /recovery/workloads/vmware/instant-access-mounts/{mountId}
+## `get_workloads_vmware_instant_access_mount`
+
+GET /recovery/workloads/vmware/instant-access-mounts/{mountId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -383,14 +383,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /recovery/workloads/vmware/instant-access-mounts` -> **200** (0.24 s)
+- `GET /recovery/workloads/vmware/instant-access-mounts` -> **200** (0.22 s)
 
   <details><summary>Answer</summary>
 
@@ -402,16 +402,16 @@ def test_get(
 
   </details>
 
-## `get_workloads_vmware_instant_access_mount_download` - GET /recovery/workloads/vmware/instant-access-mounts/{mountId}/download
+## `get_workloads_vmware_instant_access_mount_download`
+
+GET /recovery/workloads/vmware/instant-access-mounts/{mountId}/download
 
 > **SKIPPED** on this run: not swept: starts work or returns a file
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -423,21 +423,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_workloads_vmware_instant_access_vm` - GET /recovery/workloads/vmware/instant-access-vms/{mountId}
+## `get_workloads_vmware_instant_access_vm`
+
+GET /recovery/workloads/vmware/instant-access-vms/{mountId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -449,14 +449,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /recovery/workloads/vmware/instant-access-vms` -> **200** (0.24 s)
+- `GET /recovery/workloads/vmware/instant-access-vms` -> **200** (0.23 s)
 
   <details><summary>Answer</summary>
 
@@ -468,7 +468,9 @@ def test_get(
 
   </details>
 
-## `get_workloads_vmware_instant_access_vms` - GET /recovery/workloads/vmware/instant-access-vms
+## `get_workloads_vmware_instant_access_vms`
+
+GET /recovery/workloads/vmware/instant-access-vms
 
 ```python
 nbu.raw.recovery.get_workloads_vmware_instant_access_vms()
@@ -476,7 +478,7 @@ nbu.raw.recovery.get_workloads_vmware_instant_access_vms()
 
 **On the wire**
 
-- `GET /recovery/workloads/vmware/instant-access-vms` -> **200** (0.25 s)
+- `GET /recovery/workloads/vmware/instant-access-vms` -> **200** (0.23 s)
 
   <details><summary>Answer</summary>
 
@@ -488,16 +490,16 @@ nbu.raw.recovery.get_workloads_vmware_instant_access_vms()
 
   </details>
 
-## `get_workloads_vmware_malware_scan_mount` - GET /recovery/workloads/vmware/malware-scan-mounts/{mountId}
+## `get_workloads_vmware_malware_scan_mount`
+
+GET /recovery/workloads/vmware/malware-scan-mounts/{mountId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -509,14 +511,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /recovery/workloads/vmware/malware-scan-mounts` -> **200** (0.23 s)
+- `GET /recovery/workloads/vmware/malware-scan-mounts` -> **200** (0.22 s)
 
   <details><summary>Answer</summary>
 
@@ -528,7 +530,9 @@ def test_get(
 
   </details>
 
-## `get_workloads_vmware_scenarios_instant_recovery_vms` - GET /recovery/workloads/vmware/scenarios/instant-recovery-vms
+## `get_workloads_vmware_scenarios_instant_recovery_vms`
+
+GET /recovery/workloads/vmware/scenarios/instant-recovery-vms
 
 ```python
 nbu.raw.recovery.get_workloads_vmware_scenarios_instant_recovery_vms()
@@ -536,7 +540,7 @@ nbu.raw.recovery.get_workloads_vmware_scenarios_instant_recovery_vms()
 
 **On the wire**
 
-- `GET /recovery/workloads/vmware/scenarios/instant-recovery-vms` -> **200** (0.13 s)
+- `GET /recovery/workloads/vmware/scenarios/instant-recovery-vms` -> **200** (0.12 s)
 
   <details><summary>Answer</summary>
 
@@ -632,7 +636,9 @@ nbu.raw.recovery.list_cloud_images_cloud_vm_ids()
 
   </details>
 
-## `list_workloads_cloud_paas_instant_access_images` - GET /recovery/workloads/cloud/paas/instant-access-images
+## `list_workloads_cloud_paas_instant_access_images`
+
+GET /recovery/workloads/cloud/paas/instant-access-images
 
 ```python
 nbu.raw.recovery.list_workloads_cloud_paas_instant_access_images()
@@ -640,7 +646,7 @@ nbu.raw.recovery.list_workloads_cloud_paas_instant_access_images()
 
 **On the wire**
 
-- `GET /recovery/workloads/cloud/paas/instant-access-images` -> **200** (0.33 s)
+- `GET /recovery/workloads/cloud/paas/instant-access-images` -> **200** (0.30 s)
 
   <details><summary>Answer</summary>
 
@@ -652,7 +658,9 @@ nbu.raw.recovery.list_workloads_cloud_paas_instant_access_images()
 
   </details>
 
-## `list_workloads_cloud_paas_instant_access_mounts` - GET /recovery/workloads/cloud/paas/instant-access-mounts
+## `list_workloads_cloud_paas_instant_access_mounts`
+
+GET /recovery/workloads/cloud/paas/instant-access-mounts
 
 ```python
 nbu.raw.recovery.list_workloads_cloud_paas_instant_access_mounts()
@@ -660,7 +668,7 @@ nbu.raw.recovery.list_workloads_cloud_paas_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/cloud/paas/instant-access-mounts` -> **200** (0.26 s)
+- `GET /recovery/workloads/cloud/paas/instant-access-mounts` -> **200** (0.24 s)
 
   <details><summary>Answer</summary>
 
@@ -672,7 +680,9 @@ nbu.raw.recovery.list_workloads_cloud_paas_instant_access_mounts()
 
   </details>
 
-## `list_workloads_cloud_vm_instant_access_mounts` - GET /recovery/workloads/cloud/vm/instant-access-mounts
+## `list_workloads_cloud_vm_instant_access_mounts`
+
+GET /recovery/workloads/cloud/vm/instant-access-mounts
 
 ```python
 nbu.raw.recovery.list_workloads_cloud_vm_instant_access_mounts()
@@ -680,7 +690,7 @@ nbu.raw.recovery.list_workloads_cloud_vm_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/cloud/vm/instant-access-mounts` -> **200** (0.27 s)
+- `GET /recovery/workloads/cloud/vm/instant-access-mounts` -> **200** (0.23 s)
 
   <details><summary>Answer</summary>
 
@@ -692,7 +702,9 @@ nbu.raw.recovery.list_workloads_cloud_vm_instant_access_mounts()
 
   </details>
 
-## `list_workloads_dynamic_nas_instant_access_mounts` - GET /recovery/workloads/dynamic-nas/instant-access-mounts
+## `list_workloads_dynamic_nas_instant_access_mounts`
+
+GET /recovery/workloads/dynamic-nas/instant-access-mounts
 
 ```python
 nbu.raw.recovery.list_workloads_dynamic_nas_instant_access_mounts()
@@ -700,7 +712,7 @@ nbu.raw.recovery.list_workloads_dynamic_nas_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/dynamic-nas/instant-access-mounts` -> **200** (0.23 s)
+- `GET /recovery/workloads/dynamic-nas/instant-access-mounts` -> **200** (0.24 s)
 
   <details><summary>Answer</summary>
 
@@ -712,7 +724,9 @@ nbu.raw.recovery.list_workloads_dynamic_nas_instant_access_mounts()
 
   </details>
 
-## `list_workloads_ms_windows_instant_access_mounts` - GET /recovery/workloads/ms-windows/instant-access-mounts
+## `list_workloads_ms_windows_instant_access_mounts`
+
+GET /recovery/workloads/ms-windows/instant-access-mounts
 
 ```python
 nbu.raw.recovery.list_workloads_ms_windows_instant_access_mounts()
@@ -720,7 +734,7 @@ nbu.raw.recovery.list_workloads_ms_windows_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/ms-windows/instant-access-mounts` -> **200** (0.25 s)
+- `GET /recovery/workloads/ms-windows/instant-access-mounts` -> **200** (0.24 s)
 
   <details><summary>Answer</summary>
 
@@ -732,7 +746,9 @@ nbu.raw.recovery.list_workloads_ms_windows_instant_access_mounts()
 
   </details>
 
-## `list_workloads_mssql_instant_access_mounts` - GET /recovery/workloads/mssql/instant-access-mounts
+## `list_workloads_mssql_instant_access_mounts`
+
+GET /recovery/workloads/mssql/instant-access-mounts
 
 ```python
 nbu.raw.recovery.list_workloads_mssql_instant_access_mounts()
@@ -740,7 +756,7 @@ nbu.raw.recovery.list_workloads_mssql_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/mssql/instant-access-mounts` -> **200** (0.26 s)
+- `GET /recovery/workloads/mssql/instant-access-mounts` -> **200** (0.21 s)
 
   <details><summary>Answer</summary>
 
@@ -752,7 +768,9 @@ nbu.raw.recovery.list_workloads_mssql_instant_access_mounts()
 
   </details>
 
-## `list_workloads_oracle_instant_access_mounts` - GET /recovery/workloads/oracle/instant-access-mounts
+## `list_workloads_oracle_instant_access_mounts`
+
+GET /recovery/workloads/oracle/instant-access-mounts
 
 ```python
 nbu.raw.recovery.list_workloads_oracle_instant_access_mounts()
@@ -760,7 +778,7 @@ nbu.raw.recovery.list_workloads_oracle_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/oracle/instant-access-mounts` -> **200** (0.25 s)
+- `GET /recovery/workloads/oracle/instant-access-mounts` -> **200** (0.19 s)
 
   <details><summary>Answer</summary>
 
@@ -772,7 +790,9 @@ nbu.raw.recovery.list_workloads_oracle_instant_access_mounts()
 
   </details>
 
-## `list_workloads_standard_instant_access_mounts` - GET /recovery/workloads/standard/instant-access-mounts
+## `list_workloads_standard_instant_access_mounts`
+
+GET /recovery/workloads/standard/instant-access-mounts
 
 ```python
 nbu.raw.recovery.list_workloads_standard_instant_access_mounts()
@@ -792,7 +812,9 @@ nbu.raw.recovery.list_workloads_standard_instant_access_mounts()
 
   </details>
 
-## `list_workloads_universal_share_instant_access_mounts` - GET /recovery/workloads/universal-share/instant-access-mounts
+## `list_workloads_universal_share_instant_access_mounts`
+
+GET /recovery/workloads/universal-share/instant-access-mounts
 
 ```python
 nbu.raw.recovery.list_workloads_universal_share_instant_access_mounts()
@@ -800,7 +822,7 @@ nbu.raw.recovery.list_workloads_universal_share_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/universal-share/instant-access-mounts` -> **200** (0.24 s)
+- `GET /recovery/workloads/universal-share/instant-access-mounts` -> **200** (0.23 s)
 
   <details><summary>Answer</summary>
 
@@ -812,16 +834,16 @@ nbu.raw.recovery.list_workloads_universal_share_instant_access_mounts()
 
   </details>
 
-## `list_workloads_vmware_instant_access_mount_files` - GET /recovery/workloads/vmware/instant-access-mounts/{mountId}/files
+## `list_workloads_vmware_instant_access_mount_files`
+
+GET /recovery/workloads/vmware/instant-access-mounts/{mountId}/files
 
 > **SKIPPED** on this run: not swept: starts work or returns a file
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -833,21 +855,21 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `list_workloads_vmware_instant_access_mount_folder` - GET /recovery/workloads/vmware/instant-access-mounts/{mountId}/folder
+## `list_workloads_vmware_instant_access_mount_folder`
+
+GET /recovery/workloads/vmware/instant-access-mounts/{mountId}/folder
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -859,12 +881,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `list_workloads_vmware_instant_access_mounts` - GET /recovery/workloads/vmware/instant-access-mounts
+## `list_workloads_vmware_instant_access_mounts`
+
+GET /recovery/workloads/vmware/instant-access-mounts
 
 ```python
 nbu.raw.recovery.list_workloads_vmware_instant_access_mounts()
@@ -872,7 +896,7 @@ nbu.raw.recovery.list_workloads_vmware_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/vmware/instant-access-mounts` -> **200** (0.24 s)
+- `GET /recovery/workloads/vmware/instant-access-mounts` -> **200** (0.25 s)
 
   <details><summary>Answer</summary>
 
@@ -884,7 +908,9 @@ nbu.raw.recovery.list_workloads_vmware_instant_access_mounts()
 
   </details>
 
-## `list_workloads_vmware_malware_scan_mounts` - GET /recovery/workloads/vmware/malware-scan-mounts
+## `list_workloads_vmware_malware_scan_mounts`
+
+GET /recovery/workloads/vmware/malware-scan-mounts
 
 ```python
 nbu.raw.recovery.list_workloads_vmware_malware_scan_mounts()
@@ -892,7 +918,7 @@ nbu.raw.recovery.list_workloads_vmware_malware_scan_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/vmware/malware-scan-mounts` -> **200** (0.23 s)
+- `GET /recovery/workloads/vmware/malware-scan-mounts` -> **200** (0.25 s)
 
   <details><summary>Answer</summary>
 

@@ -1,6 +1,6 @@
 # The server: ping, version, identity
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## Ping the primary
 
@@ -14,12 +14,12 @@ assert answer
 
 **On the wire**
 
-- `GET /ping` -> **200** (0.01 s)
+- `GET /ping` -> **200** (0.00 s)
 
   <details><summary>Answer</summary>
 
   ```json
-  1793861126627
+  1793893917329
   ```
 
   </details>
@@ -28,7 +28,7 @@ assert answer
 
 ```json
 {
-  "answer": 1793861126627
+  "answer": 1793893917329
 }
 ```
 
@@ -45,7 +45,7 @@ assert info["serverName"]
 
 **On the wire**
 
-- `GET /security/serverinfo` -> **200** (0.22 s)
+- `GET /security/serverinfo` -> **200** (0.20 s)
 
   <details><summary>Answer</summary>
 
@@ -106,76 +106,93 @@ The client settled on API version **9.0**.
     "data": [
       {
         "type": "job",
-        "id": "1704",
+        "id": "1712",
         "attributes": {
-          "jobId": 1704,
+          "jobId": 1712,
           "parentJobId": 0,
-          "activeProcessId": 790091,
-          "jobType": "IMAGEDELETE",
+          "activeProcessId": 897548,
+          "jobType": "BACKUP",
+          "jobSubType": "IMMEDIATE",
+          "policyType": "STANDARD",
+          "policyName": "bltlive-11051551-bkp",
+          "scheduleType": "FULL_BACKUP",
+          "scheduleName": "bltlive-full",
+          "clientName": "primary-01",
           "jobOwner": "root",
+          "jobGroup": "other",
+          "backupId": "primary-01_1793893889",
+          "destinationStorageUnitName": "storage-unit-02",
+          "destinationMediaServerName": "primary-01",
+          "dataMovement": "STANDARD",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
           "compression": 0,
           "status": 0,
           "state": "DONE",
-          "numberOfFiles": 0,
+          "numberOfFiles": 1,
           "estimatedFiles": 0,
-          "kilobytesTransferred": 0,
+          "kilobytesTransferred": 32,
           "kilobytesToTransfer": 0,
-          "transferRate": 0,
+          "transferRate": 87,
           "percentComplete": 100,
-          "restartable": 0,
+          "restartable": 1,
           "suspendable": 0,
           "resumable": 0,
           "frozenImage": 0,
           "transportType": "LAN",
-          "currentOperation": 0,
+          "dedupRatio": 95.1,
+          "currentOperation": -99,
           "sessionId": 0,
           "numberOfTapeToEject": 0,
           "submissionType": 0,
           "auditDomainType": 0,
-          "startTime": "2026-11-05T03:56:33.000Z",
-          "endTime": "2026-11-05T03:56:34.000Z",
-          "activeTryStartTime": "2026-11-05T03:56:33.000Z",
-          "lastUpdateTime": "2026-11-05T03:56:37.044Z",
+          "startTime": "2026-11-05T15:51:29.000Z",
+          "endTime": "2026-11-05T15:51:39.000Z",
+          "activeTryStartTime": "2026-11-05T15:51:29.000Z",
+          "lastUpdateTime": "2026-11-05T15:51:49.095Z",
           "childCount": 0,
-          "jobPath": "1704",
+          "jobPath": "1712",
+          "retentionLevel": 0,
           "try": 1,
-          "cancellable": 1,
+          "cancellable": 0,
           "jobQueueReason": -99,
           "kilobytesDataTransferred": 0,
-          "elapsedTime": "PT1S",
-          "activeElapsedTime": "PT1S",
-          "dteMode": "UNKNOWN"
+          "elapsedTime": "PT10S",
+          "activeElapsedTime": "PT10S",
+          "dteMode": "OFF",
+          "dedupSpaceRatio": 17.1,
+          "compressionSpaceRatio": 78.0,
+          "workloadDisplayName": "primary-01",
+          "offHostType": "STANDARD"
         },
         "links": {
           "self": {
-            "href": "/admin/jobs/1704"
+            "href": "/admin/jobs/1712"
           },
           "file-lists": {
-            "href": "https://primary-01:1556/netbackup/admin/jobs/1704/file-lists"
+            "href": "https://primary-01:1556/netbackup/admin/jobs/1712/file-lists"
           },
           "try-logs": {
-            "href": "https://primary-01:1556/netbackup/admin/jobs/1704/try-logs"
+            "href": "https://primary-01:1556/netbackup/admin/jobs/1712/try-logs"
           }
         },
         "meta": {
           "page": {
-            "cursor": "1704"
+            "cursor": "1712"
           }
         }
       }
     ],
     "meta": {
       "pagination": {
-        "next": "1704",
+        "next": "1712",
         "limit": 1
       }
     },
     "links": {
       "next": {
-        "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=1&page%5Bafter%5D=1704&sort=-jobId"
+        "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=1&page%5Bafter%5D=1712&sort=-jobId"
       },
       "self": {
         "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=1&sort=-jobId"

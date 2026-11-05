@@ -1,6 +1,6 @@
 # `nbu.raw.assetservice`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_query` - GET /asset-service/queries/{queryId}
 
@@ -9,9 +9,7 @@
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -23,8 +21,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -36,7 +34,7 @@ nbu.raw.assetservice.get_workload('asset-18')
 
 **On the wire**
 
-- `GET /asset-service/workloads` -> **200** (0.06 s)
+- `GET /asset-service/workloads` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -136,7 +134,7 @@ nbu.raw.assetservice.get_workload('asset-18')
 
   </details>
 
-- `GET /asset-service/workloads/asset-18` -> **200** (0.06 s)
+- `GET /asset-service/workloads/asset-18` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -167,16 +165,16 @@ nbu.raw.assetservice.get_workload('asset-18')
 
   </details>
 
-## `get_workload_asset_by_workload_asset_id` - GET /asset-service/workloads/{workload}/assets/{assetId}
+## `get_workload_asset_by_workload_asset_id`
+
+GET /asset-service/workloads/{workload}/assets/{assetId}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -188,14 +186,14 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
 **On the wire**
 
-- `GET /asset-service/workloads/asset-18/assets` -> **200** (0.10 s)
+- `GET /asset-service/workloads/asset-18/assets` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -223,16 +221,16 @@ def test_get(
 
   </details>
 
-## `get_workload_asset_by_workload_asset_id_relationship_name` - GET /asset-service/workloads/{workload}/assets/{assetId}/{relationshipName}
+## `get_workload_asset_by_workload_asset_id_relationship_name`
+
+GET /asset-service/workloads/{workload}/assets/{assetId}/{relationshipName}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 
 ```python
 ("area", "name", "template"), OPERATIONS, ids=[f"{a}.{n}" for a, n, _ in OPERATIONS]
 )
-def test_get(
-    nbu: NetBackupClient, recorder: Recorder, record: Entry, area: str, name: str, template: str
-) -> None:
+def test_get(nbu: NetBackupClient, record: Entry, area: str, name: str, template: str) -> None:
     record.page = f"raw_{area}"
     record.title = f"`{name}` - GET {template}"
     if NOT_SWEPT.search(template):
@@ -244,8 +242,8 @@ def test_get(
     record.code = f"nbu.raw.{area}.{name}({shown})"
     try:
         answer = getattr(getattr(nbu.raw, area), name)(*values)
-    except SDKError:
-        pytest.skip(f"NetBackup answered: {_why(recorder)}")
+    except SDKError as error:
+        pytest.skip(f"NetBackup answered: {_why(error)}")
     _cache[f"{template}|{values}"] = answer
 ```
 
@@ -1427,7 +1425,7 @@ nbu.raw.assetservice.get_workload_schema('asset-18', 'asset-asset')
 
   </details>
 
-- `GET /asset-service/workloads/asset-18/schemas/asset-asset` -> **200** (0.11 s)
+- `GET /asset-service/workloads/asset-18/schemas/asset-asset` -> **200** (0.12 s)
 
   <details><summary>Answer</summary>
 
@@ -1459,7 +1457,7 @@ nbu.raw.assetservice.get_workloads()
 
 **On the wire**
 
-- `GET /asset-service/workloads` -> **200** (0.10 s)
+- `GET /asset-service/workloads` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -1603,7 +1601,7 @@ nbu.raw.assetservice.list_workload_schemas('asset-18')
 
 **On the wire**
 
-- `GET /asset-service/workloads/asset-18/schemas` -> **200** (0.09 s)
+- `GET /asset-service/workloads/asset-18/schemas` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 

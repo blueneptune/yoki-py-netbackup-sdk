@@ -1,6 +1,6 @@
 # `nbu.raw.gateway`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_authorization_context` - GET /authorization-context
 
@@ -10,7 +10,7 @@ nbu.raw.gateway.get_authorization_context()
 
 **On the wire**
 
-- `GET /authorization-context` -> **200** (0.11 s)
+- `GET /authorization-context` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -18,12 +18,12 @@ nbu.raw.gateway.get_authorization_context()
   {
     "data": {
       "type": "authorizationContext",
-      "id": "12b94733-12c2-45eb-aa6b-36a4c4e465b9",
+      "id": "9b728a0c-3229-4476-9a95-e41f820a72d4",
       "attributes": {
         "subject": "primary-01:user-01:unixpwd",
         "issuer": "nbu_master",
-        "issuedAt": "2026-11-05T06:08:43.595Z",
-        "expireDate": "2026-11-05T10:08:43.591Z",
+        "issuedAt": "2026-11-05T15:34:08.802Z",
+        "expireDate": "2026-11-05T19:34:08.794Z",
         "authToken": "<masked>",
         "isAdmin": true,
         "isMachine": false,
@@ -63,7 +63,7 @@ nbu.raw.gateway.get_login()
 
 **On the wire**
 
-- `GET /sso/login` -> **400** (0.01 s)
+- `GET /sso/login` -> **400** (0.02 s)
 
   <details><summary>Answer</summary>
 
@@ -89,12 +89,12 @@ nbu.raw.gateway.get_ping()
 
 **On the wire**
 
-- `GET /ping` -> **200** (0.07 s)
+- `GET /ping` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
   ```json
-  1793861163133
+  1793893948119
   ```
 
   </details>
@@ -135,7 +135,7 @@ nbu.raw.gateway.get_tokenkey()
 
 **On the wire**
 
-- `GET /tokenkey` -> **200** (0.10 s)
+- `GET /tokenkey` -> **200** (0.08 s)
 
   <details><summary>Answer</summary>
 
@@ -163,13 +163,13 @@ nbu.raw.gateway.get_user_sessions()
     "data": [
       {
         "type": "user-session-v4",
-        "id": "101656",
+        "id": "101662",
         "attributes": {
           "userName": "user-01",
           "domainName": "",
           "domainType": "unixpwd",
-          "expiresAt": "2026-11-05T10:08:43.591Z",
-          "signedInAt": "2026-11-05T06:08:43.590Z"
+          "expiresAt": "2026-11-05T19:34:08.794Z",
+          "signedInAt": "2026-11-05T15:34:08.788Z"
         }
       }
     ],

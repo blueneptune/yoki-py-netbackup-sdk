@@ -1,8 +1,8 @@
 # Coverage, proven live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 15:54 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
-**163 of 733** operations in the server's own API description were called by the live tests and answered without an error.
+**170 of 733** operations in the server's own API description were called by the live tests and answered without an error.
 
 | Area | Proven | Operations |
 |---|---|---|
@@ -11,9 +11,9 @@
 | security | 32 | 88 |
 | bmr | 0 | 72 |
 | storage | 15 | 53 |
-| catalog | 6 | 34 |
-| accesscontrol | 5 | 25 |
-| admin | 6 | 25 |
+| catalog | 9 | 34 |
+| accesscontrol | 8 | 25 |
+| admin | 7 | 25 |
 | hostproperties | 7 | 25 |
 | rbac | 9 | 19 |
 | malware | 5 | 18 |
@@ -36,11 +36,14 @@
 
 ### accesscontrol
 
+- `DELETE /access-control/roles/{roleId}`
 - `GET /access-control/operations`
 - `GET /access-control/roles`
 - `GET /access-control/roles/{roleId}`
 - `GET /access-control/roles/{roleId}/access-definitions`
 - `GET /access-control/service-namespaces`
+- `POST /access-control/roles`
+- `PUT /access-control/roles/{roleId}`
 
 ### admin
 
@@ -50,6 +53,7 @@
 - `GET /admin/jobs/{jobId}/progress-logs`
 - `GET /admin/jobs/{jobId}/try-logs`
 - `GET /admin/user-operation-logs`
+- `POST /admin/manual-backup`
 
 ### assetdb
 
@@ -66,11 +70,14 @@
 ### catalog
 
 - `GET /catalog/images`
+- `GET /catalog/images/{backupId}`
+- `GET /catalog/images/{backupId}/contents`
 - `GET /catalog/latest-vmware-images`
 - `GET /catalog/rollback-images`
 - `GET /catalog/slp-images`
 - `GET /catalog/tape-media`
 - `GET /catalog/vmware-images`
+- `POST /catalog/images/update-expiration-date`
 
 ### config
 
