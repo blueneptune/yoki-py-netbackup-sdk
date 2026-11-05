@@ -53,7 +53,15 @@ class ApiVersion:
 
     def apply(self, request: object) -> None:
         headers = request.headers  # type: ignore[attr-defined]
-        headers["Accept"] = media_type(self.current)
+        accept = headers.get("Accept", "")
+        if "vnd.netbackup+" in accept and "+json" not in accept:
+            # A call that answers text, CSV or a file names its own media
+            # type (text/vnd.netbackup+csv); only the version is added.
+            headers["Accept"] = f"{accept.split(';')[0]};version={self.current}"
+        elif accept not in ("", "*/*") and "vnd.netbackup" not in accept:
+            pass  # a standard type (application/pkix-crl): left as asked
+        else:
+            headers["Accept"] = media_type(self.current)
         if headers.get("Content-Type", "").startswith("application/"):
             headers["Content-Type"] = media_type(self.current)
 

@@ -1,6 +1,6 @@
 # Policies, images, hosts, storage, assets
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:16 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## Every policy: name, type, active or not
 
@@ -11,7 +11,7 @@ assert all("policyName" in p or "id" in p for p in policies)
 
 **On the wire**
 
-- `GET /config/policies?page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.06 s)
+- `GET /config/policies?page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.08 s)
 
   <details><summary>Answer</summary>
 
@@ -342,7 +342,7 @@ assert policy is not None
 
 **On the wire**
 
-- `GET /config/policies?page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.07 s)
+- `GET /config/policies?page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -949,7 +949,7 @@ assert nbu.policies.get("bltlive-no-such-policy") is None
 
 **On the wire**
 
-- `GET /config/policies/bltlive-no-such-policy` -> **404** (0.09 s)
+- `GET /config/policies/bltlive-no-such-policy` -> **404** (0.13 s)
 
   <details><summary>Answer</summary>
 
@@ -975,7 +975,7 @@ record.result(first[:3])
 
 **On the wire**
 
-- `GET /catalog/images?filter=backupTime+ge+2026-10-06T06%3A16%3A04.969Z&sort=-backupTime&page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.14 s)
+- `GET /catalog/images?filter=backupTime+ge+2026-10-06T06%3A37%3A57.479Z&sort=-backupTime&page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.12 s)
 
   <details><summary>Answer</summary>
 
@@ -1011,7 +1011,7 @@ assert hosts and all("hostName" in h for h in hosts)
 
 **On the wire**
 
-- `GET /config/hosts` -> **200** (0.06 s)
+- `GET /config/hosts` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -1041,7 +1041,7 @@ assert hosts and all("hostName" in h for h in hosts)
         "cpuArchitecture": "x86_64",
         "installedEEBs": "",
         "dteClientMode": "AUTOMATIC",
-        "serviceUser": "svc-backup",
+        "serviceUser": "user-04",
         "createdDateTime": 1647492988000,
         "lastUpdatedDateTime": 1793687304000,
         "nbcaCert": true,
@@ -1255,7 +1255,7 @@ assert hosts and all("hostName" in h for h in hosts)
     "cpuArchitecture": "x86_64",
     "installedEEBs": "",
     "dteClientMode": "AUTOMATIC",
-    "serviceUser": "svc-backup",
+    "serviceUser": "user-04",
     "createdDateTime": 1647492988000,
     "lastUpdatedDateTime": 1793687304000,
     "nbcaCert": true,
@@ -1547,9 +1547,9 @@ record.result(nbu.storage.units())
           "primary": false,
           "instantAccessEnabled": true,
           "isCloudSTU": false,
-          "freeCapacityBytes": 8271550548992,
+          "freeCapacityBytes": 8271550008320,
           "totalCapacityBytes": 8341450185728,
-          "usedCapacityBytes": 69899636736,
+          "usedCapacityBytes": 69900177408,
           "mediaServerDetails": [
             {
               "name": "primary-01",
@@ -1697,9 +1697,9 @@ record.result(nbu.storage.units())
     "primary": false,
     "instantAccessEnabled": true,
     "isCloudSTU": false,
-    "freeCapacityBytes": 8271550548992,
+    "freeCapacityBytes": 8271550008320,
     "totalCapacityBytes": 8341450185728,
-    "usedCapacityBytes": 69899636736,
+    "usedCapacityBytes": 69900177408,
     "mediaServerDetails": [
       {
         "name": "primary-01",
@@ -1739,7 +1739,7 @@ record.result(nbu.storage.disk_pools())
 
 **On the wire**
 
-- `GET /storage/disk-pools?page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.12 s)
+- `GET /storage/disk-pools?page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.10 s)
 
   <details><summary>Answer</summary>
 
@@ -1760,7 +1760,7 @@ record.result(nbu.storage.disk_pools())
               "diskMediaId": "@aaaah",
               "state": "UP",
               "rawSizeBytes": 8341450185728,
-              "freeSizeBytes": 8271550548992,
+              "freeSizeBytes": 8271550008320,
               "isReplicationSource": false,
               "isReplicationTarget": false,
               "wormIndelibleMinimumInterval": 0,
@@ -1781,8 +1781,8 @@ record.result(nbu.storage.disk_pools())
           ],
           "rawSizeBytes": 8341450185728,
           "usableSizeBytes": 8341450185728,
-          "availableSpaceBytes": 8271550548992,
-          "usedCapacityBytes": 69899636736,
+          "availableSpaceBytes": 8271550008320,
+          "usedCapacityBytes": 69900177408,
           "wormCapable": false,
           "readOnly": false,
           "mediaServersCount": 1
@@ -1914,7 +1914,7 @@ record.result(nbu.storage.disk_pools())
         "diskMediaId": "@aaaah",
         "state": "UP",
         "rawSizeBytes": 8341450185728,
-        "freeSizeBytes": 8271550548992,
+        "freeSizeBytes": 8271550008320,
         "isReplicationSource": false,
         "isReplicationTarget": false,
         "wormIndelibleMinimumInterval": 0,
@@ -1935,8 +1935,8 @@ record.result(nbu.storage.disk_pools())
     ],
     "rawSizeBytes": 8341450185728,
     "usableSizeBytes": 8341450185728,
-    "availableSpaceBytes": 8271550548992,
-    "usedCapacityBytes": 69899636736,
+    "availableSpaceBytes": 8271550008320,
+    "usedCapacityBytes": 69900177408,
     "wormCapable": false,
     "readOnly": false,
     "mediaServersCount": 1,
@@ -1994,7 +1994,7 @@ record.result(assets[:3])
 
 **On the wire**
 
-- `GET /asset-service/workloads/vmware/assets?page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.11 s)
+- `GET /asset-service/workloads/vmware/assets?page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.08 s)
 
   <details><summary>Answer</summary>
 
@@ -2143,14 +2143,14 @@ record.result(assets[:3])
           "hostName": "host-07",
           "hostPath": "cluster-01",
           "instanceUuid": "50107871-1a22-9132-0369-a58006e497d0",
-          "ipAddress": "192.0.2.1",
+          "ipAddress": "192.0.2.3",
           "mor": "vm-62",
           "network": [
             {
               "networkName": "VM Network"
             }
           ],
-          "nicIpAddresses": "(192.0.2.1)",
+          "nicIpAddresses": "(192.0.2.3)",
           "path": "cluster-01",
           "powerState": "poweredOn",
           "snapshotDir": "datastore-02",
@@ -2223,7 +2223,7 @@ record.result(assets[:3])
               "lastDiscoveredTime": "2026-11-05T06:15:53.339Z"
             }
           },
-          "annotation": "vSphere Cluster Service VM is deployed from an OVA with a minimal installed profile of PhotonOS. vSphere Cluster Service manages the resources, power state and availability of these VMs. vSphere Cluster Service VMs are required for maintaining the health and availability of vSphere Cluster Service. Any impact on the power state or resources of these VMs might degrade the health of the vSphere Clus... (470 characters)",
+          "annotation": "host-16 Cluster Service VM is deployed from an OVA with a minimal installed profile of PhotonOS. host-16 Cluster Service manages the resources, power state and availability of these VMs. host-16 Cluster Service VMs are required for maintaining the health and availability of host-16 Cluster Service. Any impact on the power state or resources of these VMs might degrade the health of the host-16 Clus... (470 characters)",
           "cluster": "cluster-01",
           "connectionState": "connected",
           "datacenter": "datacenter-01",
@@ -2420,14 +2420,14 @@ record.result(assets[:3])
     "hostName": "host-07",
     "hostPath": "cluster-01",
     "instanceUuid": "50107871-1a22-9132-0369-a58006e497d0",
-    "ipAddress": "192.0.2.1",
+    "ipAddress": "192.0.2.3",
     "mor": "vm-62",
     "network": [
       {
         "networkName": "VM Network"
       }
     ],
-    "nicIpAddresses": "(192.0.2.1)",
+    "nicIpAddresses": "(192.0.2.3)",
     "path": "cluster-01",
     "powerState": "poweredOn",
     "snapshotDir": "datastore-02",
@@ -2479,7 +2479,7 @@ record.result(assets[:3])
         "lastDiscoveredTime": "2026-11-05T06:15:53.339Z"
       }
     },
-    "annotation": "vSphere Cluster Service VM is deployed from an OVA with a minimal installed profile of PhotonOS. vSphere Cluster Service manages the resources, power state and availability of these VMs. vSphere Cluster Service VMs are required for maintaining the health and availability of vSphere Cluster Service. Any impact on the power state or resources of these VMs might degrade the health of the vSphere Clus... (470 characters)",
+    "annotation": "host-16 Cluster Service VM is deployed from an OVA with a minimal installed profile of PhotonOS. host-16 Cluster Service manages the resources, power state and availability of these VMs. host-16 Cluster Service VMs are required for maintaining the health and availability of host-16 Cluster Service. Any impact on the power state or resources of these VMs might degrade the health of the host-16 Clus... (470 characters)",
     "cluster": "cluster-01",
     "connectionState": "connected",
     "datacenter": "datacenter-01",

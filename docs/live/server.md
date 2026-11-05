@@ -1,6 +1,6 @@
 # The server: ping, version, identity
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:16 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## Ping the primary
 
@@ -19,7 +19,7 @@ assert answer
   <details><summary>Answer</summary>
 
   ```json
-  1793859366227
+  1793860678580
   ```
 
   </details>
@@ -28,7 +28,7 @@ assert answer
 
 ```json
 {
-  "answer": 1793859366227
+  "answer": 1793860678580
 }
 ```
 
@@ -112,7 +112,7 @@ The client settled on API version **9.0**.
           "parentJobId": 0,
           "activeProcessId": 790091,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "root",
+          "jobOwner": "user-05",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,

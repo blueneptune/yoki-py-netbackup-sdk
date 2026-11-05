@@ -138,9 +138,9 @@ def record(
         function=request.function,
     )
     start = len(recorder.exchanges)
+    _records.append(entry)  # now, so the call's report can mark it
     yield entry
     entry.exchanges = recorder.exchanges[start:]
-    _records.append(entry)
     _state["api_version"] = nbu.api_version
 
 
@@ -153,6 +153,9 @@ def pytest_runtest_makereport(
         for entry in _records:
             if entry.name == item.nodeid:
                 entry.outcome = report.outcome
+                longrepr = report.longrepr
+                if report.skipped and isinstance(longrepr, tuple):
+                    entry.reason = str(longrepr[2]).removeprefix("Skipped: ")
     return report
 
 
