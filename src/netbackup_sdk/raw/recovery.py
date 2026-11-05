@@ -106,12 +106,18 @@ class Recovery(Resource):
         path = "/recovery/workloads/cloud-object-store/scenarios/object/recover"
         return self._call("POST", path, body=body, change=True)
 
-    def list_workloads_cloud_paas_instant_access_images(self, *, filter_: Any = None) -> Any:
+    def list_workloads_cloud_paas_instant_access_images(
+        self, *, filter_: Any = None, page_offset: Any = None, page_limit: Any = None
+    ) -> Any:
         """`GET /recovery/workloads/cloud/paas/instant-access-images`
 
-        Query: filter."""
+        Query: filter, page[offset], page[limit]."""
         path = "/recovery/workloads/cloud/paas/instant-access-images"
-        return self._call("GET", path, params={"filter": filter_})
+        return self._call(
+            "GET",
+            path,
+            params={"filter": filter_, "page[offset]": page_offset, "page[limit]": page_limit},
+        )
 
     def post_workloads_cloud_paas_instant_access_images(self, *, body: Any = None) -> Any:
         """`POST /recovery/workloads/cloud/paas/instant-access-images`
@@ -120,14 +126,14 @@ class Recovery(Resource):
         path = "/recovery/workloads/cloud/paas/instant-access-images"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_workloads_cloud_paas_instant_access_image(self) -> Any:
+    def delete_workloads_cloud_paas_instant_access_image(self, image_id: str | int) -> Any:
         """`DELETE /recovery/workloads/cloud/paas/instant-access-images/{imageId}`"""
-        path = "/recovery/workloads/cloud/paas/instant-access-images/{imageId}"
+        path = f"/recovery/workloads/cloud/paas/instant-access-images/{image_id}"
         return self._call("DELETE", path, change=True)
 
-    def get_workloads_cloud_paas_instant_access_image(self) -> Any:
+    def get_workloads_cloud_paas_instant_access_image(self, image_id: str | int) -> Any:
         """`GET /recovery/workloads/cloud/paas/instant-access-images/{imageId}`"""
-        path = "/recovery/workloads/cloud/paas/instant-access-images/{imageId}"
+        path = f"/recovery/workloads/cloud/paas/instant-access-images/{image_id}"
         return self._call("GET", path)
 
     def list_workloads_cloud_paas_instant_access_mounts(
@@ -150,14 +156,14 @@ class Recovery(Resource):
         path = "/recovery/workloads/cloud/paas/instant-access-mounts"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_workloads_cloud_paas_instant_access_mount(self) -> Any:
+    def delete_workloads_cloud_paas_instant_access_mount(self, mount_id: str | int) -> Any:
         """`DELETE /recovery/workloads/cloud/paas/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/cloud/paas/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/cloud/paas/instant-access-mounts/{mount_id}"
         return self._call("DELETE", path, change=True)
 
-    def get_workloads_cloud_paas_instant_access_mount(self) -> Any:
+    def get_workloads_cloud_paas_instant_access_mount(self, mount_id: str | int) -> Any:
         """`GET /recovery/workloads/cloud/paas/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/cloud/paas/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/cloud/paas/instant-access-mounts/{mount_id}"
         return self._call("GET", path)
 
     def post_workloads_cloud_scenarios_asset_pre_recovery_check(self, *, body: Any = None) -> Any:
@@ -212,14 +218,14 @@ class Recovery(Resource):
         path = "/recovery/workloads/cloud/vm/instant-access-mounts"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_workloads_cloud_vm_instant_access_mount(self) -> Any:
+    def delete_workloads_cloud_vm_instant_access_mount(self, mount_id: str | int) -> Any:
         """`DELETE /recovery/workloads/cloud/vm/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/cloud/vm/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/cloud/vm/instant-access-mounts/{mount_id}"
         return self._call("DELETE", path, change=True)
 
-    def get_workloads_cloud_vm_instant_access_mount(self) -> Any:
+    def get_workloads_cloud_vm_instant_access_mount(self, mount_id: str | int) -> Any:
         """`GET /recovery/workloads/cloud/vm/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/cloud/vm/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/cloud/vm/instant-access-mounts/{mount_id}"
         return self._call("GET", path)
 
     def list_workloads_dynamic_nas_instant_access_mounts(self, *, filter_: Any = None) -> Any:
@@ -236,14 +242,14 @@ class Recovery(Resource):
         path = "/recovery/workloads/dynamic-nas/instant-access-mounts"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_workloads_dynamic_nas_instant_access_mount(self) -> Any:
+    def delete_workloads_dynamic_nas_instant_access_mount(self, mount_id: str | int) -> Any:
         """`DELETE /recovery/workloads/dynamic-nas/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/dynamic-nas/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/dynamic-nas/instant-access-mounts/{mount_id}"
         return self._call("DELETE", path, change=True)
 
-    def get_workloads_dynamic_nas_instant_access_mount(self) -> Any:
+    def get_workloads_dynamic_nas_instant_access_mount(self, mount_id: str | int) -> Any:
         """`GET /recovery/workloads/dynamic-nas/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/dynamic-nas/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/dynamic-nas/instant-access-mounts/{mount_id}"
         return self._call("GET", path)
 
     def post_workloads_dynamic_nas_scenario_recover(
@@ -294,14 +300,14 @@ class Recovery(Resource):
         path = "/recovery/workloads/ms-windows/instant-access-mounts"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_workloads_ms_windows_instant_access_mount(self) -> Any:
+    def delete_workloads_ms_windows_instant_access_mount(self, mount_id: str | int) -> Any:
         """`DELETE /recovery/workloads/ms-windows/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/ms-windows/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/ms-windows/instant-access-mounts/{mount_id}"
         return self._call("DELETE", path, change=True)
 
-    def get_workloads_ms_windows_instant_access_mount(self) -> Any:
+    def get_workloads_ms_windows_instant_access_mount(self, mount_id: str | int) -> Any:
         """`GET /recovery/workloads/ms-windows/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/ms-windows/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/ms-windows/instant-access-mounts/{mount_id}"
         return self._call("GET", path)
 
     def post_workloads_mssql_instant_access_databases(self, *, body: Any = None) -> Any:
@@ -332,14 +338,14 @@ class Recovery(Resource):
         path = "/recovery/workloads/mssql/instant-access-mounts"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_workloads_mssql_instant_access_mount(self) -> Any:
+    def delete_workloads_mssql_instant_access_mount(self, mount_id: str | int) -> Any:
         """`DELETE /recovery/workloads/mssql/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/mssql/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/mssql/instant-access-mounts/{mount_id}"
         return self._call("DELETE", path, change=True)
 
-    def get_workloads_mssql_instant_access_mount(self) -> Any:
+    def get_workloads_mssql_instant_access_mount(self, mount_id: str | int) -> Any:
         """`GET /recovery/workloads/mssql/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/mssql/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/mssql/instant-access-mounts/{mount_id}"
         return self._call("GET", path)
 
     def post_workloads_mssql_scenarios_database_complete_recovery_recover(
@@ -401,14 +407,14 @@ class Recovery(Resource):
         path = "/recovery/workloads/oracle/instant-access-mounts"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_workloads_oracle_instant_access_mount(self) -> Any:
+    def delete_workloads_oracle_instant_access_mount(self, mount_id: str | int) -> Any:
         """`DELETE /recovery/workloads/oracle/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/oracle/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/oracle/instant-access-mounts/{mount_id}"
         return self._call("DELETE", path, change=True)
 
-    def get_workloads_oracle_instant_access_mount(self) -> Any:
+    def get_workloads_oracle_instant_access_mount(self, mount_id: str | int) -> Any:
         """`GET /recovery/workloads/oracle/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/oracle/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/oracle/instant-access-mounts/{mount_id}"
         return self._call("GET", path)
 
     def post_workloads_physical_scenarios_granular_files_folders_recover(
@@ -466,14 +472,14 @@ class Recovery(Resource):
         path = "/recovery/workloads/standard/instant-access-mounts"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_workloads_standard_instant_access_mount(self) -> Any:
+    def delete_workloads_standard_instant_access_mount(self, mount_id: str | int) -> Any:
         """`DELETE /recovery/workloads/standard/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/standard/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/standard/instant-access-mounts/{mount_id}"
         return self._call("DELETE", path, change=True)
 
-    def get_workloads_standard_instant_access_mount(self) -> Any:
+    def get_workloads_standard_instant_access_mount(self, mount_id: str | int) -> Any:
         """`GET /recovery/workloads/standard/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/standard/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/standard/instant-access-mounts/{mount_id}"
         return self._call("GET", path)
 
     def list_workloads_universal_share_instant_access_mounts(self, *, filter_: Any = None) -> Any:
@@ -490,14 +496,14 @@ class Recovery(Resource):
         path = "/recovery/workloads/universal-share/instant-access-mounts"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_workloads_universal_share_instant_access_mount(self) -> Any:
+    def delete_workloads_universal_share_instant_access_mount(self, mount_id: str | int) -> Any:
         """`DELETE /recovery/workloads/universal-share/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/universal-share/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/universal-share/instant-access-mounts/{mount_id}"
         return self._call("DELETE", path, change=True)
 
-    def get_workloads_universal_share_instant_access_mount(self) -> Any:
+    def get_workloads_universal_share_instant_access_mount(self, mount_id: str | int) -> Any:
         """`GET /recovery/workloads/universal-share/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/universal-share/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/universal-share/instant-access-mounts/{mount_id}"
         return self._call("GET", path)
 
     def list_workloads_vmware_instant_access_mounts(self, *, filter_: Any = None) -> Any:
@@ -514,55 +520,68 @@ class Recovery(Resource):
         path = "/recovery/workloads/vmware/instant-access-mounts"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_workloads_vmware_instant_access_mount(self) -> Any:
+    def delete_workloads_vmware_instant_access_mount(self, mount_id: str | int) -> Any:
         """`DELETE /recovery/workloads/vmware/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/vmware/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/vmware/instant-access-mounts/{mount_id}"
         return self._call("DELETE", path, change=True)
 
-    def get_workloads_vmware_instant_access_mount(self) -> Any:
+    def get_workloads_vmware_instant_access_mount(self, mount_id: str | int) -> Any:
         """`GET /recovery/workloads/vmware/instant-access-mounts/{mountId}`"""
-        path = "/recovery/workloads/vmware/instant-access-mounts/{mountId}"
+        path = f"/recovery/workloads/vmware/instant-access-mounts/{mount_id}"
         return self._call("GET", path)
 
-    def get_workloads_vmware_instant_access_mount_download(self, *, id_: Any = None) -> Any:
+    def get_workloads_vmware_instant_access_mount_download(
+        self, mount_id: str | int, *, id_: Any = None
+    ) -> Any:
         """`GET /recovery/workloads/vmware/instant-access-mounts/{mountId}/download`
 
         Query: id."""
-        path = "/recovery/workloads/vmware/instant-access-mounts/{mountId}/download"
+        path = f"/recovery/workloads/vmware/instant-access-mounts/{mount_id}/download"
         return self._call("GET", path, params={"id": id_})
 
-    def post_workloads_vmware_instant_access_mount_download(self, *, body: Any = None) -> Any:
+    def post_workloads_vmware_instant_access_mount_download(
+        self, mount_id: str | int, *, body: Any = None
+    ) -> Any:
         """`POST /recovery/workloads/vmware/instant-access-mounts/{mountId}/download`
 
         Body: application/vnd.netbackup+json."""
-        path = "/recovery/workloads/vmware/instant-access-mounts/{mountId}/download"
+        path = f"/recovery/workloads/vmware/instant-access-mounts/{mount_id}/download"
         return self._call("POST", path, body=body, change=True)
 
     def list_workloads_vmware_instant_access_mount_files(
-        self, *, filter_: Any = None, page_limit: Any = None, page_offset: Any = None
+        self,
+        mount_id: str | int,
+        *,
+        filter_: Any = None,
+        page_limit: Any = None,
+        page_offset: Any = None,
     ) -> Any:
         """`GET /recovery/workloads/vmware/instant-access-mounts/{mountId}/files`
 
         Query: filter, page[limit], page[offset]."""
-        path = "/recovery/workloads/vmware/instant-access-mounts/{mountId}/files"
+        path = f"/recovery/workloads/vmware/instant-access-mounts/{mount_id}/files"
         return self._call(
             "GET",
             path,
             params={"filter": filter_, "page[limit]": page_limit, "page[offset]": page_offset},
         )
 
-    def list_workloads_vmware_instant_access_mount_folder(self, *, filter_: Any = None) -> Any:
+    def list_workloads_vmware_instant_access_mount_folder(
+        self, mount_id: str | int, *, filter_: Any = None
+    ) -> Any:
         """`GET /recovery/workloads/vmware/instant-access-mounts/{mountId}/folder`
 
         Query: filter."""
-        path = "/recovery/workloads/vmware/instant-access-mounts/{mountId}/folder"
+        path = f"/recovery/workloads/vmware/instant-access-mounts/{mount_id}/folder"
         return self._call("GET", path, params={"filter": filter_})
 
-    def post_workloads_vmware_instant_access_mount_restore(self, *, body: Any = None) -> Any:
+    def post_workloads_vmware_instant_access_mount_restore(
+        self, mount_id: str | int, *, body: Any = None
+    ) -> Any:
         """`POST /recovery/workloads/vmware/instant-access-mounts/{mountId}/restore`
 
         Body: application/vnd.netbackup+json."""
-        path = "/recovery/workloads/vmware/instant-access-mounts/{mountId}/restore"
+        path = f"/recovery/workloads/vmware/instant-access-mounts/{mount_id}/restore"
         return self._call("POST", path, body=body, change=True)
 
     def get_workloads_vmware_instant_access_vms(self) -> Any:
@@ -577,14 +596,14 @@ class Recovery(Resource):
         path = "/recovery/workloads/vmware/instant-access-vms"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_workloads_vmware_instant_access_vm(self) -> Any:
+    def delete_workloads_vmware_instant_access_vm(self, mount_id: str | int) -> Any:
         """`DELETE /recovery/workloads/vmware/instant-access-vms/{mountId}`"""
-        path = "/recovery/workloads/vmware/instant-access-vms/{mountId}"
+        path = f"/recovery/workloads/vmware/instant-access-vms/{mount_id}"
         return self._call("DELETE", path, change=True)
 
-    def get_workloads_vmware_instant_access_vm(self) -> Any:
+    def get_workloads_vmware_instant_access_vm(self, mount_id: str | int) -> Any:
         """`GET /recovery/workloads/vmware/instant-access-vms/{mountId}`"""
-        path = "/recovery/workloads/vmware/instant-access-vms/{mountId}"
+        path = f"/recovery/workloads/vmware/instant-access-vms/{mount_id}"
         return self._call("GET", path)
 
     def post_workloads_vmware_instant_sync_vms(self, *, body: Any = None) -> Any:
@@ -614,14 +633,14 @@ class Recovery(Resource):
         path = "/recovery/workloads/vmware/malware-scan-mounts"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_workloads_vmware_malware_scan_mount(self) -> Any:
+    def delete_workloads_vmware_malware_scan_mount(self, mount_id: str | int) -> Any:
         """`DELETE /recovery/workloads/vmware/malware-scan-mounts/{mountId}`"""
-        path = "/recovery/workloads/vmware/malware-scan-mounts/{mountId}"
+        path = f"/recovery/workloads/vmware/malware-scan-mounts/{mount_id}"
         return self._call("DELETE", path, change=True)
 
-    def get_workloads_vmware_malware_scan_mount(self) -> Any:
+    def get_workloads_vmware_malware_scan_mount(self, mount_id: str | int) -> Any:
         """`GET /recovery/workloads/vmware/malware-scan-mounts/{mountId}`"""
-        path = "/recovery/workloads/vmware/malware-scan-mounts/{mountId}"
+        path = f"/recovery/workloads/vmware/malware-scan-mounts/{mount_id}"
         return self._call("GET", path)
 
     def post_workloads_vmware_scenarios_full_vm_pre_recovery_check(

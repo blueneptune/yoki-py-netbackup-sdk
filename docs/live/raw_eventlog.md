@@ -1,6 +1,6 @@
 # `nbu.raw.eventlog`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `list_messages` - GET /eventlog/messages
 
@@ -52,7 +52,7 @@ nbu.raw.eventlog.list_notifications()
 
 **On the wire**
 
-- `GET /eventlog/notifications` -> **200** (0.06 s)
+- `GET /eventlog/notifications` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -61,94 +61,85 @@ nbu.raw.eventlog.list_notifications()
     "data": [
       {
         "type": "notifications",
-        "id": "2430",
+        "id": "2465",
         "attributes": {
           "version": "1.0",
           "priority": "HIGH",
           "severity": "CRITICAL",
-          "createdDateTime": "2026-11-05T06:37:49.079Z",
-          "insertionDateTime": "2026-11-05T06:37:49.080Z",
-          "displayString": "One or more files and/or directories do not have the required web service user permissions.",
-          "notificationType": "Web Server Certificate Health",
+          "createdDateTime": "2026-11-05T06:45:23.747Z",
+          "insertionDateTime": "2026-11-05T06:45:29.397Z",
+          "displayString": "The policy bltlive-11050645-parts was deleted.",
+          "notificationType": "Policy",
           "producerName": "primary-01",
           "producerId": "f151f48b-17c5-4e7e-8a6b-1054db540384",
           "producerType": "NetBackup",
-          "producerSubType": "Healthchecker",
+          "producerSubType": "Audit",
           "extendedAttributes": {
-            "hostName": "primary-01",
-            "File Path": "/usr/openv/var/global/vxss/tomcatcreds/user-06/.VRTSat/profile/certstore/trusted/a76c2ae0.0\n/usr/openv/var/global/vxss/tomcatcreds/nbwebservice.bcfks\n/usr/openv/var/global/vxss/tomcatcreds/user-06/.VRTSat/profile/certstore/trusted/a76c2ae0.0\n/usr/openv/var/global/vxss/tomcatcreds/user-06/.VRTSat/profile/certstore/trusted/a76c2ae0.0\n/usr/openv/var/global/vxss/tomcatcreds/user-06/.VRTSat/profile/cer... (3001 characters)"
+            "policyName": "bltlive-11050645-parts",
+            "policyType": "Standard",
+            "action": "Delete"
           },
-          "namespace": "eventlog.vrts.nbu.healthcheck.websvcusr.permissions"
+          "namespace": "eventlog.vrts.nbu.audit.policy.delete"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/eventlog/notifications?filter=(id%20eq%202430)"
+            "href": "https://primary-01:1556/netbackup/eventlog/notifications?filter=(id%20eq%202465)"
           }
         }
       },
       {
         "type": "notifications",
-        "id": "2429",
+        "id": "2464",
         "attributes": {
           "version": "1.0",
-          "priority": "LOW",
-          "severity": "INFO",
-          "createdDateTime": "2026-11-05T06:15:54.260Z",
-          "insertionDateTime": "2026-11-05T06:15:54.261Z",
-          "displayString": "Successfully completed the discovery of server host-05.",
-          "notificationType": "DiscoveryEvent",
+          "priority": "HIGH",
+          "severity": "CRITICAL",
+          "createdDateTime": "2026-11-05T06:45:23.543Z",
+          "insertionDateTime": "2026-11-05T06:45:29.394Z",
+          "displayString": "The client bltlive-client.example.com was removed from the policy bltlive-11050645-parts.",
+          "notificationType": "Policy",
           "producerName": "primary-01",
           "producerId": "f151f48b-17c5-4e7e-8a6b-1054db540384",
           "producerType": "NetBackup",
-          "producerSubType": "Discovery",
+          "producerSubType": "Audit",
           "extendedAttributes": {
-            "workloadSubType": "VMWARE_VIRTUAL_CENTER_SERVER",
-            "discoveryHost": "primary-01",
-            "scheduled": "true",
-            "serverName": "host-05",
-            "attemptCount": "1",
-            "discoveryType": "FULL",
-            "workloadType": "VMware",
-            "status": "SUCCESS"
+            "clientNames": "bltlive-client.example.com",
+            "policyName": "bltlive-11050645-parts",
+            "action": "Update"
           },
-          "namespace": "eventlog.vrts.nbu.auto-discovery.completed"
+          "namespace": "eventlog.vrts.nbu.audit.policy.client.delete"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/eventlog/notifications?filter=(id%20eq%202429)"
+            "href": "https://primary-01:1556/netbackup/eventlog/notifications?filter=(id%20eq%202464)"
           }
         }
       },
       {
         "type": "notifications",
-        "id": "2428",
+        "id": "2463",
         "attributes": {
           "version": "1.0",
-          "priority": "LOW",
-          "severity": "INFO",
-          "createdDateTime": "2026-11-05T06:15:50.556Z",
-          "insertionDateTime": "2026-11-05T06:15:50.562Z",
-          "displayString": "Started the discovery of server host-05.",
-          "notificationType": "DiscoveryEvent",
+          "priority": "HIGH",
+          "severity": "CRITICAL",
+          "createdDateTime": "2026-11-05T06:45:23.432Z",
+          "insertionDateTime": "2026-11-05T06:45:29.391Z",
+          "displayString": "The schedule bltlive-full was removed from the policy bltlive-11050645-parts.",
+          "notificationType": "Policy",
           "producerName": "primary-01",
           "producerId": "f151f48b-17c5-4e7e-8a6b-1054db540384",
           "producerType": "NetBackup",
-          "producerSubType": "Discovery",
+          "producerSubType": "Audit",
           "extendedAttributes": {
-            "workloadSubType": "VMWARE_VIRTUAL_CENTER_SERVER",
-            "discoveryHost": "primary-01",
-            "scheduled": "true",
-            "serverName": "host-05",
-            "attemptCount": "1",
-            "discoveryType": "FULL",
-            "workloadType": "VMware",
-            "status": "RUNNING"
+            "policyName": "bltlive-11050645-parts",
+            "scheduleNames": "bltlive-full",
+            "action": "Update"
           },
-          "namespace": "eventlog.vrts.nbu.auto-discovery.started"
+          "namespace": "eventlog.vrts.nbu.audit.schedule.delete"
         },
         "links": {
           "self": {
-            "href": "https://primary-01:1556/netbackup/eventlog/notifications?filter=(id%20eq%202428)"
+            "href": "https://primary-01:1556/netbackup/eventlog/notifications?filter=(id%20eq%202463)"
           }
         }
       },
@@ -157,11 +148,11 @@ nbu.raw.eventlog.list_notifications()
     "meta": {
       "pagination": {
         "next": 10,
-        "pages": 3,
+        "pages": 6,
         "offset": 0,
-        "last": 20,
+        "last": 50,
         "limit": 10,
-        "count": 25,
+        "count": 60,
         "page": 0,
         "first": 0
       }
@@ -171,7 +162,7 @@ nbu.raw.eventlog.list_notifications()
         "href": "https://primary-01:1556/netbackup/eventlog/notifications?page%5Boffset%5D=10&page%5Blimit%5D=10&sort=-createdDateTime"
       },
       "last": {
-        "href": "https://primary-01:1556/netbackup/eventlog/notifications?page%5Boffset%5D=20&page%5Blimit%5D=10&sort=-createdDateTime"
+        "href": "https://primary-01:1556/netbackup/eventlog/notifications?page%5Boffset%5D=50&page%5Blimit%5D=10&sort=-createdDateTime"
       },
       "self": {
         "href": "https://primary-01:1556/netbackup/eventlog/notifications?page%5Boffset%5D=0&page%5Blimit%5D=10&sort=-createdDateTime"

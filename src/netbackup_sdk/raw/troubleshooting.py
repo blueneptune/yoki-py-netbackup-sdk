@@ -31,10 +31,19 @@ class Troubleshooting(Resource):
         path = "/troubleshooting/log-records"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_log_record(self, record_id: str | int) -> Any:
-        """`DELETE /troubleshooting/log-records/{recordId}`"""
+    def delete_log_record(
+        self, record_id: str | int, *, x_net_backup_audit_reason: Any = None
+    ) -> Any:
+        """`DELETE /troubleshooting/log-records/{recordId}`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/troubleshooting/log-records/{record_id}"
-        return self._call("DELETE", path, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_log_record(self, record_id: str | int) -> Any:
         """`GET /troubleshooting/log-records/{recordId}`"""

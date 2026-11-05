@@ -1,6 +1,6 @@
 # `nbu.raw.troubleshooting`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_log_record` - GET /troubleshooting/log-records/{recordId}
 
@@ -54,7 +54,7 @@ def test_get(
     _cache[f"{template}|{values}"] = answer
 ```
 
-## `get_user-05` - GET /status-codes/{statusCode}
+## `get_root` - GET /status-codes/{statusCode}
 
 > **SKIPPED** on this run: nothing on this server to look at here
 

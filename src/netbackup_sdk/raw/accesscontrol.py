@@ -21,105 +21,177 @@ class Accesscontrol(Resource):
         path = f"/access-control/managed-objects/{object_id}"
         return self._call("GET", path, params={"include": include})
 
-    def patch_managed_object(self, object_id: str | int, *, body: Any = None) -> Any:
+    def patch_managed_object(
+        self, object_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`PATCH /access-control/managed-objects/{objectId}`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/access-control/managed-objects/{object_id}"
-        return self._call("PATCH", path, body=body, change=True)
+        return self._call(
+            "PATCH",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def get_managed_object_access_definitions(self, object_id: str | int) -> Any:
-        """`GET /access-control/managed-objects/{objectId}/access-definitions`"""
+    def get_managed_object_access_definitions(
+        self, object_id: str | int, *, meta: Any = None
+    ) -> Any:
+        """`GET /access-control/managed-objects/{objectId}/access-definitions`
+
+        Query: meta."""
         path = f"/access-control/managed-objects/{object_id}/access-definitions"
-        return self._call("GET", path)
+        return self._call("GET", path, params={"meta": meta})
 
     def patch_managed_object_access_definitions(
-        self, object_id: str | int, *, body: Any = None
+        self, object_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
     ) -> Any:
         """`PATCH /access-control/managed-objects/{objectId}/access-definitions`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/access-control/managed-objects/{object_id}/access-definitions"
-        return self._call("PATCH", path, body=body, change=True)
+        return self._call(
+            "PATCH",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def post_managed_object_access_definitions(
-        self, object_id: str | int, *, body: Any = None
+        self, object_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
     ) -> Any:
         """`POST /access-control/managed-objects/{objectId}/access-definitions`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/access-control/managed-objects/{object_id}/access-definitions"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def get_managed_object_access_definitions_effective_acl(
-        self, object_id: str | int, *, include: Any = None
+        self, object_id: str | int, *, include: Any = None, meta: Any = None
     ) -> Any:
         """`GET /access-control/managed-objects/{objectId}/access-definitions/effective-acl`
 
-        Query: include."""
+        Query: include, meta."""
         path = f"/access-control/managed-objects/{object_id}/access-definitions/effective-acl"
-        return self._call("GET", path, params={"include": include})
+        return self._call("GET", path, params={"include": include, "meta": meta})
 
     def delete_managed_object_access_definition(
-        self, object_id: str | int, access_definition_id: str | int
+        self,
+        object_id: str | int,
+        access_definition_id: str | int,
+        *,
+        x_net_backup_audit_reason: Any = None,
     ) -> Any:
-        """`DELETE /access-control/managed-objects/{objectId}/access-definitions/{accessDefinitionId}`"""
+        """`DELETE /access-control/managed-objects/{objectId}/access-definitions/{accessDefinitionId}`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = (
             f"/access-control/managed-objects/{object_id}/access-definitions/{access_definition_id}"
         )
-        return self._call("DELETE", path, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_managed_object_access_definition(
-        self, object_id: str | int, access_definition_id: str | int
+        self, object_id: str | int, access_definition_id: str | int, *, meta: Any = None
     ) -> Any:
-        """`GET /access-control/managed-objects/{objectId}/access-definitions/{accessDefinitionId}`"""
+        """`GET /access-control/managed-objects/{objectId}/access-definitions/{accessDefinitionId}`
+
+        Query: meta."""
         path = (
             f"/access-control/managed-objects/{object_id}/access-definitions/{access_definition_id}"
         )
-        return self._call("GET", path)
+        return self._call("GET", path, params={"meta": meta})
 
     def put_managed_object_access_definition(
-        self, object_id: str | int, access_definition_id: str | int, *, body: Any = None
+        self,
+        object_id: str | int,
+        access_definition_id: str | int,
+        *,
+        x_net_backup_audit_reason: Any = None,
+        body: Any = None,
     ) -> Any:
         """`PUT /access-control/managed-objects/{objectId}/access-definitions/{accessDefinitionId}`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = (
             f"/access-control/managed-objects/{object_id}/access-definitions/{access_definition_id}"
         )
-        return self._call("PUT", path, body=body, change=True)
+        return self._call(
+            "PUT",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def list_managed_object_primary_operations(
-        self, object_id: str | int, *, page_limit: Any = None
+        self,
+        object_id: str | int,
+        *,
+        meta: Any = None,
+        page_offset: Any = None,
+        page_limit: Any = None,
     ) -> Any:
         """`GET /access-control/managed-objects/{objectId}/primary-operations`
 
-        Query: page[limit]."""
+        Query: meta, page[offset], page[limit]."""
         path = f"/access-control/managed-objects/{object_id}/primary-operations"
-        return self._call("GET", path, params={"page[limit]": page_limit})
+        return self._call(
+            "GET",
+            path,
+            params={"meta": meta, "page[offset]": page_offset, "page[limit]": page_limit},
+        )
 
     def list_operations(
-        self, *, filter_: Any = None, page_disable: Any = None, page_limit: Any = None
+        self,
+        *,
+        meta: Any = None,
+        filter_: Any = None,
+        page_disable: Any = None,
+        page_offset: Any = None,
+        page_limit: Any = None,
     ) -> Any:
         """`GET /access-control/operations`
 
-        Query: filter, page[disable], page[limit]."""
+        Query: meta, filter, page[disable], page[offset], page[limit]."""
         path = "/access-control/operations"
         return self._call(
             "GET",
             path,
-            params={"filter": filter_, "page[disable]": page_disable, "page[limit]": page_limit},
+            params={
+                "meta": meta,
+                "filter": filter_,
+                "page[disable]": page_disable,
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+            },
         )
 
-    def get_operation(self, operation_id: str | int) -> Any:
-        """`GET /access-control/operations/{operationId}`"""
+    def get_operation(self, operation_id: str | int, *, meta: Any = None) -> Any:
+        """`GET /access-control/operations/{operationId}`
+
+        Query: meta."""
         path = f"/access-control/operations/{operation_id}"
-        return self._call("GET", path)
+        return self._call("GET", path, params={"meta": meta})
 
     def list_roles(
         self,
         *,
         meta: Any = None,
+        page_offset: Any = None,
         page_limit: Any = None,
         page_disable: Any = None,
         filter_: Any = None,
@@ -127,13 +199,14 @@ class Accesscontrol(Resource):
     ) -> Any:
         """`GET /access-control/roles`
 
-        Query: meta, page[limit], page[disable], filter, sort."""
+        Query: meta, page[offset], page[limit], page[disable], filter, sort."""
         path = "/access-control/roles"
         return self._call(
             "GET",
             path,
             params={
                 "meta": meta,
+                "page[offset]": page_offset,
                 "page[limit]": page_limit,
                 "page[disable]": page_disable,
                 "filter": filter_,
@@ -141,17 +214,30 @@ class Accesscontrol(Resource):
             },
         )
 
-    def post_roles(self, *, body: Any = None) -> Any:
+    def post_roles(self, *, x_net_backup_audit_reason: Any = None, body: Any = None) -> Any:
         """`POST /access-control/roles`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = "/access-control/roles"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def delete_role(self, role_id: str | int) -> Any:
-        """`DELETE /access-control/roles/{roleId}`"""
+    def delete_role(self, role_id: str | int, *, x_net_backup_audit_reason: Any = None) -> Any:
+        """`DELETE /access-control/roles/{roleId}`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/access-control/roles/{role_id}"
-        return self._call("DELETE", path, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_role(self, role_id: str | int, *, meta: Any = None) -> Any:
         """`GET /access-control/roles/{roleId}`
@@ -160,76 +246,120 @@ class Accesscontrol(Resource):
         path = f"/access-control/roles/{role_id}"
         return self._call("GET", path, params={"meta": meta})
 
-    def put_role(self, role_id: str | int, *, body: Any = None) -> Any:
+    def put_role(
+        self, role_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`PUT /access-control/roles/{roleId}`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/access-control/roles/{role_id}"
-        return self._call("PUT", path, body=body, change=True)
+        return self._call(
+            "PUT",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def list_role_access_definitions(
         self,
         role_id: str | int,
         *,
+        meta: Any = None,
         include: Any = None,
         filter_: Any = None,
+        page_offset: Any = None,
         page_limit: Any = None,
     ) -> Any:
         """`GET /access-control/roles/{roleId}/access-definitions`
 
-        Query: include, filter, page[limit]."""
+        Query: meta, include, filter, page[offset], page[limit]."""
         path = f"/access-control/roles/{role_id}/access-definitions"
         return self._call(
-            "GET", path, params={"include": include, "filter": filter_, "page[limit]": page_limit}
+            "GET",
+            path,
+            params={
+                "meta": meta,
+                "include": include,
+                "filter": filter_,
+                "page[offset]": page_offset,
+                "page[limit]": page_limit,
+            },
         )
 
     def delete_role_relationships_group_principals(
-        self, role_id: str | int, *, body: Any = None
+        self, role_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
     ) -> Any:
         """`DELETE /access-control/roles/{roleId}/relationships/group-principals`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/access-control/roles/{role_id}/relationships/group-principals"
-        return self._call("DELETE", path, body=body, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def post_role_relationships_group_principals(
-        self, role_id: str | int, *, body: Any = None
+        self, role_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
     ) -> Any:
         """`POST /access-control/roles/{roleId}/relationships/group-principals`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/access-control/roles/{role_id}/relationships/group-principals"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def delete_role_relationships_user_principals(
-        self, role_id: str | int, *, body: Any = None
+        self, role_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
     ) -> Any:
         """`DELETE /access-control/roles/{roleId}/relationships/user-principals`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/access-control/roles/{role_id}/relationships/user-principals"
-        return self._call("DELETE", path, body=body, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def post_role_relationships_user_principals(
-        self, role_id: str | int, *, body: Any = None
+        self, role_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
     ) -> Any:
         """`POST /access-control/roles/{roleId}/relationships/user-principals`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/access-control/roles/{role_id}/relationships/user-principals"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def get_service_namespaces(self, *, include: Any = None) -> Any:
+    def get_service_namespaces(self, *, meta: Any = None, include: Any = None) -> Any:
         """`GET /access-control/service-namespaces`
 
-        Query: include."""
+        Query: meta, include."""
         path = "/access-control/service-namespaces"
-        return self._call("GET", path, params={"include": include})
+        return self._call("GET", path, params={"meta": meta, "include": include})
 
-    def get_user_principal_roles(self, subject_identifier: str | int) -> Any:
-        """`GET /access-control/user-principals/{subjectIdentifier}/roles`"""
+    def get_user_principal_roles(self, subject_identifier: str | int, *, meta: Any = None) -> Any:
+        """`GET /access-control/user-principals/{subjectIdentifier}/roles`
+
+        Query: meta."""
         path = f"/access-control/user-principals/{subject_identifier}/roles"
-        return self._call("GET", path)
+        return self._call("GET", path, params={"meta": meta})
 
     def list_identities(self, *, filter_: Any = None) -> Any:
         """`GET /rbac/identities`

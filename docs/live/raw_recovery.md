@@ -1,6 +1,6 @@
 # `nbu.raw.recovery`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_workloads_cloud_paas_instant_access_image` - GET /recovery/workloads/cloud/paas/instant-access-images/{imageId}
 
@@ -30,7 +30,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /recovery/workloads/cloud/paas/instant-access-images` -> **200** (0.24 s)
+- `GET /recovery/workloads/cloud/paas/instant-access-images` -> **200** (0.23 s)
 
   <details><summary>Answer</summary>
 
@@ -110,7 +110,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /recovery/workloads/cloud/vm/instant-access-mounts` -> **200** (0.20 s)
+- `GET /recovery/workloads/cloud/vm/instant-access-mounts` -> **200** (0.24 s)
 
   <details><summary>Answer</summary>
 
@@ -150,7 +150,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /recovery/workloads/dynamic-nas/instant-access-mounts` -> **200** (0.23 s)
+- `GET /recovery/workloads/dynamic-nas/instant-access-mounts` -> **200** (0.19 s)
 
   <details><summary>Answer</summary>
 
@@ -190,7 +190,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /recovery/workloads/ms-windows/instant-access-mounts` -> **200** (0.23 s)
+- `GET /recovery/workloads/ms-windows/instant-access-mounts` -> **200** (0.24 s)
 
   <details><summary>Answer</summary>
 
@@ -230,7 +230,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /recovery/workloads/mssql/instant-access-mounts` -> **200** (0.27 s)
+- `GET /recovery/workloads/mssql/instant-access-mounts` -> **200** (0.22 s)
 
   <details><summary>Answer</summary>
 
@@ -310,7 +310,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /recovery/workloads/standard/instant-access-mounts` -> **200** (0.27 s)
+- `GET /recovery/workloads/standard/instant-access-mounts` -> **200** (0.25 s)
 
   <details><summary>Answer</summary>
 
@@ -350,7 +350,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /recovery/workloads/universal-share/instant-access-mounts` -> **200** (0.27 s)
+- `GET /recovery/workloads/universal-share/instant-access-mounts` -> **200** (0.30 s)
 
   <details><summary>Answer</summary>
 
@@ -390,7 +390,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /recovery/workloads/vmware/instant-access-mounts` -> **200** (0.21 s)
+- `GET /recovery/workloads/vmware/instant-access-mounts` -> **200** (0.24 s)
 
   <details><summary>Answer</summary>
 
@@ -456,7 +456,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /recovery/workloads/vmware/instant-access-vms` -> **200** (0.27 s)
+- `GET /recovery/workloads/vmware/instant-access-vms` -> **200** (0.24 s)
 
   <details><summary>Answer</summary>
 
@@ -516,7 +516,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /recovery/workloads/vmware/malware-scan-mounts` -> **200** (0.26 s)
+- `GET /recovery/workloads/vmware/malware-scan-mounts` -> **200** (0.23 s)
 
   <details><summary>Answer</summary>
 
@@ -556,7 +556,7 @@ nbu.raw.recovery.list_check_dr_in_cloud()
 
 **On the wire**
 
-- `GET /recovery/check-dr-in-cloud` -> **200** (0.05 s)
+- `GET /recovery/check-dr-in-cloud` -> **200** (0.09 s)
 
   <details><summary>Answer</summary>
 
@@ -586,7 +586,7 @@ nbu.raw.recovery.list_cloud_images_ami_ids()
 
 **On the wire**
 
-- `GET /recovery/cloud-images/ami-ids` -> **500** (0.20 s)
+- `GET /recovery/cloud-images/ami-ids` -> **500** (0.18 s)
 
   <details><summary>Answer</summary>
 
@@ -614,7 +614,7 @@ nbu.raw.recovery.list_cloud_images_cloud_vm_ids()
 
 **On the wire**
 
-- `GET /recovery/cloud-images/cloud-vm-ids` -> **500** (0.31 s)
+- `GET /recovery/cloud-images/cloud-vm-ids` -> **500** (0.28 s)
 
   <details><summary>Answer</summary>
 
@@ -640,7 +640,7 @@ nbu.raw.recovery.list_workloads_cloud_paas_instant_access_images()
 
 **On the wire**
 
-- `GET /recovery/workloads/cloud/paas/instant-access-images` -> **200** (0.34 s)
+- `GET /recovery/workloads/cloud/paas/instant-access-images` -> **200** (0.33 s)
 
   <details><summary>Answer</summary>
 
@@ -660,7 +660,7 @@ nbu.raw.recovery.list_workloads_cloud_paas_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/cloud/paas/instant-access-mounts` -> **200** (0.19 s)
+- `GET /recovery/workloads/cloud/paas/instant-access-mounts` -> **200** (0.26 s)
 
   <details><summary>Answer</summary>
 
@@ -680,7 +680,7 @@ nbu.raw.recovery.list_workloads_cloud_vm_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/cloud/vm/instant-access-mounts` -> **200** (0.24 s)
+- `GET /recovery/workloads/cloud/vm/instant-access-mounts` -> **200** (0.27 s)
 
   <details><summary>Answer</summary>
 
@@ -700,7 +700,7 @@ nbu.raw.recovery.list_workloads_dynamic_nas_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/dynamic-nas/instant-access-mounts` -> **200** (0.21 s)
+- `GET /recovery/workloads/dynamic-nas/instant-access-mounts` -> **200** (0.23 s)
 
   <details><summary>Answer</summary>
 
@@ -720,7 +720,7 @@ nbu.raw.recovery.list_workloads_ms_windows_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/ms-windows/instant-access-mounts` -> **200** (0.23 s)
+- `GET /recovery/workloads/ms-windows/instant-access-mounts` -> **200** (0.25 s)
 
   <details><summary>Answer</summary>
 
@@ -740,7 +740,7 @@ nbu.raw.recovery.list_workloads_mssql_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/mssql/instant-access-mounts` -> **200** (0.22 s)
+- `GET /recovery/workloads/mssql/instant-access-mounts` -> **200** (0.26 s)
 
   <details><summary>Answer</summary>
 
@@ -760,7 +760,7 @@ nbu.raw.recovery.list_workloads_oracle_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/oracle/instant-access-mounts` -> **200** (0.23 s)
+- `GET /recovery/workloads/oracle/instant-access-mounts` -> **200** (0.25 s)
 
   <details><summary>Answer</summary>
 
@@ -780,7 +780,7 @@ nbu.raw.recovery.list_workloads_standard_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/standard/instant-access-mounts` -> **200** (0.25 s)
+- `GET /recovery/workloads/standard/instant-access-mounts` -> **200** (0.23 s)
 
   <details><summary>Answer</summary>
 
@@ -800,7 +800,7 @@ nbu.raw.recovery.list_workloads_universal_share_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/universal-share/instant-access-mounts` -> **200** (0.22 s)
+- `GET /recovery/workloads/universal-share/instant-access-mounts` -> **200** (0.24 s)
 
   <details><summary>Answer</summary>
 
@@ -872,7 +872,7 @@ nbu.raw.recovery.list_workloads_vmware_instant_access_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/vmware/instant-access-mounts` -> **200** (0.22 s)
+- `GET /recovery/workloads/vmware/instant-access-mounts` -> **200** (0.24 s)
 
   <details><summary>Answer</summary>
 
@@ -892,7 +892,7 @@ nbu.raw.recovery.list_workloads_vmware_malware_scan_mounts()
 
 **On the wire**
 
-- `GET /recovery/workloads/vmware/malware-scan-mounts` -> **200** (0.22 s)
+- `GET /recovery/workloads/vmware/malware-scan-mounts` -> **200** (0.23 s)
 
   <details><summary>Answer</summary>
 

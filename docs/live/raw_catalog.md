@@ -1,6 +1,6 @@
 # `nbu.raw.catalog`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_asset-20_image` - GET /catalog/asset-20-images/{backupId}
 
@@ -82,7 +82,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /catalog/images` -> **200** (0.13 s)
+- `GET /catalog/images` -> **200** (0.20 s)
 
   <details><summary>Answer</summary>
 
@@ -340,7 +340,7 @@ nbu.raw.catalog.list_images()
 
 **On the wire**
 
-- `GET /catalog/images` -> **200** (0.22 s)
+- `GET /catalog/images` -> **200** (0.19 s)
 
   <details><summary>Answer</summary>
 
@@ -367,7 +367,7 @@ nbu.raw.catalog.list_latest_vmware_images()
 
 **On the wire**
 
-- `GET /catalog/latest-vmware-images` -> **200** (0.08 s)
+- `GET /catalog/latest-vmware-images` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -396,7 +396,7 @@ nbu.raw.catalog.list_raw_partition_image_contents()
 
 **On the wire**
 
-- `GET /catalog/raw-partition-image-contents` -> **400** (0.05 s)
+- `GET /catalog/raw-partition-image-contents` -> **400** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -424,7 +424,7 @@ nbu.raw.catalog.list_rollback_image_contents()
 
 **On the wire**
 
-- `GET /catalog/rollback-image-contents` -> **400** (0.11 s)
+- `GET /catalog/rollback-image-contents` -> **400** (0.14 s)
 
   <details><summary>Answer</summary>
 
@@ -450,7 +450,7 @@ nbu.raw.catalog.list_rollback_images()
 
 **On the wire**
 
-- `GET /catalog/rollback-images` -> **200** (0.13 s)
+- `GET /catalog/rollback-images` -> **200** (0.18 s)
 
   <details><summary>Answer</summary>
 
@@ -477,7 +477,7 @@ nbu.raw.catalog.list_slp_images()
 
 **On the wire**
 
-- `GET /catalog/slp-images` -> **200** (0.09 s)
+- `GET /catalog/slp-images` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -510,7 +510,7 @@ nbu.raw.catalog.list_tape_media()
 
 **On the wire**
 
-- `GET /catalog/tape-media` -> **200** (0.24 s)
+- `GET /catalog/tape-media` -> **200** (0.22 s)
 
   <details><summary>Answer</summary>
 
@@ -578,7 +578,7 @@ nbu.raw.catalog.list_vmware_images()
 
 **On the wire**
 
-- `GET /catalog/vmware-images` -> **200** (0.24 s)
+- `GET /catalog/vmware-images` -> **200** (0.19 s)
 
   <details><summary>Answer</summary>
 

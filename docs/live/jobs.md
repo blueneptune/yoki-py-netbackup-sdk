@@ -1,6 +1,6 @@
 # Jobs
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## The newest few jobs, and how many there are, in one request
 
@@ -14,7 +14,7 @@ assert all(isinstance(job, Job) for job in jobs)
 
 **On the wire**
 
-- `GET /admin/jobs?sort=-jobId&page%5Boffset%5D=0&page%5Blimit%5D=3` -> **200** (0.10 s)
+- `GET /admin/jobs?sort=-jobId&page%5Boffset%5D=0&page%5Blimit%5D=3` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -29,7 +29,7 @@ assert all(isinstance(job, Job) for job in jobs)
           "parentJobId": 0,
           "activeProcessId": 790091,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -91,7 +91,7 @@ assert all(isinstance(job, Job) for job in jobs)
           "parentJobId": 0,
           "activeProcessId": 693779,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -153,7 +153,7 @@ assert all(isinstance(job, Job) for job in jobs)
           "parentJobId": 0,
           "activeProcessId": 595274,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -339,7 +339,7 @@ assert count >= 0
           "parentJobId": 0,
           "activeProcessId": 197086,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -401,7 +401,7 @@ assert count >= 0
           "parentJobId": 0,
           "activeProcessId": 300923,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -463,7 +463,7 @@ assert count >= 0
           "parentJobId": 0,
           "activeProcessId": 399662,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -561,7 +561,7 @@ assert all(job.last_update_time is None or job.last_update_time >= since for job
 
 **On the wire**
 
-- `GET /admin/jobs?filter=lastUpdateTime+ge+2026-10-29T06%3A37%3A58.141Z&sort=jobId&page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.06 s)
+- `GET /admin/jobs?filter=lastUpdateTime+ge+2026-10-29T06%3A45%3A26.058Z&sort=jobId&page%5Boffset%5D=0&page%5Blimit%5D=100` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -576,7 +576,7 @@ assert all(job.last_update_time is None or job.last_update_time >= since for job
           "parentJobId": 0,
           "activeProcessId": 197086,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -638,7 +638,7 @@ assert all(job.last_update_time is None or job.last_update_time >= since for job
           "parentJobId": 0,
           "activeProcessId": 300923,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -700,7 +700,7 @@ assert all(job.last_update_time is None or job.last_update_time >= since for job
           "parentJobId": 0,
           "activeProcessId": 399662,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -763,10 +763,10 @@ assert all(job.last_update_time is None or job.last_update_time >= since for job
     },
     "links": {
       "self": {
-        "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=100&sort=jobId&filter=lastUpdateTime%20ge%202026-10-29T06:37:58.141Z"
+        "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=100&sort=jobId&filter=lastUpdateTime%20ge%202026-10-29T06:45:26.058Z"
       },
       "first": {
-        "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=100&sort=jobId&filter=lastUpdateTime%20ge%202026-10-29T06:37:58.141Z"
+        "href": "https://primary-01:1556/netbackup/admin/jobs?page%5Blimit%5D=100&sort=jobId&filter=lastUpdateTime%20ge%202026-10-29T06:45:26.058Z"
       }
     }
   }
@@ -778,7 +778,7 @@ assert all(job.last_update_time is None or job.last_update_time >= since for job
 
 ```json
 {
-  "since": "2026-10-29T06:37:58.141457+00:00",
+  "since": "2026-10-29T06:45:26.058183+00:00",
   "jobs": 7
 }
 ```
@@ -806,7 +806,7 @@ record.result(nbu.jobs.oldest_start())
           "parentJobId": 0,
           "activeProcessId": 197086,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -898,7 +898,7 @@ assert job is not None and job.job_id == newest.job_id
 
 **On the wire**
 
-- `GET /admin/jobs/1704` -> **200** (0.05 s)
+- `GET /admin/jobs/1704` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -912,7 +912,7 @@ assert job is not None and job.job_id == newest.job_id
         "parentJobId": 0,
         "activeProcessId": 790091,
         "jobType": "IMAGEDELETE",
-        "jobOwner": "user-05",
+        "jobOwner": "root",
         "streamNumber": 0,
         "copyNumber": 0,
         "priority": 0,
@@ -1129,7 +1129,7 @@ record.result(nbu.jobs.file_lists(newest.job_id))
 
 **On the wire**
 
-- `GET /admin/jobs/1704/file-lists` -> **200** (0.06 s)
+- `GET /admin/jobs/1704/file-lists` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 

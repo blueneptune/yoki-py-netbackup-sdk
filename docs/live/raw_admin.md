@@ -1,6 +1,6 @@
 # `nbu.raw.admin`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_host_service` - GET /admin/hosts/{hostId}/services/{serviceName}
 
@@ -62,7 +62,7 @@ nbu.raw.admin.get_job('1704')
 
 **On the wire**
 
-- `GET /admin/jobs` -> **200** (0.06 s)
+- `GET /admin/jobs` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -77,7 +77,7 @@ nbu.raw.admin.get_job('1704')
           "parentJobId": 0,
           "activeProcessId": 790091,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -139,7 +139,7 @@ nbu.raw.admin.get_job('1704')
           "parentJobId": 0,
           "activeProcessId": 693779,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -201,7 +201,7 @@ nbu.raw.admin.get_job('1704')
           "parentJobId": 0,
           "activeProcessId": 595274,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -289,7 +289,7 @@ nbu.raw.admin.get_job('1704')
         "parentJobId": 0,
         "activeProcessId": 790091,
         "jobType": "IMAGEDELETE",
-        "jobOwner": "user-05",
+        "jobOwner": "root",
         "streamNumber": 0,
         "copyNumber": 0,
         "priority": 0,
@@ -351,7 +351,7 @@ nbu.raw.admin.get_job_file_lists('1704')
 
 **On the wire**
 
-- `GET /admin/jobs/1704/file-lists` -> **200** (0.12 s)
+- `GET /admin/jobs/1704/file-lists` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -384,7 +384,7 @@ nbu.raw.admin.get_job_try_log('1704', '1704-1')
 
 **On the wire**
 
-- `GET /admin/jobs/1704/try-logs` -> **200** (0.08 s)
+- `GET /admin/jobs/1704/try-logs` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -446,7 +446,7 @@ nbu.raw.admin.get_job_try_log('1704', '1704-1')
 
   </details>
 
-- `GET /admin/jobs/1704/try-logs/1704-1` -> **400** (0.06 s)
+- `GET /admin/jobs/1704/try-logs/1704-1` -> **400** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -470,7 +470,7 @@ nbu.raw.admin.get_job_try_logs('1704')
 
 **On the wire**
 
-- `GET /admin/jobs/1704/try-logs` -> **200** (0.17 s)
+- `GET /admin/jobs/1704/try-logs` -> **200** (0.23 s)
 
   <details><summary>Answer</summary>
 
@@ -644,7 +644,7 @@ nbu.raw.admin.list_job_progress_logs('1704')
 
 **On the wire**
 
-- `GET /admin/jobs/1704/progress-logs` -> **200** (0.11 s)
+- `GET /admin/jobs/1704/progress-logs` -> **200** (0.12 s)
 
   <details><summary>Answer</summary>
 
@@ -686,7 +686,7 @@ nbu.raw.admin.list_jobs()
 
 **On the wire**
 
-- `GET /admin/jobs` -> **200** (0.07 s)
+- `GET /admin/jobs` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -701,7 +701,7 @@ nbu.raw.admin.list_jobs()
           "parentJobId": 0,
           "activeProcessId": 790091,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -763,7 +763,7 @@ nbu.raw.admin.list_jobs()
           "parentJobId": 0,
           "activeProcessId": 693779,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -825,7 +825,7 @@ nbu.raw.admin.list_jobs()
           "parentJobId": 0,
           "activeProcessId": 595274,
           "jobType": "IMAGEDELETE",
-          "jobOwner": "user-05",
+          "jobOwner": "root",
           "streamNumber": 0,
           "copyNumber": 0,
           "priority": 0,
@@ -907,7 +907,7 @@ nbu.raw.admin.list_user_operation_logs()
 
 **On the wire**
 
-- `GET /admin/user-operation-logs` -> **200** (0.15 s)
+- `GET /admin/user-operation-logs` -> **200** (0.16 s)
 
   <details><summary>Answer</summary>
 

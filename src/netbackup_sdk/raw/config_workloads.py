@@ -56,29 +56,35 @@ class ConfigWorkloads(Resource):
         return self._call("GET", path)
 
     def get_workloads_vmware_vcenter_esxiserver_datastores(
-        self, vcenter_id: str | int, esxiserver_id: str | int
+        self, vcenter_id: str | int, esxiserver_id: str | int, *, force_update: Any = None
     ) -> Any:
-        """`GET /config/workloads/vmware/vcenters/{vcenter-id}/esxiservers/{esxiserver-id}/datastores`"""
+        """`GET /config/workloads/vmware/vcenters/{vcenter-id}/esxiservers/{esxiserver-id}/datastores`
+
+        Headers: Force-Update."""
         path = (
             f"/config/workloads/vmware/vcenters/{vcenter_id}/esxiservers/{esxiserver_id}/datastores"
         )
-        return self._call("GET", path)
+        return self._call("GET", path, headers={"Force-Update": force_update})
 
     def get_workloads_vmware_vcenter_esxiserver_networks(
-        self, vcenter_id: str | int, esxiserver_id: str | int
+        self, vcenter_id: str | int, esxiserver_id: str | int, *, force_update: Any = None
     ) -> Any:
-        """`GET /config/workloads/vmware/vcenters/{vcenter-id}/esxiservers/{esxiserver-id}/networks`"""
+        """`GET /config/workloads/vmware/vcenters/{vcenter-id}/esxiservers/{esxiserver-id}/networks`
+
+        Headers: Force-Update."""
         path = (
             f"/config/workloads/vmware/vcenters/{vcenter_id}/esxiservers/{esxiserver_id}/networks"
         )
-        return self._call("GET", path)
+        return self._call("GET", path, headers={"Force-Update": force_update})
 
     def get_workloads_vmware_vcenter_esxiserver_resource_pools(
-        self, vcenter_id: str | int, esxiserver_id: str | int
+        self, vcenter_id: str | int, esxiserver_id: str | int, *, force_update: Any = None
     ) -> Any:
-        """`GET /config/workloads/vmware/vcenters/{vcenter-id}/esxiservers/{esxiserver-id}/resource-pools`"""
+        """`GET /config/workloads/vmware/vcenters/{vcenter-id}/esxiservers/{esxiserver-id}/resource-pools`
+
+        Headers: Force-Update."""
         path = f"/config/workloads/vmware/vcenters/{vcenter_id}/esxiservers/{esxiserver_id}/resource-pools"
-        return self._call("GET", path)
+        return self._call("GET", path, headers={"Force-Update": force_update})
 
     def get_workloads_vmware_vcloud_director_organization_organization_vdc_vcenter_esxiserver_datastores(
         self,
@@ -87,10 +93,14 @@ class ConfigWorkloads(Resource):
         organization_vdc: str | int,
         vcenter_id: str | int,
         esxiserver_id: str | int,
+        *,
+        force_update: Any = None,
     ) -> Any:
-        """`GET /config/workloads/vmware/vcloud-directors/{vcloud-director-id}/organizations/{organization}/organization-vdcs/{organization-vdc}/vcenters/{vcenter-id}/esxiservers/{esxiserver-id}/datastores`"""
+        """`GET /config/workloads/vmware/vcloud-directors/{vcloud-director-id}/organizations/{organization}/organization-vdcs/{organization-vdc}/vcenters/{vcenter-id}/esxiservers/{esxiserver-id}/datastores`
+
+        Headers: Force-Update."""
         path = f"/config/workloads/vmware/vcloud-directors/{vcloud_director_id}/organizations/{organization}/organization-vdcs/{organization_vdc}/vcenters/{vcenter_id}/esxiservers/{esxiserver_id}/datastores"
-        return self._call("GET", path)
+        return self._call("GET", path, headers={"Force-Update": force_update})
 
     def get_workloads_vmware_vcloud_director_organization_organization_vdc_vcenter_esxiserver_resource_pools(
         self,
@@ -99,10 +109,14 @@ class ConfigWorkloads(Resource):
         organization_vdc: str | int,
         vcenter_id: str | int,
         esxiserver_id: str | int,
+        *,
+        force_update: Any = None,
     ) -> Any:
-        """`GET /config/workloads/vmware/vcloud-directors/{vcloud-director-id}/organizations/{organization}/organization-vdcs/{organization-vdc}/vcenters/{vcenter-id}/esxiservers/{esxiserver-id}/resource-pools`"""
+        """`GET /config/workloads/vmware/vcloud-directors/{vcloud-director-id}/organizations/{organization}/organization-vdcs/{organization-vdc}/vcenters/{vcenter-id}/esxiservers/{esxiserver-id}/resource-pools`
+
+        Headers: Force-Update."""
         path = f"/config/workloads/vmware/vcloud-directors/{vcloud_director_id}/organizations/{organization}/organization-vdcs/{organization_vdc}/vcenters/{vcenter_id}/esxiservers/{esxiserver_id}/resource-pools"
-        return self._call("GET", path)
+        return self._call("GET", path, headers={"Force-Update": force_update})
 
     def get_workloads_vmware_vcloud_recovery_topology(
         self, vcloud_director_id: str | int, *, filter_: Any = None

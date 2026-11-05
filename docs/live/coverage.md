@@ -1,12 +1,12 @@
 # Coverage, proven live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
-**153 of 733** operations in the server's own API description were called by the live tests and answered without an error.
+**163 of 733** operations in the server's own API description were called by the live tests and answered without an error.
 
 | Area | Proven | Operations |
 |---|---|---|
-| config | 33 | 176 |
+| config | 43 | 176 |
 | recovery | 14 | 100 |
 | security | 32 | 88 |
 | bmr | 0 | 72 |
@@ -74,6 +74,10 @@
 
 ### config
 
+- `DELETE /config/policies/{policyName}`
+- `DELETE /config/policies/{policyName}/clients/{clientName}`
+- `DELETE /config/policies/{policyName}/schedules/{scheduleName}`
+- `DELETE /config/slps/{slpName}`
 - `GET /config/agentless-hosts`
 - `GET /config/cdp-gateway`
 - `GET /config/credential-schemas`
@@ -107,6 +111,12 @@
 - `GET /config/unique-policy-clients`
 - `GET /config/workloads/cloud-object-store/providers`
 - `GET /config/workloads/ndmp/hosts`
+- `POST /config/policies/`
+- `POST /config/slps`
+- `PUT /config/policies/{policyName}`
+- `PUT /config/policies/{policyName}/clients/{clientName}`
+- `PUT /config/policies/{policyName}/schedules/{scheduleName}`
+- `PUT /config/slps/{slpName}`
 
 ### config_workloads
 

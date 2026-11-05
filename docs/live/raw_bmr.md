@@ -1,6 +1,6 @@
 # `nbu.raw.bmr`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_client` - GET /bare-metal-restore/clients/{clientName}
 
@@ -30,7 +30,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /bare-metal-restore/clients` -> **503** (0.20 s)
+- `GET /bare-metal-restore/clients` -> **503** (0.19 s)
 
   <details><summary>Answer</summary>
 
@@ -62,7 +62,7 @@ def test_get(
 
   </details>
 
-- `GET /bare-metal-restore/clients` -> **503** (0.23 s)
+- `GET /bare-metal-restore/clients` -> **503** (0.19 s)
 
   <details><summary>Answer</summary>
 
@@ -210,7 +210,7 @@ def test_get(
 
 **On the wire**
 
-- `GET /bare-metal-restore/shared-resource-trees` -> **503** (0.19 s)
+- `GET /bare-metal-restore/shared-resource-trees` -> **503** (0.21 s)
 
   <details><summary>Answer</summary>
 
@@ -226,7 +226,7 @@ def test_get(
 
   </details>
 
-- `GET /bare-metal-restore/shared-resource-trees` -> **503** (0.22 s)
+- `GET /bare-metal-restore/shared-resource-trees` -> **503** (0.23 s)
 
   <details><summary>Answer</summary>
 
@@ -242,7 +242,7 @@ def test_get(
 
   </details>
 
-- `GET /bare-metal-restore/shared-resource-trees` -> **503** (0.22 s)
+- `GET /bare-metal-restore/shared-resource-trees` -> **503** (0.25 s)
 
   <details><summary>Answer</summary>
 
@@ -268,22 +268,6 @@ nbu.raw.bmr.list_boot_servers()
 
 **On the wire**
 
-- `GET /bare-metal-restore/boot-servers` -> **503** (0.23 s)
-
-  <details><summary>Answer</summary>
-
-  ```json
-  {
-    "errorCode": 3100,
-    "errorMessage": "Unable to reach the BMR server due to downtime or not configured.",
-    "attributeErrors": {},
-    "fileUploadErrors": [],
-    "errorDetails": []
-  }
-  ```
-
-  </details>
-
 - `GET /bare-metal-restore/boot-servers` -> **503** (0.22 s)
 
   <details><summary>Answer</summary>
@@ -301,6 +285,22 @@ nbu.raw.bmr.list_boot_servers()
   </details>
 
 - `GET /bare-metal-restore/boot-servers` -> **503** (0.22 s)
+
+  <details><summary>Answer</summary>
+
+  ```json
+  {
+    "errorCode": 3100,
+    "errorMessage": "Unable to reach the BMR server due to downtime or not configured.",
+    "attributeErrors": {},
+    "fileUploadErrors": [],
+    "errorDetails": []
+  }
+  ```
+
+  </details>
+
+- `GET /bare-metal-restore/boot-servers` -> **503** (0.25 s)
 
   <details><summary>Answer</summary>
 
@@ -368,7 +368,7 @@ nbu.raw.bmr.list_clients()
 
   </details>
 
-- `GET /bare-metal-restore/clients` -> **503** (0.24 s)
+- `GET /bare-metal-restore/clients` -> **503** (0.25 s)
 
   <details><summary>Answer</summary>
 
@@ -384,7 +384,7 @@ nbu.raw.bmr.list_clients()
 
   </details>
 
-- `GET /bare-metal-restore/clients` -> **503** (0.23 s)
+- `GET /bare-metal-restore/clients` -> **503** (0.25 s)
 
   <details><summary>Answer</summary>
 
@@ -878,7 +878,7 @@ nbu.raw.bmr.list_discovered_configurations()
 
 **On the wire**
 
-- `GET /bare-metal-restore/discovered-configurations` -> **503** (0.24 s)
+- `GET /bare-metal-restore/discovered-configurations` -> **503** (0.26 s)
 
   <details><summary>Answer</summary>
 
@@ -894,7 +894,7 @@ nbu.raw.bmr.list_discovered_configurations()
 
   </details>
 
-- `GET /bare-metal-restore/discovered-configurations` -> **503** (0.27 s)
+- `GET /bare-metal-restore/discovered-configurations` -> **503** (0.25 s)
 
   <details><summary>Answer</summary>
 
@@ -910,7 +910,7 @@ nbu.raw.bmr.list_discovered_configurations()
 
   </details>
 
-- `GET /bare-metal-restore/discovered-configurations` -> **503** (0.22 s)
+- `GET /bare-metal-restore/discovered-configurations` -> **503** (0.20 s)
 
   <details><summary>Answer</summary>
 
@@ -936,7 +936,7 @@ nbu.raw.bmr.list_packages()
 
 **On the wire**
 
-- `GET /bare-metal-restore/packages` -> **503** (0.22 s)
+- `GET /bare-metal-restore/packages` -> **503** (0.25 s)
 
   <details><summary>Answer</summary>
 
@@ -952,7 +952,7 @@ nbu.raw.bmr.list_packages()
 
   </details>
 
-- `GET /bare-metal-restore/packages` -> **503** (0.23 s)
+- `GET /bare-metal-restore/packages` -> **503** (0.21 s)
 
   <details><summary>Answer</summary>
 
@@ -968,7 +968,7 @@ nbu.raw.bmr.list_packages()
 
   </details>
 
-- `GET /bare-metal-restore/packages` -> **503** (0.18 s)
+- `GET /bare-metal-restore/packages` -> **503** (0.25 s)
 
   <details><summary>Answer</summary>
 
@@ -994,6 +994,22 @@ nbu.raw.bmr.list_shared_resource_trees()
 
 **On the wire**
 
+- `GET /bare-metal-restore/shared-resource-trees` -> **503** (0.21 s)
+
+  <details><summary>Answer</summary>
+
+  ```json
+  {
+    "errorCode": 3100,
+    "errorMessage": "Unable to reach the BMR server due to downtime or not configured.",
+    "attributeErrors": {},
+    "fileUploadErrors": [],
+    "errorDetails": []
+  }
+  ```
+
+  </details>
+
 - `GET /bare-metal-restore/shared-resource-trees` -> **503** (0.24 s)
 
   <details><summary>Answer</summary>
@@ -1010,23 +1026,7 @@ nbu.raw.bmr.list_shared_resource_trees()
 
   </details>
 
-- `GET /bare-metal-restore/shared-resource-trees` -> **503** (0.18 s)
-
-  <details><summary>Answer</summary>
-
-  ```json
-  {
-    "errorCode": 3100,
-    "errorMessage": "Unable to reach the BMR server due to downtime or not configured.",
-    "attributeErrors": {},
-    "fileUploadErrors": [],
-    "errorDetails": []
-  }
-  ```
-
-  </details>
-
-- `GET /bare-metal-restore/shared-resource-trees` -> **503** (0.21 s)
+- `GET /bare-metal-restore/shared-resource-trees` -> **503** (0.20 s)
 
   <details><summary>Answer</summary>
 
@@ -1052,7 +1052,7 @@ nbu.raw.bmr.list_tasks()
 
 **On the wire**
 
-- `GET /bare-metal-restore/tasks` -> **503** (0.24 s)
+- `GET /bare-metal-restore/tasks` -> **503** (0.18 s)
 
   <details><summary>Answer</summary>
 
@@ -1068,7 +1068,7 @@ nbu.raw.bmr.list_tasks()
 
   </details>
 
-- `GET /bare-metal-restore/tasks` -> **503** (0.24 s)
+- `GET /bare-metal-restore/tasks` -> **503** (0.25 s)
 
   <details><summary>Answer</summary>
 
@@ -1110,7 +1110,7 @@ nbu.raw.bmr.list_vm_conversion_tasks()
 
 **On the wire**
 
-- `GET /bare-metal-restore/vm-conversion-tasks` -> **503** (0.23 s)
+- `GET /bare-metal-restore/vm-conversion-tasks` -> **503** (0.20 s)
 
   <details><summary>Answer</summary>
 
@@ -1126,7 +1126,7 @@ nbu.raw.bmr.list_vm_conversion_tasks()
 
   </details>
 
-- `GET /bare-metal-restore/vm-conversion-tasks` -> **503** (0.22 s)
+- `GET /bare-metal-restore/vm-conversion-tasks` -> **503** (0.24 s)
 
   <details><summary>Answer</summary>
 
@@ -1142,7 +1142,7 @@ nbu.raw.bmr.list_vm_conversion_tasks()
 
   </details>
 
-- `GET /bare-metal-restore/vm-conversion-tasks` -> **503** (0.19 s)
+- `GET /bare-metal-restore/vm-conversion-tasks` -> **503** (0.21 s)
 
   <details><summary>Answer</summary>
 

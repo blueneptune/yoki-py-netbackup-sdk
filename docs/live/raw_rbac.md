@@ -1,6 +1,6 @@
 # `nbu.raw.rbac`: every read, live
 
-> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:40 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
+> Recorded from a real NetBackup 10.2 primary (API 9.0) on 2026-11-05 06:47 UTC, by `pytest -m live` (tests/live). Generated - do not edit; names and addresses are masked.
 
 ## `get_access_rule` - GET /rbac/access-rules/{ruleId}
 
@@ -50,7 +50,7 @@ nbu.raw.rbac.get_access_rules()
 
 **On the wire**
 
-- `GET /rbac/access-rules` -> **200** (0.10 s)
+- `GET /rbac/access-rules` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 
@@ -228,7 +228,7 @@ nbu.raw.rbac.get_object_types()
 
 **On the wire**
 
-- `GET /rbac/object-types` -> **200** (0.06 s)
+- `GET /rbac/object-types` -> **200** (0.05 s)
 
   <details><summary>Answer</summary>
 
@@ -313,7 +313,7 @@ nbu.raw.rbac.get_permission('8')
 
 **On the wire**
 
-- `GET /rbac/permissions` -> **200** (0.09 s)
+- `GET /rbac/permissions` -> **200** (0.07 s)
 
   <details><summary>Answer</summary>
 
@@ -398,7 +398,7 @@ nbu.raw.rbac.get_permission_categories()
 
 **On the wire**
 
-- `GET /rbac/permission-categories` -> **200** (0.08 s)
+- `GET /rbac/permission-categories` -> **200** (0.06 s)
 
   <details><summary>Answer</summary>
 
@@ -521,7 +521,7 @@ nbu.raw.rbac.get_permissions()
 
 **On the wire**
 
-- `GET /rbac/permissions` -> **200** (0.08 s)
+- `GET /rbac/permissions` -> **200** (0.11 s)
 
   <details><summary>Answer</summary>
 

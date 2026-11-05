@@ -194,51 +194,93 @@ class Security(Resource):
             },
         )
 
-    def post_certificate_authorities_activate(self, *, body: Any = None) -> Any:
+    def post_certificate_authorities_activate(
+        self, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`POST /security/certificate-authorities/activate`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = "/security/certificate-authorities/activate"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def get_certificate_authorities_hosts_pending_trust_propagation(self) -> Any:
         """`GET /security/certificate-authorities/hosts-pending-trust-propagation`"""
         path = "/security/certificate-authorities/hosts-pending-trust-propagation"
         return self._call("GET", path)
 
-    def post_certificate_authorities_initiate_migration(self, *, body: Any = None) -> Any:
+    def post_certificate_authorities_initiate_migration(
+        self, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`POST /security/certificate-authorities/initiate-migration`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = "/security/certificate-authorities/initiate-migration"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def post_certificate_authorities_migration_complete(self, *, body: Any = None) -> Any:
+    def post_certificate_authorities_migration_complete(
+        self, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`POST /security/certificate-authorities/migration-complete`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = "/security/certificate-authorities/migration-complete"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def get_certificate_authorities_migration_summary(self) -> Any:
         """`GET /security/certificate-authorities/migration-summary`"""
         path = "/security/certificate-authorities/migration-summary"
         return self._call("GET", path)
 
-    def post_certificate_authorities_sync_migration_db(self) -> Any:
-        """`POST /security/certificate-authorities/sync-migration-db`"""
+    def post_certificate_authorities_sync_migration_db(
+        self, *, x_net_backup_audit_reason: Any = None
+    ) -> Any:
+        """`POST /security/certificate-authorities/sync-migration-db`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = "/security/certificate-authorities/sync-migration-db"
-        return self._call("POST", path, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_certificate_authority(self, fingerprint: str | int) -> Any:
         """`GET /security/certificate-authorities/{fingerprint}`"""
         path = f"/security/certificate-authorities/{fingerprint}"
         return self._call("GET", path)
 
-    def post_certificate_authority_decommission(self, fingerprint: str | int) -> Any:
-        """`POST /security/certificate-authorities/{fingerprint}/decommission`"""
+    def post_certificate_authority_decommission(
+        self, fingerprint: str | int, *, x_net_backup_audit_reason: Any = None
+    ) -> Any:
+        """`POST /security/certificate-authorities/{fingerprint}/decommission`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/security/certificate-authorities/{fingerprint}/decommission"
-        return self._call("POST", path, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_certificates_crl(self) -> Any:
         """`GET /security/certificates/crl`"""
@@ -364,29 +406,54 @@ class Security(Resource):
             params={"page[limit]": page_limit, "page[offset]": page_offset, "sort": sort},
         )
 
-    def post_identity_providers(self, *, body: Any = None) -> Any:
+    def post_identity_providers(
+        self, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`POST /security/identity-providers`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = "/security/identity-providers"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def delete_identity_provider(self, name: str | int) -> Any:
-        """`DELETE /security/identity-providers/{name}`"""
+    def delete_identity_provider(
+        self, name: str | int, *, x_net_backup_audit_reason: Any = None
+    ) -> Any:
+        """`DELETE /security/identity-providers/{name}`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/security/identity-providers/{name}"
-        return self._call("DELETE", path, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_identity_provider(self, name: str | int) -> Any:
         """`GET /security/identity-providers/{name}`"""
         path = f"/security/identity-providers/{name}"
         return self._call("GET", path)
 
-    def patch_identity_provider(self, name: str | int, *, body: Any = None) -> Any:
+    def patch_identity_provider(
+        self, name: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`PATCH /security/identity-providers/{name}`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/security/identity-providers/{name}"
-        return self._call("PATCH", path, body=body, change=True)
+        return self._call(
+            "PATCH",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def list_key_management_services(
         self, *, page_limit: Any = None, page_offset: Any = None
@@ -399,12 +466,20 @@ class Security(Resource):
             "GET", path, params={"page[limit]": page_limit, "page[offset]": page_offset}
         )
 
-    def post_key_management_services(self, *, body: Any = None) -> Any:
+    def post_key_management_services(
+        self, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`POST /security/key-management-services`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = "/security/key-management-services"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def post_key_management_services_precheck(self, *, body: Any = None) -> Any:
         """`POST /security/key-management-services-precheck`
@@ -413,22 +488,39 @@ class Security(Resource):
         path = "/security/key-management-services-precheck"
         return self._call("POST", path, body=body, change=True)
 
-    def delete_key_management_service(self, kms_id: str | int) -> Any:
-        """`DELETE /security/key-management-services/{kmsId}`"""
+    def delete_key_management_service(
+        self, kms_id: str | int, *, x_net_backup_audit_reason: Any = None
+    ) -> Any:
+        """`DELETE /security/key-management-services/{kmsId}`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/security/key-management-services/{kms_id}"
-        return self._call("DELETE", path, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_key_management_service(self, kms_id: str | int) -> Any:
         """`GET /security/key-management-services/{kmsId}`"""
         path = f"/security/key-management-services/{kms_id}"
         return self._call("GET", path)
 
-    def patch_key_management_service(self, kms_id: str | int, *, body: Any = None) -> Any:
+    def patch_key_management_service(
+        self, kms_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`PATCH /security/key-management-services/{kmsId}`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/security/key-management-services/{kms_id}"
-        return self._call("PATCH", path, body=body, change=True)
+        return self._call(
+            "PATCH",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def list_key_management_service_key_details(
         self,
@@ -448,12 +540,20 @@ class Security(Resource):
             params={"filter": filter_, "page[limit]": page_limit, "page[offset]": page_offset},
         )
 
-    def post_key_management_service_keys(self, kms_id: str | int, *, body: Any = None) -> Any:
+    def post_key_management_service_keys(
+        self, kms_id: str | int, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`POST /security/key-management-services/{kmsId}/keys`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = f"/security/key-management-services/{kms_id}/keys"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
     def post_key_management_service_validate(self, kms_id: str | int) -> Any:
         """`POST /security/key-management-services/{kmsId}/validate`"""
@@ -621,24 +721,47 @@ class Security(Resource):
         path = "/security/servertime"
         return self._call("GET", path)
 
-    def list_service_principal_configs(self, *, sort: Any = None) -> Any:
+    def list_service_principal_configs(
+        self, *, page_offset: Any = None, page_limit: Any = None, sort: Any = None
+    ) -> Any:
         """`GET /security/service-principal-configs`
 
-        Query: sort."""
+        Query: page[offset], page[limit], sort."""
         path = "/security/service-principal-configs"
-        return self._call("GET", path, params={"sort": sort})
+        return self._call(
+            "GET",
+            path,
+            params={"page[offset]": page_offset, "page[limit]": page_limit, "sort": sort},
+        )
 
-    def post_service_principal_configs(self, *, body: Any = None) -> Any:
+    def post_service_principal_configs(
+        self, *, x_net_backup_audit_reason: Any = None, body: Any = None
+    ) -> Any:
         """`POST /security/service-principal-configs`
 
-        Body: application/vnd.netbackup+json."""
+        Headers: X-NetBackup-Audit-Reason. Body: application/vnd.netbackup+json."""
         path = "/security/service-principal-configs"
-        return self._call("POST", path, body=body, change=True)
+        return self._call(
+            "POST",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            body=body,
+            change=True,
+        )
 
-    def delete_service_principal_config(self, id_: str | int) -> Any:
-        """`DELETE /security/service-principal-configs/{id}`"""
+    def delete_service_principal_config(
+        self, id_: str | int, *, x_net_backup_audit_reason: Any = None
+    ) -> Any:
+        """`DELETE /security/service-principal-configs/{id}`
+
+        Headers: X-NetBackup-Audit-Reason."""
         path = f"/security/service-principal-configs/{id_}"
-        return self._call("DELETE", path, change=True)
+        return self._call(
+            "DELETE",
+            path,
+            headers={"X-NetBackup-Audit-Reason": x_net_backup_audit_reason},
+            change=True,
+        )
 
     def get_service_principal_config(self, id_: str | int) -> Any:
         """`GET /security/service-principal-configs/{id}`"""

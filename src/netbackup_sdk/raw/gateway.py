@@ -14,12 +14,12 @@ from .._base import Resource
 class Gateway(Resource):
     """`gateway`: 10 operations."""
 
-    def get_authorization_context(self, *, include: Any = None) -> Any:
+    def get_authorization_context(self, *, meta: Any = None, include: Any = None) -> Any:
         """`GET /authorization-context`
 
-        Query: include."""
+        Query: meta, include."""
         path = "/authorization-context"
-        return self._call("GET", path, params={"include": include})
+        return self._call("GET", path, params={"meta": meta, "include": include})
 
     def post_login(self, *, body: Any = None) -> Any:
         """`POST /login`

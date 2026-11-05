@@ -75,11 +75,36 @@ def py_name(name: str) -> str:
     return n
 
 
-def resolve(spec: dict[str, Any], item: dict[str, Any], kind: str) -> dict[str, Any]:
-    ref = item.get("$ref")
-    if not ref:
-        return item
-    return spec.get("components", {}).get(kind, {}).get(ref.split("/")[-1], {})
+_files: dict[Path, Any] = {}
+_folder: list[Path] = []
+
+
+def _load(path: Path) -> Any:
+    if path not in _files:
+        _files[path] = yaml.safe_load(path.read_text()) if path.exists() else {}
+    return _files[path]
+
+
+def resolve(spec: dict[str, Any], item: dict[str, Any], kind: str = "") -> dict[str, Any]:
+    """Follow `$ref`s, also into the shared files beside the area's own
+    (./common.yaml#/components/parameters/filter)."""
+    document: Any = spec
+    for _ in range(20):
+        ref = item.get("$ref") if isinstance(item, dict) else None
+        if not ref:
+            return item
+        file, _, pointer = str(ref).partition("#")
+        if file:
+            document = _load(_folder[0] / file.removeprefix("./"))
+        node: Any = document
+        for part in pointer.strip("/").split("/") if pointer else []:
+            node = (
+                node.get(part.replace("~1", "/").replace("~0", "~"), {})
+                if isinstance(node, dict)
+                else {}
+            )
+        item = node
+    return item
 
 
 def call_name(method: str, path: str, listing: bool = True) -> str:
@@ -242,11 +267,16 @@ def main() -> int:
         print(f"No spec/{release}/ - run scripts/spec.py against a {release} primary first.")
         return 1
     OUT.mkdir(parents=True, exist_ok=True)
+    for old in OUT.glob("*.py"):
+        old.unlink()
+    _folder[:] = [source]
     areas = []
     for file in sorted(source.glob("*.yaml")):
         area = file.stem
         module = py_name(area).rstrip("_")
-        spec = yaml.safe_load(file.read_text())
+        spec = _load(file)
+        if not spec.get("paths"):
+            continue  # a shared file other areas refer to (common.yaml)
         text, (cls, count) = render_area(area, spec, release)
         (OUT / f"{module}.py").write_text(text)
         areas.append((module, cls, int(count), area))
