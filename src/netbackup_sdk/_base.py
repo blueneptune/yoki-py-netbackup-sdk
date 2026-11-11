@@ -58,11 +58,15 @@ def decode(response: httpx.Response) -> Any:
     return response.content
 
 
-def timestamp(value: datetime) -> str:
-    """A time as NetBackup's filters take it: ISO 8601, UTC, with Z."""
+def timestamp(value: datetime, *, millis: bool = True) -> str:
+    """A time as NetBackup's filters take it: ISO 8601, UTC, with Z -
+    with milliseconds, or (`millis=False`) rounded down to the second."""
     if value.tzinfo is None:
         raise ValueError("Filter times must be timezone-aware.")
-    return value.astimezone(UTC).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
+    utc = value.astimezone(UTC)
+    if not millis:
+        return utc.strftime("%Y-%m-%dT%H:%M:%SZ")
+    return utc.strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
 
 
 def quoted(value: str) -> str:

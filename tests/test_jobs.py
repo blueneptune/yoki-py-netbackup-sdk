@@ -4,6 +4,7 @@ from __future__ import annotations
 
 from datetime import UTC, datetime, timedelta, timezone
 
+import httpx
 import pytest
 import respx
 from conftest import BASE, listing, resource
@@ -141,3 +142,87 @@ def test_changes_are_refused_by_default_and_never_retried(nbu_api: respx.MockRou
         with pytest.raises(Exception):  # noqa: B017
             nbu.jobs.restart(9)
     assert restart.call_count == 1
+
+
+REFUSED = {"errorCode": 400, "errorMessage": "The OData filter criteria is invalid."}
+
+
+def _delta_server(nbu_api: respx.MockRouter, takes: str) -> respx.Route:
+    """A server taking only some ways of asking for the delta: `takes` is
+    'seconds' (lastUpdateTime without milliseconds) or 'none' (no
+    lastUpdateTime filter at all)."""
+
+    def answer(request: httpx.Request) -> httpx.Response:
+        query = request.url.params.get("filter", "")
+        if "lastUpdateTime" in query and (takes == "none" or "." in query.split("ge ")[1]):
+            return httpx.Response(400, json=REFUSED)
+        if "endTime ge" in query:
+            return httpx.Response(
+                200,
+                json=listing(
+                    [
+                        resource("job", 1, {**ATTRS, "jobId": 1}),
+                        resource("job", 2, {**ATTRS, "jobId": 2}),
+                    ]
+                ),
+            )
+        if query.startswith("state ne 'DONE'"):
+            running = {**ATTRS, "jobId": 3, "state": "ACTIVE"}
+            return httpx.Response(
+                200,
+                json=listing(
+                    [resource("job", 2, {**ATTRS, "jobId": 2}), resource("job", 3, running)]
+                ),
+            )
+        return httpx.Response(200, json=listing([resource("job", 4711, ATTRS)]))
+
+    return nbu_api.get("/admin/jobs").mock(side_effect=answer)
+
+
+def test_a_server_that_refuses_milliseconds_is_asked_to_the_second(
+    nbu_api: respx.MockRouter,
+) -> None:
+    route = _delta_server(nbu_api, takes="seconds")
+    since = datetime(2026, 11, 4, 14, 52, 8, 621000, tzinfo=UTC)
+    with NetBackupClient(BASE, api_key="k") as nbu:
+        (page,) = list(nbu.jobs.iter_pages(updated_after=since))
+        assert nbu.delta_style == "updated-seconds"
+        list(nbu.jobs.iter_pages(updated_after=since))  # kept: asked once
+    filters = [c.request.url.params["filter"] for c in route.calls]
+    assert filters == [
+        "lastUpdateTime ge 2026-11-04T14:52:08.621Z",
+        "lastUpdateTime ge 2026-11-04T14:52:08Z",
+        "lastUpdateTime ge 2026-11-04T14:52:08Z",
+    ]
+    assert page[0].job_id == 4711
+
+
+def test_a_server_without_a_last_update_filter_gets_ended_then_active_each_job_once(
+    nbu_api: respx.MockRouter,
+) -> None:
+    route = _delta_server(nbu_api, takes="none")
+    since = datetime(2026, 11, 4, 14, 52, 8, tzinfo=UTC)
+    with NetBackupClient(BASE, api_key="k") as nbu:
+        jobs = [
+            j.job_id
+            for page in nbu.jobs.iter_pages(updated_after=since, client="bob")
+            for j in page
+        ]
+        assert nbu.delta_style == "ended-or-active"
+        total, sample = nbu.jobs.sample(5, updated_after=since)
+    assert jobs == [1, 2, 3]
+    filters = [c.request.url.params["filter"] for c in route.calls]
+    assert filters[:4] == [
+        "lastUpdateTime ge 2026-11-04T14:52:08.000Z and clientName eq 'bob'",
+        "clientName eq 'bob' and lastUpdateTime ge 2026-11-04T14:52:08Z",
+        "clientName eq 'bob' and endTime ge 2026-11-04T14:52:08Z",
+        "state ne 'DONE' and clientName eq 'bob'",
+    ]
+    assert filters[4] == "endTime ge 2026-11-04T14:52:08Z" and total == 2
+
+
+def test_a_refusal_that_is_not_about_the_filter_is_not_retried(nbu_api: respx.MockRouter) -> None:
+    route = nbu_api.get("/admin/jobs").respond(400, json={"errorMessage": "page[limit] is too big"})
+    with NetBackupClient(BASE, api_key="k") as nbu, pytest.raises(Exception, match="too big"):
+        list(nbu.jobs.iter_pages(updated_after=datetime(2026, 11, 4, tzinfo=UTC)))
+    assert route.call_count == 1

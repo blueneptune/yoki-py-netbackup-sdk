@@ -24,6 +24,10 @@ NetBackup 10.5 migration notes of nbu_exporter ("NetBackup 10.5 and
 later support API version 12.0", 406 otherwise), and NetBackup 11
 requests using version 13.0. 10.2 -> 9.0 checked against a 10.2 primary
 on 2026-11-02: it accepts 6.0 to 9.0 and answers 406 to 10.0 and up.
+10.0.0.1 -> 7.0 seen on a production primary on 2026-11-11 (406 to 13.0,
+12.0 and 9.0). That primary also answers 400 "The OData filter criteria
+is invalid" to `lastUpdateTime ge <time>`, and 404 to /catalog/slp-images;
+jobs.DELTA_STYLES works round the first.
 """
 
 from __future__ import annotations
