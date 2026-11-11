@@ -88,6 +88,9 @@ class NetBackupClient:
         self.allow_changes = allow_changes
         # "auto", a NetBackup release ("10.5") or an API version ("12.0").
         self.version = ApiVersion(api_version)
+        # How this server takes "jobs changed since" (jobs.DELTA_STYLES),
+        # learned on the first delta and kept for the session.
+        self.delta_style: str | None = None
 
         verify: bool | ssl.SSLContext = verify_tls
         if verify_tls and ca_bundle is not None:
