@@ -226,3 +226,89 @@ def test_a_refusal_that_is_not_about_the_filter_is_not_retried(nbu_api: respx.Mo
     with NetBackupClient(BASE, api_key="k") as nbu, pytest.raises(Exception, match="too big"):
         list(nbu.jobs.iter_pages(updated_after=datetime(2026, 11, 4, tzinfo=UTC)))
     assert route.call_count == 1
+
+
+def _cursor_page(request, total: int = 250):  # type: ignore[no-untyped-def]
+    """NetBackup 10's /admin/jobs: page[offset] ignored, a text cursor in
+    meta.pagination.next until the last page."""
+    after = request.url.params.get("page[after]")
+    start = 0 if after is None else int(after.removeprefix("c-"))
+    stop = min(start + 100, total)
+    pagination: dict[str, object] = {"limit": 100}
+    if stop < total:
+        pagination["next"] = f"c-{stop}"
+    return respx.MockResponse(
+        200,
+        json={
+            "data": [resource("job", n, {**ATTRS, "jobId": n}) for n in range(start, stop)],
+            "meta": {"pagination": pagination},
+        },
+    )
+
+
+def test_paging_follows_netbackup_10s_cursor(nbu_api: respx.MockRouter) -> None:
+    route = nbu_api.get("/admin/jobs").mock(side_effect=_cursor_page)
+    with NetBackupClient(BASE, api_key="k") as nbu:
+        sizes = [len(p) for p in nbu.jobs.iter_pages()]
+    assert sizes == [100, 100, 50]
+    asked = [c.request.url.params for c in route.calls]
+    assert [a.get("page[after]") for a in asked] == [None, "c-100", "c-200"]
+    assert "page[offset]" not in asked[1] and "page[offset]" not in asked[2]
+
+
+def test_a_full_page_with_no_cursor_and_offset_ignored_fails_instead_of_looping(
+    nbu_api: respx.MockRouter,
+) -> None:
+    from netbackup_sdk import NetBackupError
+
+    same = {"data": [resource("job", n, {**ATTRS, "jobId": n}) for n in range(100)], "meta": {}}
+    route = nbu_api.get("/admin/jobs").respond(json=same)
+    with (
+        NetBackupClient(BASE, api_key="k") as nbu,
+        pytest.raises(NetBackupError, match="same page"),
+    ):
+        list(nbu.jobs.iter_pages())
+    assert len(route.calls) == 2
+
+
+def test_a_cursor_given_twice_fails_instead_of_looping(nbu_api: respx.MockRouter) -> None:
+    from netbackup_sdk import NetBackupError
+
+    def stuck(request):  # type: ignore[no-untyped-def]
+        start = 0 if "page[after]" not in request.url.params else 100
+        return respx.MockResponse(
+            200,
+            json={
+                "data": [
+                    resource("job", start + n, {**ATTRS, "jobId": start + n}) for n in range(100)
+                ],
+                "meta": {"pagination": {"next": "same"}},
+            },
+        )
+
+    nbu_api.get("/admin/jobs").mock(side_effect=stuck)
+    with NetBackupClient(BASE, api_key="k") as nbu, pytest.raises(NetBackupError, match="twice"):
+        list(nbu.jobs.iter_pages())
+
+
+def test_the_cursor_can_come_in_links_next(nbu_api: respx.MockRouter) -> None:
+    def page(request):  # type: ignore[no-untyped-def]
+        first = "page[after]" not in request.url.params
+        start = 0 if first else 100
+        body = {
+            "data": [
+                resource("job", start + n, {**ATTRS, "jobId": start + n})
+                for n in range(100 if first else 3)
+            ],
+            "meta": {"pagination": {"limit": 100}},
+        }
+        if first:
+            body["links"] = {
+                "next": {"href": f"{BASE}/admin/jobs?page%5Bafter%5D=xyz&page%5Blimit%5D=100"}
+            }
+        return respx.MockResponse(200, json=body)
+
+    route = nbu_api.get("/admin/jobs").mock(side_effect=page)
+    with NetBackupClient(BASE, api_key="k") as nbu:
+        assert [len(p) for p in nbu.jobs.iter_pages()] == [100, 3]
+    assert route.calls[1].request.url.params["page[after]"] == "xyz"

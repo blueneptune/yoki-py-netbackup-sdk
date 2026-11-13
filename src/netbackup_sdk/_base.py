@@ -27,6 +27,21 @@ Entity = dict[str, Any]
 Entities = list[Entity]
 
 
+def next_cursor(body: dict[str, Any]) -> str | None:
+    """The cursor of the next page, if this listing pages by cursor: in
+    meta.pagination.next, or as page[after] in links.next.href."""
+    pagination = (body.get("meta") or {}).get("pagination") or {}
+    cursor = pagination.get("next")
+    if isinstance(cursor, str) and cursor:
+        return cursor
+    link = ((body.get("links") or {}).get("next") or {}).get("href")
+    if isinstance(link, str):
+        values = httpx.URL(link).params.get_list("page[after]")
+        if values and values[0]:
+            return values[0]
+    return None
+
+
 class NetBackupError(SDKError):
     """NetBackup answered, and the answer was not usable."""
 
@@ -106,24 +121,65 @@ class Resource:
 
         Listings are JSON:API: {"data": [...], "meta": {"pagination":
         {"offset", "limit", "count", "last", ...}}}."""
-        body = self._get(path, {**(params or {}), "page[offset]": offset, "page[limit]": limit})
+        items, pagination = self._listing(
+            path, {**(params or {}), "page[offset]": offset, "page[limit]": limit}
+        )
+        return items, pagination.get("count")
+
+    def _listing(self, path: str, params: dict[str, Any]) -> tuple[Entities, dict[str, Any]]:
+        body = self._get(path, params)
         if not isinstance(body, dict) or not isinstance(body.get("data"), list):
             raise NetBackupError(f"GET {path} did not return a listing: {str(body)[:200]}")
         pagination = (body.get("meta") or {}).get("pagination") or {}
-        return body["data"], pagination.get("count")
+        cursor = next_cursor(body)
+        if cursor is not None:
+            pagination = {**pagination, "next": cursor}
+        return body["data"], pagination
 
     def _pages(
         self, path: str, params: dict[str, Any] | None = None, page_size: int | None = None
     ) -> Iterator[Entities]:
-        """Every page of a listing. Stops on a short page, so it does not
-        depend on the server's counts."""
+        """Every page of a listing, however NetBackup pages it.
+
+        Some listings page by offset: meta.pagination has offset, count
+        and a numeric next. Others, /admin/jobs among them on NetBackup 10,
+        page by cursor: a text `next`, asked for again as page[after], and
+        page[offset] ignored. A cursor is followed while there is one; an
+        offset listing stops on a short page or hasNext false, so it does
+        not depend on the server's counts. A page or cursor that comes back
+        again stops the walk with an error, never a loop."""
         size = page_size or self._client.page_size
         offset = 0
+        after: str | None = None
+        seen_cursors: set[str] = set()
+        previous: tuple[Any, Any] | None = None
+        ends: tuple[Any, Any] | None
         while True:
-            items, _ = self._page(path, params, offset, size)
+            ask: dict[str, Any] = {**(params or {}), "page[limit]": size}
+            if after is None:
+                ask["page[offset]"] = offset
+            else:
+                ask["page[after]"] = after
+            items, pagination = self._listing(path, ask)
+            ends = (items[0].get("id"), items[-1].get("id")) if items else None
+            if ends is not None and ends == previous:
+                raise NetBackupError(
+                    f"GET {path} returned the same page again ({ends[0]}..{ends[1]}): "
+                    "NetBackup is not paging this listing the way it was asked"
+                )
+            previous = ends
             if items:
                 yield items
-            if len(items) < size:
+            cursor = pagination.get("next")
+            if isinstance(cursor, str) and cursor:
+                if cursor in seen_cursors:
+                    raise NetBackupError(f"GET {path} gave the cursor {cursor!r} twice")
+                seen_cursors.add(cursor)
+                after = cursor
+                continue
+            if after is not None or not items:
+                return  # a cursor listing's last page
+            if pagination.get("hasNext") is False or len(items) < size:
                 return
             offset += size
 
