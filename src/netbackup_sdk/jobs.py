@@ -140,14 +140,17 @@ class Jobs(Resource):
             except Refused as exc:
                 if not refused_filter(exc) or n == len(styles) - 1:
                     raise
-                logger.warning(
-                    "NetBackup refused the jobs filter ({}); trying {}", style, styles[n + 1]
+                # Expected on older NetBackup: the next style is the answer.
+                logger.info(
+                    "This NetBackup does not take the jobs filter as {}; trying {}",
+                    style,
+                    styles[n + 1],
                 )
                 continue
             if self._client.delta_style != style:
                 self._client.delta_style = style
                 if style != DELTA_STYLES[0]:
-                    logger.info("Jobs changed since a time: asked as {} on this server", style)
+                    logger.info("Jobs changed since a time: asked as {} on this NetBackup", style)
             if first is not None:
                 yield first
             yield from pages
