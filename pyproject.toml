@@ -16,8 +16,7 @@ netbackup-probe = "netbackup_sdk.probe:main"
 
 [tool.uv.sources]
 # The transport underneath: retries, typed exceptions, request logging.
-# Pinned to the v0.2.1 commit until that tag is pushed.
-sdk-primer = { git = "https://github.com/blueneptune/sdk-primer-core.git", rev = "6cc3a4c1b048954ce80f6325c0c56165180b4191" }
+sdk-primer = { git = "https://github.com/blueneptune/sdk-primer-core.git", tag = "v0.2.1" }
 
 [build-system]
 requires = ["hatchling"]
