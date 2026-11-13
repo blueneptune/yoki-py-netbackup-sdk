@@ -390,7 +390,7 @@ requires-dist = [
     { name = "httpx", specifier = ">=0.28.1" },
     { name = "loguru", specifier = ">=0.7.3" },
     { name = "pydantic", specifier = ">=2.13.5" },
-    { name = "sdk-primer", git = "https://github.com/blueneptune/sdk-primer-core.git?rev=6cc3a4c1b048954ce80f6325c0c56165180b4191" },
+    { name = "sdk-primer", git = "https://github.com/blueneptune/sdk-primer-core.git?tag=v0.2.1" },
 ]
 
 [package.metadata.requires-dev]
@@ -667,7 +667,7 @@ wheels = [
 [[package]]
 name = "sdk-primer"
 version = "0.2.1"
-source = { git = "https://github.com/blueneptune/sdk-primer-core.git?rev=6cc3a4c1b048954ce80f6325c0c56165180b4191#6cc3a4c1b048954ce80f6325c0c56165180b4191" }
+source = { git = "https://github.com/blueneptune/sdk-primer-core.git?tag=v0.2.1#6cc3a4c1b048954ce80f6325c0c56165180b4191" }
 dependencies = [
     { name = "httpx" },
     { name = "loguru" },
